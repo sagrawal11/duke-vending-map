@@ -40,7 +40,7 @@ const vendingMachines = [
     building: 'West Union',
     floor: 'Basement',
     notes: 'Near the game room',
-    products: ['Red Bull', 'Monster', 'Water', 'Granola Bars', 'Protein Bars']
+    products: ['Red Bull', 'Monster', 'Water', 'Granola Bars', 'Gatorade Protein Bars']
   }
 ];
 
