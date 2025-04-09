@@ -1,0 +1,10 @@
+.map-page {
+  padding: 20px 0;
+}
+
+.map-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
