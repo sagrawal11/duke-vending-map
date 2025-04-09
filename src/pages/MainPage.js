@@ -18,11 +18,11 @@ const vendingMachines = [
   { 
     id: 1, 
     name: 'Bryan Center Machine #1', 
-    location: [36.0014, -78.9382], 
+    location: [36.003211, -78.942427], 
     building: 'Bryan Center',
     floor: '1st Floor',
     notes: 'Near the entrance, by the seating area',
-    products: ['Coca-Cola', 'Diet Coke', 'Sprite', 'Water', 'Snickers', 'M&Ms', 'Doritos']
+    products: ['Coca-Cola', 'Diet Coke', 'Sprite', 'Water', 'Snickers', 'M&Ms', 'Doritos', 'Lays']
   },
   { 
     id: 2, 
@@ -126,9 +126,9 @@ function MainPage() {
     <div className="main-page">
       <div className="hero-section">
         <div className="container">
-          <h1 className="hero-title">Duke University Vending Machine Map</h1>
+          <h1 className="hero-title">Duke Vending Machine Finder</h1>
           <p className="hero-description">
-            Find your favorite snacks and drinks across campus in seconds!
+            Your guide to the munchies
           </p>
         </div>
       </div>
