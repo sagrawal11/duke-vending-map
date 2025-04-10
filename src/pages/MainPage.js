@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Sample vending machine data (you'll replace with your database)
+// Vending machine data
 const vendingMachines = [
   { 
     id: 1, 
@@ -44,26 +44,12 @@ const vendingMachines = [
   }
 ];
 
-// Component to fly to a specific location on the map
-function FlyToMarker({ position }) {
-  const map = useMap();
-  
-  useEffect(() => {
-    if (position) {
-      map.flyTo(position, 18);
-    }
-  }, [position, map]);
-  
-  return null;
-}
-
 function MainPage() {
   // Duke University campus center coordinates
   const dukeCenter = [36.0014, -78.9382];
   
   const [searchResults, setSearchResults] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
-  const [selectedMachine, setSelectedMachine] = useState(null);
   
   // Handle search functionality
   const handleSearch = (term) => {
@@ -117,11 +103,6 @@ function MainPage() {
     setSearchPerformed(true);
   };
   
-  // Navigate to a vending machine
-  const navigateToMachine = (machine) => {
-    setSelectedMachine(machine);
-  };
-  
   return (
     <div className="main-page">
       <div className="hero-section">
@@ -154,12 +135,6 @@ function MainPage() {
                         <p><strong>Machine:</strong> {result.machine.name}</p>
                         <p><strong>Notes:</strong> {result.machine.notes}</p>
                       </div>
-                      <button 
-                        className="navigate-btn"
-                        onClick={() => navigateToMachine(result.machine)}
-                      >
-                        Navigate
-                      </button>
                     </div>
                   ))}
                 </div>
@@ -203,8 +178,6 @@ function MainPage() {
                   </Popup>
                 </Marker>
               ))}
-              
-              {selectedMachine && <FlyToMarker position={selectedMachine.location} />}
             </MapContainer>
           </div>
         </div>
