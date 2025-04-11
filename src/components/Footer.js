@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <p>© {new Date().getFullYear()} Enterprise Productions</p>
+        <p>© {new Date().getFullYear()} Sloth Studios</p>
       </div>
     </footer>
   );
