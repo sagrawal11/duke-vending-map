@@ -16,7 +16,33 @@ L.Icon.Default.mergeOptions({
 // Product categorization function
 const categorizeProduct = (product) => {
   const lowerProduct = product.toLowerCase();
-  
+
+  // Protein and health foods
+  if (lowerProduct.includes('Gatorade protein bar') || 
+      lowerProduct.includes('granola') || 
+      lowerProduct.includes('trail mix') || 
+      lowerProduct.includes('cashews') || 
+      lowerProduct.includes('almond') ||
+      lowerProduct.includes('protein')) {
+    return 'Healthy Snacks';
+  }
+
+  // Energy drinks
+  if (lowerProduct.includes('red bull') || 
+      lowerProduct.includes('monster') || 
+      lowerProduct.includes('celsius') || 
+      lowerProduct.includes('propel') || 
+      lowerProduct.includes('gatorade') ||
+      lowerProduct.includes('gatorlyte') ||
+      lowerProduct.includes('body armor') ||
+      lowerProduct.includes('vitamin water') ||
+      lowerProduct.includes('fairlife') ||
+      lowerProduct.includes('storm') ||
+      lowerProduct.includes('starbuck') ||
+      lowerProduct.includes('powerade')) {
+    return 'Energy/Electrolyte Drinks';
+  }
+
   // Sodas and drinks
   if (lowerProduct.includes('water') || 
       lowerProduct.includes('pepsi') || 
@@ -24,30 +50,15 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('tea') || 
       lowerProduct.includes('coca') ||
       lowerProduct.includes('coke') ||
-      lowerProduct.includes('monster') ||
-      lowerProduct.includes('celsius') ||
       lowerProduct.includes('sprite') ||
       lowerProduct.includes('topo chico') ||
       lowerProduct.includes('lemonade') ||
       lowerProduct.includes('strawberry') ||
-      lowerProduct.includes('apple') ||
-      lowerProduct.includes('orange') ||
+      lowerProduct.includes('starry') ||
+      lowerProduct.includes('apple juice') ||
+      lowerProduct.includes('orange juice') ||
       lowerProduct.includes('fanta')) {
     return 'Drinks';
-  }
-  
-  // Energy drinks
-  if (lowerProduct.includes('red bull') || 
-      lowerProduct.includes('monster') || 
-      lowerProduct.includes('celsius') || 
-      lowerProduct.includes('propel') || 
-      lowerProduct.includes('gatorade') ||
-      lowerProduct.includes('body armor') ||
-      lowerProduct.includes('vitamin water') ||
-      lowerProduct.includes('fairlife') ||
-      lowerProduct.includes('storm') ||
-      lowerProduct.includes('powerade')) {
-    return 'Energy/Electrolyte Drinks';
   }
   
   // Chips and savory snacks
@@ -62,7 +73,13 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('gardettos') || 
       lowerProduct.includes('crackers') ||
       lowerProduct.includes('ruffles') ||
-      lowerProduct.includes('tuna')) {
+      lowerProduct.includes('tuna') ||
+      lowerProduct.includes('gold') ||
+      lowerProduct.includes('pop') ||
+      lowerProduct.includes('veggie') ||
+      lowerProduct.includes('cheddar')|| 
+      lowerProduct.includes('cheese') ||
+      lowerProduct.includes('pretzel')) {
     return 'Chips & Savory Snacks';
   }
   
@@ -76,21 +93,16 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('haribo') || 
       lowerProduct.includes('m&m') || 
       lowerProduct.includes('ghiradelli') || 
+      lowerProduct.includes('airhead') || 
       lowerProduct.includes('skittles') || 
       lowerProduct.includes('gummies') || 
       lowerProduct.includes('gushers') || 
       lowerProduct.includes('nerds') ||
-      lowerProduct.includes('honey bun')) {
+      lowerProduct.includes('honey bun') ||
+      lowerProduct.includes('worm') ||
+      lowerProduct.includes('mike')||
+      lowerProduct.includes('crunch')) {
     return 'Candy & Sweets';
-  }
-  
-  // Protein and health foods
-  if (lowerProduct.includes('protein') || 
-      lowerProduct.includes('granola') || 
-      lowerProduct.includes('trail mix') || 
-      lowerProduct.includes('cashews') || 
-      lowerProduct.includes('almond')) {
-    return 'Healthy Snacks';
   }
   
   // Default category for anything else
@@ -130,7 +142,7 @@ const vendingMachines = [
     building: 'Wu',
     floor: '2nd Floor',
     notes: 'In the back where the study rooms are',
-    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Water', 'Pure Leaf tea', 'Lays Classic', 'Sea Salt Popchips', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley', 'Nutra Grain Green Apple', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Blue Gatorade', 'Water, Propel, Celsius']
+    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Celsius', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley', 'Nutra Grain Green Apple', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
   },
   { 
     id: 3, 
@@ -270,20 +282,16 @@ function MainPage() {
     );
   };
   
-  // Render grouped products for map popups
-  const renderGroupedProducts = (products) => {
+  // Render just category summaries for map popups (no individual items)
+  const renderCategorySummary = (products) => {
     const groupedProducts = groupProductsByCategory(products);
     
     return (
-      <div className="grouped-products">
+      <div className="category-summary">
         {Object.entries(groupedProducts).map(([category, products]) => (
-          <div key={category} className="product-category">
-            <h5>{category}</h5>
-            <ul className="category-products">
-              {products.map((product, i) => (
-                <li key={i}>{product}</li>
-              ))}
-            </ul>
+          <div key={category} className="category-item">
+            <span className="category-name">{category}</span>
+            <span className="category-count">({products.length})</span>
           </div>
         ))}
       </div>
@@ -368,8 +376,8 @@ function MainPage() {
                       <p><strong>Floor:</strong> {machine.floor}</p>
                       <p><strong>Notes:</strong> {machine.notes}</p>
                       <div className="popup-products">
-                        <p><strong>Available Products:</strong></p>
-                        {renderGroupedProducts(machine.products)}
+                        <p><strong>Available Categories:</strong></p>
+                        {renderCategorySummary(machine.products)}
                       </div>
                     </div>
                   </Popup>
@@ -380,7 +388,7 @@ function MainPage() {
         </div>
       </div>
       
-      {/* Add some styling for the dropdowns */}
+      {/* Add some styling for the components */}
       <style jsx>{`
         .category-header {
           display: flex;
@@ -409,6 +417,25 @@ function MainPage() {
           margin-top: 5px;
           margin-bottom: 15px;
           padding-left: 20px;
+        }
+        
+        .category-summary {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        
+        .category-item {
+          display: flex;
+          justify-content: space-between;
+          background-color: #f0f0f0;
+          padding: 6px 10px;
+          border-radius: 4px;
+          font-weight: 500;
+        }
+        
+        .category-count {
+          color: #666;
         }
       `}</style>
     </div>
