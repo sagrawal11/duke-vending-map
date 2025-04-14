@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
@@ -13,12 +13,27 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
+// Create a component to update map markers
+function MapUpdater({ visibleMachines }) {
+  const map = useMap();
+  
+  // Fit map bounds to visible markers
+  React.useEffect(() => {
+    if (visibleMachines.length > 0) {
+      const bounds = L.latLngBounds(visibleMachines.map(machine => machine.location));
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [visibleMachines, map]);
+  
+  return null;
+}
+
 // Product categorization function
 const categorizeProduct = (product) => {
   const lowerProduct = product.toLowerCase();
 
   // Protein and health foods
-  if (lowerProduct.includes('Gatorade protein bar') || 
+  if (lowerProduct.includes('gatorade protein bar') || 
       lowerProduct.includes('granola') || 
       lowerProduct.includes('trail mix') || 
       lowerProduct.includes('cashews') || 
@@ -66,6 +81,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('cheetos') || 
       lowerProduct.includes('doritos') || 
       lowerProduct.includes('fritos') || 
+      lowerProduct.includes('pringle') || 
       lowerProduct.includes('popcorn') || 
       lowerProduct.includes('chex') || 
       lowerProduct.includes('sun chips') || 
@@ -86,11 +102,13 @@ const categorizeProduct = (product) => {
   // Candy and sweets
   if (lowerProduct.includes('oreos') || 
       lowerProduct.includes('snickers') || 
+      lowerProduct.includes('kitkat') || 
       lowerProduct.includes('kit kat') || 
       lowerProduct.includes('reese') || 
       lowerProduct.includes('musketeers') || 
       lowerProduct.includes('kinder') || 
       lowerProduct.includes('haribo') || 
+      lowerProduct.includes('cookie') || 
       lowerProduct.includes('m&m') || 
       lowerProduct.includes('ghiradelli') || 
       lowerProduct.includes('airhead') || 
@@ -128,27 +146,27 @@ const groupProductsByCategory = (products) => {
 const vendingMachines = [
   { 
     id: 1, 
-    name: 'Bryan Center Vending Machine', 
+    name: 'BC Vending Machine', 
     location: [36.001057, -78.940978], 
     building: 'Bryan Center',
     floor: 'Middle Floor',
-    notes: 'In between McDonalds and Griffith Theater',
+    notes: 'Between McDonalds and Griffith Theater',
     products: ['Pepsi', 'Mountain Dew', 'Pepsi Zero Sugar', 'Mountain Dew Zero Sugar', 'Water', 'Pure Leaf Tea', 'Propel', 'Celsius', 'Lays CLassic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos', 'White Cheddar Popcorn', 'Lays Barbeque', 'Cheetos Cheddar Jalapeno', 'Doritos Cool Ranch', 'Chex Mix', 'Sun Chips Garden Salsa', 'Sun Chips Harvest Cheddar', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Gardettos Snack Mix', 'Lays Salt and Vinegar', 'Penut Butter Crackers', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Oreos', 'Snickers', 'Kit Kat', "Reese's", '3 Musketeers', 'Kinder Bueno', 'Haribo Gummy Bears', 'M&Ms', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', "Reese's Fast Break", 'Skittles', 'Slim Kim', 'Cinnamon Almond Butter Biscuits', "Reese's Sticks", "Cashews", 'Trail Mix', 'Beef Tender Bites', "Sour Skittles Gummies", "Gushers", 'Honey Bun', 'Nerds', 'Vitamin Water', 'Body Armor', 'Fairlife Core Power', 'Topo Chico', 'Coca Cola', 'Fanta', 'Sprite', 'Orange Juice', 'Strawberry Grape Juice', 'Apple Juice', 'Powerade', 'Storm', 'Lemonade', 'Coke Zero', 'Monster']
   },
   { 
     id: 2, 
     name: 'Wu Vending Machine', 
     location: [36.000597, -78.939276], 
-    building: 'Wu',
+    building: 'Broadhead Center',
     floor: '2nd Floor',
     notes: 'In the back where the study rooms are',
-    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Celsius', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley', 'Nutra Grain Green Apple', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
+    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley', 'Nutra Grain Green Apple', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
   },
   { 
     id: 3, 
     name: 'Perkins Vending Machine', 
     location: [36.002628, -78.938762], 
-    building: 'Perkins',
+    building: 'Perkins Library',
     floor: 'LL1',
     notes: 'In the back corner',
     products: ['Vitamin Water', 'Orange Juice', 'Gold Peak Sweet Tea', 'Fairlife Core Power', 'Coca Cola', 'Water', 'Lays Classic', 'Popchips Sea Salt', 'Doritos Nacho Cheese', 'Cheez It', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Spicy Sweet Chili', 'Mini Pretzels', 'Tuna Salad', 'Pringles', 'Gardettos Snack Mix', 'Chicken Salad and Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Ruffles Cheddar & Sour Cream', 'Cheez It', 'Lays Sour Cream & Onion', "Reese's", 'Rice Krispies Treats', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Ghiradelli Milk Chocolate Caramel', 'Clif Bar Chocolate Chip', 'Sour Skittles Gummies', 'Gushers', 'Classic Cookie']
@@ -165,7 +183,7 @@ const vendingMachines = [
   { 
     id: 5, 
     name: 'Teer Vending Machine', 
-    location: [36.004039, -78.941201], //REDO TEER LOCATION, IT'S OFF BY A BIT
+    location: [36.004039, -78.941201], 
     building: 'Teer',
     floor: 'Bottom Floor',
     notes: 'Down the stairs, go through the left set of doors, down the hallway',
@@ -181,18 +199,20 @@ function MainPage() {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedCategories, setExpandedCategories] = useState({});
+  const [visibleMachines, setVisibleMachines] = useState(vendingMachines);
+  const searchInputRef = useRef(null);
   
   // Handle search functionality
   const handleSearch = (term) => {
     if (!term.trim()) {
-      setSearchResults([]);
-      setSearchPerformed(false);
-      setSearchTerm('');
+      clearSearch();
       return;
     }
     
     setSearchTerm(term.toLowerCase());
     const results = [];
+    const matchingMachines = [];
+    
     const isProductSearch = vendingMachines.some(machine => 
       machine.products.some(product => 
         product.toLowerCase().includes(term.toLowerCase())
@@ -212,6 +232,7 @@ function MainPage() {
             machine,
             isProductSearch: true
           });
+          matchingMachines.push(machine);
         }
       });
     } else {
@@ -226,15 +247,30 @@ function MainPage() {
             machine,
             isProductSearch: false
           });
+          matchingMachines.push(machine);
         }
       });
     }
     
     setSearchResults(results);
     setSearchPerformed(true);
+    setVisibleMachines(matchingMachines);
     
     // Reset expanded categories
     setExpandedCategories({});
+  };
+  
+  // Clear search function
+  const clearSearch = () => {
+    setSearchResults([]);
+    setSearchPerformed(false);
+    setSearchTerm('');
+    setVisibleMachines(vendingMachines);
+    
+    // Reset search input if there's a ref to it
+    if (searchInputRef.current && searchInputRef.current.value) {
+      searchInputRef.current.value = '';
+    }
   };
   
   // Toggle category expansion
@@ -312,7 +348,12 @@ function MainPage() {
       <div className="container main-content">
         <div className="search-section">
           <h2>Find Snacks & Drinks</h2>
-          <SearchBar onSearch={handleSearch} />
+          <div className="search-container">
+            <SearchBar onSearch={handleSearch} inputRef={searchInputRef} />
+            <button className="clear-button" onClick={clearSearch}>
+              Reset
+            </button>
+          </div>
           
           {searchPerformed && (
             <div className="search-results">
@@ -364,7 +405,8 @@ function MainPage() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               
-              {vendingMachines.map(machine => (
+              {/* Only show visible machines based on search */}
+              {visibleMachines.map(machine => (
                 <Marker 
                   key={machine.id} 
                   position={machine.location}
@@ -383,61 +425,13 @@ function MainPage() {
                   </Popup>
                 </Marker>
               ))}
+              
+              {/* Map updater component to handle map view changes */}
+              <MapUpdater visibleMachines={visibleMachines} />
             </MapContainer>
           </div>
         </div>
       </div>
-      
-      {/* Add some styling for the components */}
-      <style jsx>{`
-        .category-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          cursor: pointer;
-          padding: 5px;
-          background-color: #f5f5f5;
-          border-radius: 4px;
-          margin-bottom: 5px;
-        }
-        
-        .category-header:hover {
-          background-color: #e5e5e5;
-        }
-        
-        .dropdown-icon {
-          font-size: 12px;
-        }
-        
-        .product-category {
-          margin-bottom: 10px;
-        }
-        
-        .category-products {
-          margin-top: 5px;
-          margin-bottom: 15px;
-          padding-left: 20px;
-        }
-        
-        .category-summary {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        
-        .category-item {
-          display: flex;
-          justify-content: space-between;
-          background-color: #f0f0f0;
-          padding: 6px 10px;
-          border-radius: 4px;
-          font-weight: 500;
-        }
-        
-        .category-count {
-          color: #666;
-        }
-      `}</style>
     </div>
   );
 }

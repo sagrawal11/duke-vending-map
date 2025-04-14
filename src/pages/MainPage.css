@@ -40,6 +40,54 @@
   margin-bottom: 15px;
 }
 
+/* Search Container and Controls */
+.search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+.search-bar {
+  display: flex;
+  flex: 1;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  background-color: #00539B;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.search-button:hover {
+  background-color: #003d73;
+}
+
+.clear-button {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.clear-button:hover {
+  background-color: #e0e0e0;
+}
+
 .search-results {
   margin-top: 20px;
 }
@@ -61,6 +109,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .result-item {
@@ -70,7 +120,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .result-content {
@@ -97,6 +147,55 @@
   background-color: #003d73;
 }
 
+/* Category Display */
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.category-header:hover {
+  background-color: #e5e5e5;
+}
+
+.dropdown-icon {
+  font-size: 12px;
+}
+
+.product-category {
+  margin-bottom: 10px;
+}
+
+.category-products {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.category-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.category-count {
+  color: #666;
+}
+
 /* Map Section */
 .map-section h2 {
   color: #00539B;
@@ -107,6 +206,11 @@
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.machine-popup {
+  min-width: 200px;
 }
 
 .machine-popup h3 {
@@ -152,5 +256,14 @@
   
   .map-container {
     height: 350px;
+  }
+  
+  .search-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .clear-button {
+    align-self: flex-start;
   }
 }
