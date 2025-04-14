@@ -33,7 +33,6 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('apple') ||
       lowerProduct.includes('orange') ||
       lowerProduct.includes('fanta')) {
-
     return 'Drinks';
   }
   
@@ -61,7 +60,9 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('sun chips') || 
       lowerProduct.includes('cheez it') || 
       lowerProduct.includes('gardettos') || 
-      lowerProduct.includes('crackers')) {
+      lowerProduct.includes('crackers') ||
+      lowerProduct.includes('ruffles') ||
+      lowerProduct.includes('tuna')) {
     return 'Chips & Savory Snacks';
   }
   
