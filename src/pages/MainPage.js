@@ -138,7 +138,7 @@ const vendingMachines = [
     building: 'Perkins',
     floor: 'LL1',
     notes: 'In the back corner',
-    products: ["'REDO THIS ONE, I DON'T TRUST THE PICTURES"]
+    products: ['Vitamin Water', 'Orange Juice', 'Gold Peak Sweet Tea', 'Fairlife Core Power', 'Coca Cola', 'Water', 'Lays Classic', 'Popchips Sea Salt', 'Doritos Nacho Cheese', 'Cheez It', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Spicy Sweet Chili', 'Mini Pretzels', 'Tuna Salad', 'Pringles', 'Gardettos Snack Mix', 'Chicken Salad and Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Ruffles Cheddar & Sour Cream', 'Cheez It', 'Lays Sour Cream & Onion', "Reese's", 'Rice Krispies Treats', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Ghiradelli Milk Chocolate Caramel', 'Clif Bar Chocolate Chip', 'Sour Skittles Gummies', 'Gushers', 'Classic Cookie']
   }, 
   { 
     id: 4, 
@@ -152,7 +152,7 @@ const vendingMachines = [
   { 
     id: 5, 
     name: 'Teer Vending Machine', 
-    location: [36.004039, -78.941201], 
+    location: [36.004039, -78.941201], //REDO TEER LOCATION, IT'S OFF BY A BIT
     building: 'Teer',
     floor: 'Bottom Floor',
     notes: 'Down the stairs, go through the left set of doors, down the hallway',
