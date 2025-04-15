@@ -69,6 +69,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('topo chico') ||
       lowerProduct.includes('lemonade') ||
       lowerProduct.includes('strawberry') ||
+      lowerProduct.includes('ginger ale') ||
       lowerProduct.includes('starry') ||
       lowerProduct.includes('apple juice') ||
       lowerProduct.includes('orange juice') ||
@@ -189,7 +190,7 @@ const vendingMachines = [
     name: 'Teer Vending Machine', 
     location: [36.003830, -78.941049], 
     building: 'Nello L. Teer Building',
-    floor: 'Bottom Floor',
+    floor: 'FLoor 1',
     notes: 'Down the stairs, go through the left set of doors, then down the right hallway',
     products: ['Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Mug Root Beer', 'Water', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Smartfood White Cheddar Popcorn', 'Doritos Cool Ranch', 'Funyuns', 'Tubs Bar-B-Que Pork Rinds', 'Ruffles Cheddar & Sour Cream', 'Lays Salt and Vinegar', 'Lays Barbeque', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Chex Mix', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's", "Reese's Stick", "Hershey's Chocolate Bar", 'Peanut M&Ms', 'Slim Jim', 'Snickers', 'Sour Patch Kids', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Haribo Gummy Bears', 'Kinder Bueno', 'Nutra Grain', 'Nature Valley', 'Beef Tender Bites', 'Sour Skittles Gummies', 'Big Honey Bun', 'Bite Sized Cookies', 'Nerds Gummy Clusters', 'Gatorade', 'Gatorlyte', 'Propel', 'Celsius', 'Starbucks Triple Shot Bold Mocha', 'Starbucks Triple Shot Dark Caramel', 'Starbucks triple Shot Vanilla', 'Starbucks Cold Brew']
   },
@@ -299,7 +300,7 @@ function MainPage() {
     setVisibleMachines(vendingMachines);
     
     // Reset search input if there's a ref to it
-    if (searchInputRef.current && searchInputRef.current.value) {
+    if (searchInputRef.current) {
       searchInputRef.current.value = '';
     }
   };

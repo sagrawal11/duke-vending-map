@@ -77,15 +77,19 @@
 
 .clear-button {
   padding: 8px 16px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: #C84E00;
+  color: white;
+  position: relative;
+  top: 19px; /* Moves it down */
+  height: 38px;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
 }
 
 .clear-button:hover {
-  background-color: #e0e0e0;
+  background-color: #A34400;
 }
 
 .search-results {
