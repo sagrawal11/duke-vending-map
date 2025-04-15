@@ -109,6 +109,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('reese') || 
       lowerProduct.includes('musketeers') || 
       lowerProduct.includes('kinder') || 
+      lowerProduct.includes('Pop') || 
       lowerProduct.includes('haribo') || 
       lowerProduct.includes('cookie') || 
       lowerProduct.includes('m&m') || 
@@ -209,6 +210,15 @@ const vendingMachines = [
     floor: 'Bottom Floor',
     notes: 'Down the stairs, go through the left set of doors, down the hallway',
     products: ['Lays CLassic', 'Fritos Twists', 'Popchips Sour Cream & Onion', 'Cheez It', 'Lays Barbeque', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Gardettos Snack Mix', 'Chex Mix', 'Bugles Nacho Cheese', 'Beef Tender Bites', 'Black Forest Fruit Snacks', 'Clif Bar Chocolate Chip', 'Gatorade Protein Bar', 'Snickers', 'M&Ms', 'Kitkat', 'Ghiradelli Milk Chocolate Caramel', 'Trial Mix', "Reese's", 'Kinder Bueno', 'Nature Valley Granola Bar', 'Powerade', 'Water']
+  },
+  { 
+    id: 8, 
+    name: 'Physics Vending Machine', 
+    location: [36.003281, -78.942555], 
+    building: 'Physics Building',
+    floor: 'Bottom Floor',
+    notes: 'Enter the building and go right, follow the hallway and go down the stairs, vending machine is around the corner',
+    products: ['Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Diet Dr. Pepper', 'Coca Cola Zero Sugar', 'Schweppes Ginger Ale', 'Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Doritos Cool Ranch', 'Cheetos', 'Funyuns', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Lays Barbeque', 'Lays Sour Cream & Onion', 'Bugles Nacho Cheese', 'Cheez It', "Miss Vickie's Spicy Dill Pickle Chips", 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Payday', "Reese's", 'Nutra Grain', 'Kinder Bueno', 'M&Ms', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Butterfinger', 'Clif Chocolate Chip', 'Skittles', "Reese's Fast Break", 'Nature Valley', 'Trolli Sour Gummy Worms', 'Big Honey Bun', 'Pop Tarts', 'Gushers']
   }
 ];
 
