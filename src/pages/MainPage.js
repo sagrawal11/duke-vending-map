@@ -84,6 +84,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('pringle') || 
       lowerProduct.includes('popcorn') || 
       lowerProduct.includes('chex') || 
+      lowerProduct.includes('chips') || 
       lowerProduct.includes('sun chips') || 
       lowerProduct.includes('cheez it') || 
       lowerProduct.includes('gardettos') || 
@@ -104,12 +105,14 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('snickers') || 
       lowerProduct.includes('kitkat') || 
       lowerProduct.includes('kit kat') || 
+      lowerProduct.includes('fruit snack') || 
       lowerProduct.includes('reese') || 
       lowerProduct.includes('musketeers') || 
       lowerProduct.includes('kinder') || 
       lowerProduct.includes('haribo') || 
       lowerProduct.includes('cookie') || 
       lowerProduct.includes('m&m') || 
+      lowerProduct.includes('payday') || 
       lowerProduct.includes('ghiradelli') || 
       lowerProduct.includes('airhead') || 
       lowerProduct.includes('skittles') || 
@@ -151,7 +154,7 @@ const vendingMachines = [
     building: 'Bryan Center',
     floor: 'Middle Floor',
     notes: 'Between McDonalds and Griffith Theater',
-    products: ['Pepsi', 'Mountain Dew', 'Pepsi Zero Sugar', 'Mountain Dew Zero Sugar', 'Water', 'Pure Leaf Tea', 'Propel', 'Celsius', 'Lays CLassic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos', 'White Cheddar Popcorn', 'Lays Barbeque', 'Cheetos Cheddar Jalapeno', 'Doritos Cool Ranch', 'Chex Mix', 'Sun Chips Garden Salsa', 'Sun Chips Harvest Cheddar', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Gardettos Snack Mix', 'Lays Salt and Vinegar', 'Penut Butter Crackers', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Oreos', 'Snickers', 'Kit Kat', "Reese's", '3 Musketeers', 'Kinder Bueno', 'Haribo Gummy Bears', 'M&Ms', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', "Reese's Fast Break", 'Skittles', 'Slim Kim', 'Cinnamon Almond Butter Biscuits', "Reese's Sticks", "Cashews", 'Trail Mix', 'Beef Tender Bites', "Sour Skittles Gummies", "Gushers", 'Honey Bun', 'Nerds', 'Vitamin Water', 'Body Armor', 'Fairlife Core Power', 'Topo Chico', 'Coca Cola', 'Fanta', 'Sprite', 'Orange Juice', 'Strawberry Grape Juice', 'Apple Juice', 'Powerade', 'Storm', 'Lemonade', 'Coke Zero', 'Monster']
+    products: ['Pepsi', 'Mountain Dew', 'Pepsi Zero Sugar', 'Mountain Dew Zero Sugar', 'Water', 'Pure Leaf Tea', 'Propel', 'Celsius', 'Lays CLassic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Original', 'White Cheddar Popcorn', 'Lays Barbeque', 'Cheetos Cheddar Jalapeno', 'Doritos Cool Ranch', 'Chex Mix', 'Sun Chips Garden Salsa', 'Sun Chips Harvest Cheddar', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Gardettos Snack Mix', 'Lays Salt and Vinegar', 'Penut Butter Crackers', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Oreos', 'Snickers', 'Kit Kat', "Reese's", '3 Musketeers', 'Kinder Bueno', 'Haribo Gummy Bears', 'M&Ms', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', "Reese's Fast Break", 'Skittles', 'Slim Jim', 'Cinnamon Almond Butter Biscuits', "Reese's Sticks", "Cashews", 'Trail Mix', 'Beef Tender Bites', "Sour Skittles Gummies", "Gushers", 'Honey Bun', 'Nerds', 'Vitamin Water', 'Body Armor', 'Fairlife Core Power', 'Topo Chico', 'Coca Cola', 'Fanta', 'Sprite', 'Orange Juice', 'Strawberry Grape Juice', 'Apple Juice', 'Powerade', 'Storm', 'Lemonade', 'Coke Zero', 'Monster']
   },
   { 
     id: 2, 
@@ -160,7 +163,7 @@ const vendingMachines = [
     building: 'Broadhead Center',
     floor: '2nd Floor',
     notes: 'In the back where the study rooms are',
-    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley', 'Nutra Grain Green Apple', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
+    products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley Granola Bar', 'Nutra Grain', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
   },
   { 
     id: 3, 
@@ -178,16 +181,34 @@ const vendingMachines = [
     building: 'Wilkinson',
     floor: 'Bottom Floor',
     notes: 'Straight down the stairs, behind the study booths on the left side',
-    products: ['Pepsi', 'Pepsi Zero Sugar', 'Starry', 'Mountain Dew', 'Water', 'Propel', 'Celsius', 'Starbucks Strawberry Acai', 'Starbucks Mocha Cappuccino', 'Starbucks Caramel Cappuccino', 'Apple Juice', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos twists', 'Lays Salt and Vinegar', 'Funyuns', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Garden Salsa', 'Tubs Bar-B-Que Pork Rinds', "Miss Vickie's Spicy Dill Pickle", 'Cheetos Cheddar Jalepeno', 'Cheez It', 'Sun Chips Harvest Cheddar', 'Peanut Butter Crackers', 'Grilled Cheese Crackers', 'Oreos', 'Toasted Cheese Peanut Butter Crackers', "Reese's Sticks", 'Nature Valley Peanut Butter', "Reese's Fast Break", "Reese's", 'KitKat', 'Snickers', 'Peanut M&Ms', 'Twix', '3 Muskateers', 'Skittles', 'Kinder Bueno', 'Butterfinger', 'Cinnamon Almond Butter Biscuits', 'Haribo Gummy Bears', 'Trail Mix', 'Gushers', 'Pringles', 'Classic Cookie', 'Big Honey Bun', 'Mini Chocolate Chip Cookies']
+    products: ['Pepsi', 'Pepsi Zero Sugar', 'Starry', 'Mountain Dew', 'Water', 'Propel', 'Celsius', 'Starbucks Strawberry Acai', 'Starbucks Mocha Cappuccino', 'Starbucks Caramel Cappuccino', 'Apple Juice', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Lays Salt and Vinegar', 'Funyuns', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Garden Salsa', 'Tubs Bar-B-Que Pork Rinds', "Miss Vickie's Spicy Dill Pickle Chips", 'Cheetos Cheddar Jalepeno', 'Cheez It', 'Sun Chips Harvest Cheddar', 'Peanut Butter Crackers', 'Grilled Cheese Crackers', 'Oreos', 'Toasted Cheese Peanut Butter Crackers', "Reese's Sticks", 'Nature Valley Peanut Butter', "Reese's Fast Break", "Reese's", 'KitKat', 'Snickers', 'Peanut M&Ms', 'Twix', '3 Muskateers', 'Skittles', 'Kinder Bueno', 'Butterfinger', 'Cinnamon Almond Butter Biscuits', 'Haribo Gummy Bears', 'Trail Mix', 'Gushers', 'Pringles', 'Classic Cookie', 'Big Honey Bun', 'Mini Chocolate Chip Cookies']
   }, 
   { 
     id: 5, 
     name: 'Teer Vending Machine', 
-    location: [36.004039, -78.941201], 
-    building: 'Teer',
+    location: [36.003830, -78.941049], 
+    building: 'Nello L. Teer Building',
+    floor: 'Bottom Floor',
+    notes: 'Down the stairs, go through the left set of doors, then down the right hallway',
+    products: ['Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Mug Root Beer', 'Water', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Smartfood White Cheddar Popcorn', 'Doritos Cool Ranch', 'Funyuns', 'Tubs Bar-B-Que Pork Rinds', 'Ruffles Cheddar & Sour Cream', 'Lays Salt and Vinegar', 'Lays Barbeque', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Chex Mix', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's", "Reese's Stick", "Hershey's Chocolate Bar", 'Peanut M&Ms', 'Slim Jim', 'Snickers', 'Sour Patch Kids', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Haribo Gummy Bears', 'Kinder Bueno', 'Nutra Grain', 'Nature Valley', 'Beef Tender Bites', 'Sour Skittles Gummies', 'Big Honey Bun', 'Bite Sized Cookies', 'Nerds Gummy Clusters', 'Gatorade', 'Gatorlyte', 'Propel', 'Celsius', 'Starbucks Triple Shot Bold Mocha', 'Starbucks Triple Shot Dark Caramel', 'Starbucks triple Shot Vanilla', 'Starbucks Cold Brew']
+  },
+  { 
+    id: 6, 
+    name: 'Mary Lou Vending Machine', 
+    location: [36.001143, -78.939581], 
+    building: 'Flowers Building',
+    floor: '2nd Floor',
+    notes: "Enter Flowers and go up the stairs. Or enter from Wu side and it's right there",
+    products: ['Lays Classic', 'Doritos Nacho Cheese', 'Popchips Sea Salt', 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Veggie Straws', "Miss Vickie's Spicy Dill Pickle Chips", 'Chex Mix', 'Bugles Nacho Cheese', 'Cheez It', 'Mike&Ike', 'Bite Sized Cookies', 'Black Forest Fruit Snacks', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Skittles', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', "Nutra Grain", 'Snickers', 'M&Ms', "Reese's", 'Payday', 'Kinder Bueno', 'Crunch', "Reese's Sticks", 'Trail Mix']
+  },
+  { 
+    id: 7, 
+    name: 'Wilson Vending Machine', 
+    location: [35.9969127, -78.9409947], 
+    building: 'Wilson Recreation Center',
     floor: 'Bottom Floor',
     notes: 'Down the stairs, go through the left set of doors, down the hallway',
-    products: ['Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Baja Blast Mountain Dew', 'Water', 'Peanut Butter Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Airheads Bites', 'Gatorade', 'Gatorlyte Zero', 'Propel', 'Celsius', 'Starbucks Triple Shot Cold Mocha', 'Starbucks Triple Shot Dark Caramel', 'Starbucks Triple Shot Vanilla', 'Starbucks Cold Brew']
+    products: ['Lays CLassic', 'Fritos Twists', 'Popchips Sour Cream & Onion', 'Cheez It', 'Lays Barbeque', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Gardettos Snack Mix', 'Chex Mix', 'Bugles Nacho Cheese', 'Beef Tender Bites', 'Black Forest Fruit Snacks', 'Clif Bar Chocolate Chip', 'Gatorade Protein Bar', 'Snickers', 'M&Ms', 'Kitkat', 'Ghiradelli Milk Chocolate Caramel', 'Trial Mix', "Reese's", 'Kinder Bueno', 'Nature Valley Granola Bar', 'Powerade', 'Water']
   }
 ];
 
