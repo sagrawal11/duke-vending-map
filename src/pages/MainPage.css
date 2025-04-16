@@ -6,8 +6,10 @@
 .hero-section {
   background-color: #00539B; /* Duke blue */
   color: white;
-  padding: 40px 0;
+  padding: 40px 20px; /* Added horizontal padding */
   text-align: center;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding doesn't add to width */
 }
 
 .hero-title {
@@ -27,12 +29,15 @@
 .main-content {
   display: flex;
   flex-direction: column;
-  padding: 30px 0;
+  padding: 30px 20px; /* Added horizontal padding */
+  box-sizing: border-box;
 }
 
 /* Search Section */
 .search-section {
   margin-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search-section h2 {
@@ -46,11 +51,13 @@
   gap: 10px;
   margin-bottom: 20px;
   align-items: stretch;
+  flex-wrap: nowrap; /* Prevent wrapping on all screen sizes */
 }
 
 .search-bar {
   display: flex;
   flex: 1;
+  min-width: 0; /* Allow search bar to shrink as needed */
 }
 
 .search-input {
@@ -59,16 +66,18 @@
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
   font-size: 16px;
+  min-width: 0; /* Allow input to shrink as needed */
 }
 
 .search-button {
-  padding: 8px 16px;
+  padding: 8px 12px; /* Reduced padding */
   background-color: #00539B;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .search-button:hover {
@@ -76,16 +85,17 @@
 }
 
 .clear-button {
-  padding: 8px 16px;
+  padding: 8px 12px; /* Reduced padding */
   background-color: #C84E00;
   color: white;
-  position: relative;
-  top: 19px; /* Moves it down */
-  height: 38px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
+  height: 38px; /* Match height with search bar */
+  margin-top: auto;
+  margin-bottom: auto;
+  white-space: nowrap;
 }
 
 .clear-button:hover {
@@ -201,6 +211,11 @@
 }
 
 /* Map Section */
+.map-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .map-section h2 {
   color: #00539B;
   margin-bottom: 15px;
@@ -211,6 +226,7 @@
   overflow: hidden;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
 }
 
 .machine-popup {
@@ -254,20 +270,39 @@
     font-size: 1.8rem;
   }
   
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  
   .search-section, .map-section {
     width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
   
   .map-container {
     height: 350px;
+    margin: 0 10px; /* Add buffer on sides */
+    width: calc(100% - 20px); /* Adjust width to account for margins */
   }
   
   .search-container {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row; /* Keep in a row on mobile */
+    gap: 5px; /* Reduce gap on mobile */
+    align-items: center;
+  }
+  
+  .search-button, .clear-button {
+    padding: 8px 8px; /* Further reduce padding on mobile */
+    font-size: 14px; /* Slightly smaller font on mobile */
+  }
+  
+  .search-input {
+    font-size: 14px; /* Smaller font for input on mobile */
   }
   
   .clear-button {
-    align-self: flex-start;
+    flex-shrink: 0; /* Prevent clear button from shrinking */
   }
 }
