@@ -115,6 +115,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('cookie') || 
       lowerProduct.includes('m&m') || 
       lowerProduct.includes('payday') || 
+      lowerProduct.includes('candy') || 
       lowerProduct.includes('ghiradelli') || 
       lowerProduct.includes('airhead') || 
       lowerProduct.includes('skittles') || 
