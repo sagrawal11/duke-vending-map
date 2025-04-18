@@ -243,6 +243,78 @@ const vendingMachines = [
     floor: 'Basement',
     notes: 'Basement under the B wing, take elevator down',
     products: ['Pepsi', 'Diet Pepsi', 'Lemonade', 'Celsius', 'Mountain Dew', 'Schweppes Ginger Ale', 'Cherry Pepsi', 'Sunkist Orange', 'Sunkist Strawberry', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Water', 'Lays Classic', 'Gardettos Snack Mix', 'Sun Chips Harvest Cheddar', 'Fritos Twists', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Popchips Sea Salt', 'Lays Barbeque', 'Cheez It', 'Miss Vickies Spicy Dill Pickle Chips', 'Grilled CHeese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Nature Valley Cinnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Twix', 'M&Ms', 'Peanut M&Ms', 'Snickers', 'KitKat', 'Payday', "Reese's Sticks", 'Rice Krispies Treats', 'Crunch', 'Skittles', 'Airheads Bites', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Big Honey Bun', 'Pop Tarts', 'Classic Cookie', 'Gushers']
+  },
+  { 
+    id: 11, 
+    name: 'Few FF Laundry Room Vending Machine', 
+    location: [36.000565, -78.938354], 
+    building: 'Few Quad',
+    floor: 'First Floor',
+    notes: 'End of the hallway in 1st floor Few',
+    products: ['Coca Cola', 'Diet Coke', 'Water', 'Sprite', 'Dr. Pepper', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Miss Vickies Spicy Dill Pickle Chips', 'Doritos Cool Ranch', 'Smartfood White Cheddar Popcorn', 'Ruffles Cheddar & Sour Cream', 'Lays Sour Cream & Onion', 'Lays Salt & Vinegar', 'Gardettos Snack Miox', 'Cheez It', 'Classic Cookie', 'Big Honey Bun', 'Nerds Gummy Clusters', 'Mike&Ike', 'Peanut Butter Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Skittles', "Reese's Peanut Butter Cups", 'Kinder Bueno', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Rice Krispies Treats', 'Nature Valley Cinnamon Almond Butter Biscuits', 'Snickers', 'Clif Chocolate Chip', 'Nature Valley Granola Bar', 'Crunch'] 
+  },
+  { 
+    id: 12, 
+    name: 'Randolph Left Laundry Room Vending Machine', 
+    location: [36.006757, -78.917442], 
+    building: 'Randolph Residence Hall',
+    floor: 'First Floor',
+    notes: 'Enter on left side and go around the corner',
+    products: ['Pepsi', 'Water', 'Mountain Dew', 'Cheerwine', 'Starbucks Double Shot Coffee', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheez It', 'Fritos Original', 'Ruffles CHeddar & Sour Cream', 'Mini Pretzels', 'Cheetos', 'Gardettos Snack Mix', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Nature Valley CInnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Twix', 'Meanut M&Ms', 'Snickers', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Haribo Gummy Bears', 'Sour Skittles Gumies', 'Big Honey Bun', 'Beef Tender Bites', 'Vitamin Water', 'Powerade', 'Monster'] 
+  },
+  { 
+    id: 13, 
+    name: 'Randolph Right Laundry Room Vending Machine', 
+    location: [36.006760, -78.916828], 
+    building: 'Randolph Residence Hall',
+    floor: 'First Floor',
+    notes: 'Enter on right side and go around the corner',
+    products: ['Pepsi', 'Mountain Dew', 'Water', 'Lipton Citrus Green Tea', 'Orange Juice', 'Vitamin Water', 'Powerade', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Funyuns', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Harvest Cheddar', 'Fritos Original', 'Mini Pretzels', 'Sun Chips Garden Salsa', 'Cheez It', 'Nerds Gummy Clusters', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Twix', 'Peanut M&Ms', 'Snickers', 'KitKat', 'Clif Chocolate Chip', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', 'Gatorade Protein bar', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Classic Cookie', 'Gushers','Mike&Ike', 'Beef Tender Bites'] 
+  },
+  { 
+    id: 14, 
+    name: 'Bell Tower Laundry Room Vending Machine', 
+    location: [36.007101, -78.917891], 
+    building: 'Bell Tower Residence Hall',
+    floor: 'First Floor',
+    notes: 'Enter on right side and go down the hall',
+    products: ['Coca Cola', 'Vitamin Water', 'Sprite', 'Dr. Pepper', 'Seagrams Ginger Ale', 'Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chip Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Smartfood White Cheddar Popcorn', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Cheez It', 'Miss Vickies Spicy Dill Pickle Chips', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Cinnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Kinder Bueno', 'M&Ms', 'Trail Mix', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Clif Chocolate Chip', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', 'Gatorade Protein Bar', '3 Muskateers', 'Hersheys Chocolate Bar', 'Nerds Gummy Clusters', 'Big Honey Bun', 'Sour Skittles Gummies', 'Gushers', 'Beef Tender Bites'] 
+  },
+  { 
+    id: 15, 
+    name: 'Bell Tower Left Vending Machine', 
+    location: [36.006975, -78.918387], 
+    building: 'Bell Tower Residence Hall',
+    floor: 'First Floor',
+    notes: 'Enter on left side and go all the way down the hall',
+    products: ['Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Bugles Nacho Cheese', 'Miss Vickies Spicy Dill Pickle Chips', 'Lays Sour Cream & Onion', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Harvest Cheddar', 'Pop Tarts', 'Gardettos Snack Mix', 'Cheez It', 'Lays Salt & Vinegar', 'Mini Pretzels', 'Wild Cherry Skittles Gummies', 'Jolly Rancher Sour Gummies', 'Trolli Sour Gummy Worms', 'Gushers', 'Beef Tender Bites', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Skittles', 'Butterfinger', "Reese's Peanut Butter Cups", 'KitKat', 'Twix', 'Peanut M&Ms', 'Snickers', 'Big Honey Bun', 'Classic Cookie', 'Pop Tarts', 'Mini Cookies', 'Belvita'] 
+  },
+  { 
+    id: 15, 
+    name: 'Trinity Laundry Room Vending Machine', 
+    location: [36.006462, -78.918616], 
+    building: 'Trinity Residence Hall',
+    floor: 'First Floor',
+    notes: 'Enter on the left side, go through the common room, and down the hallway',
+    products: ['Baja Blast Mountain Dew', 'Pepsi', 'Starry', 'Celsius', 'Propel', 'Gatorade', 'Water', 'Green Leaf Tea', 'Coca Cola', 'Coca Cola Zero', 'Sprite', 'Dr. Pepper', 'Vitamin Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Ruffles Cheddar & Sour Cream', 'Doritos Nacho Cheese', 'Doritos Flamin Hot Cool Ranch', 'Doritos Cool Ranch', 'Pop Tarts', 'Beef Tender Bites', 'Gardettos Snack Mix', 'Miss Vickies Spicy Dill Pickle Chips', 'Classic Cookie', 'Big Honey Bun', 'Jolly Rancher Sour Gummies', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Gatorade Protein Bar', 'Slim Jim', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Kinder Bueno', 'Peanut M&Ms', 'Haribos Gummy Bears', 'Snickers', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Ghiradelli Milk Chocolate Caramel', 'Crunch', '3 Muskateers', "Reese's Sticks"] 
+  },
+  { 
+    id: 16, 
+    name: 'Southgate Laundry Room Vending Machine', 
+    location: [36.005940, -78.918060], 
+    building: 'Southgate Residence Hall',
+    floor: 'First Floor',
+    notes: 'Take a left once you enter, on the right side of the hallway',
+    products: ['Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Mellow Yellow', 'Water', 'Vitamin Water', 'Celsius', 'Pepsi', 'Starbucks Cappuccino', 'Pepsi Zero Sugar', 'Starbucks Vanilla Mocha', 'Mountain Dew', 'Propel', 'Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Cheetos', 'Miss Vickies Spicy Dill Pickle Chips', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Sour Skittles Gummies', 'Big Honey Bun', 'Mike&Ike', 'Classic Cookie', 'Grilled Cheese Cookies', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Ghiradelli Milk Chocolate Caramel', "Reese's Fast Break", 'Peanut M&Ms', 'Haribo Gummy Bears', 'Snickers', 'KitKat', "Reese's Sticks", 'Butterfinger', 'Rice Krispies Treats', 'Gatorate Granola Bar', 'Skitt;es', '3 Muskateers', 'Slim Jim'] 
+  },
+  { 
+    id: 16, 
+    name: 'GADU Vending Machine', 
+    location: [36.005698, -78.916886], 
+    building: 'Gilbert Addoms Residence Hall',
+    floor: 'Bottom Floor',
+    notes: 'Back right corner of GADU, past the pool table',
+    products: ['Lays Classic', 'Cheetos', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Flamin Hot', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Lays Salt & Vinegar', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Cheez It', 'Sour Skittles Gumimes', 'Haribo Gummy Bears', 'Gushers', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Big Honey Bun', 'Classic Cookie', 'Mini Cookies', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Peanut Butter Cups", 'Kinder Bueno', "Reese's Sticks", 'Gatorade Protein Bar', 'Skittles', 'Coca Cola', 'Diet Coke', 'Sprite', 'Vitamin Water', 'Topo Chico', 'Water', 'Gatorade', 'Gatorlyte', 'Pure Leaf Sweet Tea', 'Celsius', 'Starbucks Triple Shot Bold Mocha', 'Starbucks Frappuccino', 'Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Baja Blast Mountain Dew', 'Schweppes Ginger Ale', 'Propel'] 
   }
 ];
 
