@@ -68,6 +68,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('sprite') ||
       lowerProduct.includes('topo chico') ||
       lowerProduct.includes('lemonade') ||
+      lowerProduct.includes('cheerwine') ||
       lowerProduct.includes('strawberry') ||
       lowerProduct.includes('ginger ale') ||
       lowerProduct.includes('starry') ||
@@ -315,6 +316,15 @@ const vendingMachines = [
     floor: 'Bottom Floor',
     notes: 'Back right corner of GADU, past the pool table',
     products: ['Lays Classic', 'Cheetos', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Flamin Hot', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Lays Salt & Vinegar', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Cheez It', 'Sour Skittles Gumimes', 'Haribo Gummy Bears', 'Gushers', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Big Honey Bun', 'Classic Cookie', 'Mini Cookies', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Peanut Butter Cups", 'Kinder Bueno', "Reese's Sticks", 'Gatorade Protein Bar', 'Skittles', 'Coca Cola', 'Diet Coke', 'Sprite', 'Vitamin Water', 'Topo Chico', 'Water', 'Gatorade', 'Gatorlyte', 'Pure Leaf Sweet Tea', 'Celsius', 'Starbucks Triple Shot Bold Mocha', 'Starbucks Frappuccino', 'Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Baja Blast Mountain Dew', 'Schweppes Ginger Ale', 'Propel'] 
+  },
+  { 
+    id: 17, 
+    name: 'West Duke Vending Machine', 
+    location: [36.004888, -78.915382], 
+    building: 'West Duke Building',
+    floor: 'First Floor',
+    notes: 'Middle of the hallway in a small foyer area',
+    products: ['Pepsi', 'Diet Pepsi', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Celsius', ] 
   }
 ];
 
