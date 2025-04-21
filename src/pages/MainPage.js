@@ -324,7 +324,7 @@ const vendingMachines = [
     building: 'West Duke Building',
     floor: 'First Floor',
     notes: 'Middle of the hallway in a small foyer area',
-    products: ['Pepsi', 'Diet Pepsi', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Celsius', ] 
+    products: ['Pepsi', 'Diet Pepsi', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Celsius', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Sun Chips Garden Salsa', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Bugles Nacho Cheese', 'Cheez It', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Peanut M&Ms', 'Mike&Ike', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'KitKat', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar'] 
   }
 ];
 
