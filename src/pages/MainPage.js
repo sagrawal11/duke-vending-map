@@ -64,6 +64,8 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('dew') || 
       lowerProduct.includes('tea') || 
       lowerProduct.includes('coca') ||
+      lowerProduct.includes('mellow') ||
+      lowerProduct.includes('dr. pepper') ||
       lowerProduct.includes('coke') ||
       lowerProduct.includes('sprite') ||
       lowerProduct.includes('topo chico') ||
@@ -325,6 +327,24 @@ const vendingMachines = [
     floor: 'First Floor',
     notes: 'Middle of the hallway in a small foyer area',
     products: ['Pepsi', 'Diet Pepsi', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Celsius', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Sun Chips Garden Salsa', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Bugles Nacho Cheese', 'Cheez It', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Peanut M&Ms', 'Mike&Ike', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'KitKat', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar'] 
+  },
+  { 
+    id: 18, 
+    name: 'Allen Vending Machine', 
+    location: [36.001041, -78.937515], 
+    building: 'Allen Building',
+    floor: 'First Floor',
+    notes: 'End of the hallway by the stairs that lead to Allen 011 (Advisor officers)',
+    products: ['Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Lemonade', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Lays Barbeque', 'Miss Vickies Spicy Dill Pickle Chips', 'Bugles Nacho Cheese', 'Ruffles Cheddar & Sour Cream', 'Popchips Sea Salt', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Goldfish', 'Mini Cookies', 'Mike&Ike', 'Big Honey Bun', 'Black Forest Ftuit Snacks', 'Sour Skittles Gummies', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Rice Krispies Treats', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'M&Ms', 'KitKat', 'Clif Bar Chocolate Chip', 'Peanut M&Ms', "Reese's Sticks", 'Trail Mix', 'Gatorade Protein Bar', 'Nature Valley Granola Bar'] 
+  },
+  { 
+    id: 19, 
+    name: 'Social Sciences Vending Machine', 
+    location: [36.001891, -78.937417], 
+    building: 'Social Sciences Building',
+    floor: 'First Floor',
+    notes: 'Next to the lobby',
+    products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Bugles Original', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Sun Chipd Harvest Cheddar', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'think Protein Bar', 'Trail Mix', "Reese's Peanut Butter Cups", 'Kinder Bueno', 'Slim Jim', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Nutra Grain', 'Rice Krispies Treats', 'Gatorade Protein Bar', 'Mini Cookies', 'Big Honey Bun', 'Black Forest Fruit Snacks', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Fanta', 'Water'] 
   }
 ];
 
