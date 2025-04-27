@@ -50,29 +50,29 @@ map popups with machine details and product category summaries
 ### Dependencies
 
 React
-
+<br>
 React Leaflet (map component)
-
+<br>
 Leaflet (mapping library)
 
 ### Key Components
 
 MainPage: The main application container
-
+<br>
 SearchBar: Handles user input for searches
-
+<br>
 MapContainer: The Leaflet map component
-
+<br>
 MapUpdater: Handles map bounds and view updates
-
+<br>
 UserLocationMarker: Shows the user's current location on the map
 
 ### Key Functions
 
 calculateDistance: Uses the Haversine formula to calculate distances between coordinates
-
+<br>
 formatDistance: Formats distances in appropriate units (miles or feet)
-
+<br>
 categorizeProduct: Categorizes products into logical groups
-
+<br>
 groupProductsByCategory: Organizes products by their categories
