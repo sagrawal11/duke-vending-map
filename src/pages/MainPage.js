@@ -75,7 +75,7 @@ function UserLocationMarker({ position }) {
       <Circle 
         center={position} 
         radius={4} 
-        pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.2 }} 
+        pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.5 }} 
       />
     </>
   );
