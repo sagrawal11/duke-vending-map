@@ -306,3 +306,68 @@
     flex-shrink: 0; /* Prevent clear button from shrinking */
   }
 }
+
+/* Location Button Styles */
+.location-section {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.location-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.location-button:hover {
+  background-color: #003d82;
+}
+
+.location-button.active {
+  background-color: #28a745;
+}
+
+.location-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.location-status {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #28a745;
+}
+
+/* Distance Badge */
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.distance-badge {
+  background-color: #0d6efd;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* User Location Marker (customize as needed) */
+.user-location-marker {
+  background-color: blue;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 14px;
+  height: 14px;
+}

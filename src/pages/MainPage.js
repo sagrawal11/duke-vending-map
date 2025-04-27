@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import React, { useState, useRef, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
@@ -13,19 +13,72 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Create a component to update map markers
-function MapUpdater({ visibleMachines }) {
+// Update the distance calculation function:
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 3959; // Radius of the earth in miles (instead of 6371 km)
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  const distance = R * c; // Distance in miles
+  return distance;
+};
+
+// Update the format distance function:
+const formatDistance = (distance) => {
+  if (distance < 0.1) {
+    // Convert to feet if less than 0.1 miles
+    return `${Math.round(distance * 5280)} ft`;
+  }
+  return `${distance.toFixed(1)} mi`;
+};
+
+// Create a component to handle map updates
+function MapUpdater({ visibleMachines, userLocation }) {
   const map = useMap();
   
-  // Fit map bounds to visible markers
+  // Fit map bounds to visible markers and user location
   React.useEffect(() => {
     if (visibleMachines.length > 0) {
-      const bounds = L.latLngBounds(visibleMachines.map(machine => machine.location));
+      const points = [...visibleMachines.map(machine => machine.location)];
+      
+      // Include user location in bounds if available
+      if (userLocation) {
+        points.push([userLocation.latitude, userLocation.longitude]);
+      }
+      
+      const bounds = L.latLngBounds(points);
       map.fitBounds(bounds, { padding: [50, 50] });
     }
-  }, [visibleMachines, map]);
+  }, [visibleMachines, userLocation, map]);
   
   return null;
+}
+
+// User location marker component
+function UserLocationMarker({ position }) {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (position) {
+      map.flyTo(position, map.getZoom());
+    }
+  }, [position, map]);
+  
+  if (!position) return null;
+  
+  return (
+    <>
+      <Circle 
+        center={position} 
+        radius={4} 
+        pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.2 }} 
+      />
+    </>
+  );
 }
 
 // Product categorization function
@@ -217,7 +270,7 @@ const vendingMachines = [
     location: [35.9969127, -78.9409947], 
     building: 'Wilson Recreation Center',
     floor: 'Bottom Floor',
-    notes: 'Down the stairs, go through the left set of doors, down the hallway',
+    notes: 'All the way down the stairs in front of the locker rooms',
     products: ['Lays CLassic', 'Fritos Twists', 'Popchips Sour Cream & Onion', 'Cheez It', 'Lays Barbeque', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Gardettos Snack Mix', 'Chex Mix', 'Bugles Nacho Cheese', 'Beef Tender Bites', 'Black Forest Fruit Snacks', 'Clif Bar Chocolate Chip', 'Gatorade Protein Bar', 'Snickers', 'M&Ms', 'Kitkat', 'Ghiradelli Milk Chocolate Caramel', 'Trial Mix', "Reese's Peanut Butter Cups", 'Kinder Bueno', 'Nature Valley Granola Bar', 'Powerade', 'Water']
   },
   { 
@@ -258,7 +311,7 @@ const vendingMachines = [
   },
   { 
     id: 12, 
-    name: 'Randolph Left Laundry Room Vending Machine', 
+    name: 'Randolph Laundry Room 1 Vending Machine', 
     location: [36.006757, -78.917442], 
     building: 'Randolph Residence Hall',
     floor: 'First Floor',
@@ -267,7 +320,7 @@ const vendingMachines = [
   },
   { 
     id: 13, 
-    name: 'Randolph Right Laundry Room Vending Machine', 
+    name: 'Randolph Laundry Room 2 Vending Machine', 
     location: [36.006760, -78.916828], 
     building: 'Randolph Residence Hall',
     floor: 'First Floor',
@@ -293,7 +346,7 @@ const vendingMachines = [
     products: ['Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Bugles Nacho Cheese', 'Miss Vickies Spicy Dill Pickle Chips', 'Lays Sour Cream & Onion', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Harvest Cheddar', 'Pop Tarts', 'Gardettos Snack Mix', 'Cheez It', 'Lays Salt & Vinegar', 'Mini Pretzels', 'Wild Cherry Skittles Gummies', 'Jolly Rancher Sour Gummies', 'Trolli Sour Gummy Worms', 'Gushers', 'Beef Tender Bites', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Skittles', 'Butterfinger', "Reese's Peanut Butter Cups", 'KitKat', 'Twix', 'Peanut M&Ms', 'Snickers', 'Big Honey Bun', 'Classic Cookie', 'Pop Tarts', 'Mini Cookies', 'Belvita'] 
   },
   { 
-    id: 15, 
+    id: 16, 
     name: 'Trinity Laundry Room Vending Machine', 
     location: [36.006462, -78.918616], 
     building: 'Trinity Residence Hall',
@@ -302,7 +355,7 @@ const vendingMachines = [
     products: ['Baja Blast Mountain Dew', 'Pepsi', 'Starry', 'Celsius', 'Propel', 'Gatorade', 'Water', 'Green Leaf Tea', 'Coca Cola', 'Coca Cola Zero', 'Sprite', 'Dr. Pepper', 'Vitamin Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Ruffles Cheddar & Sour Cream', 'Doritos Nacho Cheese', 'Doritos Flamin Hot Cool Ranch', 'Doritos Cool Ranch', 'Pop Tarts', 'Beef Tender Bites', 'Gardettos Snack Mix', 'Miss Vickies Spicy Dill Pickle Chips', 'Classic Cookie', 'Big Honey Bun', 'Jolly Rancher Sour Gummies', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Gatorade Protein Bar', 'Slim Jim', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Kinder Bueno', 'Peanut M&Ms', 'Haribos Gummy Bears', 'Snickers', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Ghiradelli Milk Chocolate Caramel', 'Crunch', '3 Muskateers', "Reese's Sticks"] 
   },
   { 
-    id: 16, 
+    id: 17, 
     name: 'Southgate Laundry Room Vending Machine', 
     location: [36.005940, -78.918060], 
     building: 'Southgate Residence Hall',
@@ -311,7 +364,7 @@ const vendingMachines = [
     products: ['Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Mellow Yellow', 'Water', 'Vitamin Water', 'Celsius', 'Pepsi', 'Starbucks Cappuccino', 'Pepsi Zero Sugar', 'Starbucks Vanilla Mocha', 'Mountain Dew', 'Propel', 'Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Cheetos', 'Miss Vickies Spicy Dill Pickle Chips', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Sour Skittles Gummies', 'Big Honey Bun', 'Mike&Ike', 'Classic Cookie', 'Grilled Cheese Cookies', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Ghiradelli Milk Chocolate Caramel', "Reese's Fast Break", 'Peanut M&Ms', 'Haribo Gummy Bears', 'Snickers', 'KitKat', "Reese's Sticks", 'Butterfinger', 'Rice Krispies Treats', 'Gatorate Granola Bar', 'Skitt;es', '3 Muskateers', 'Slim Jim'] 
   },
   { 
-    id: 16, 
+    id: 18, 
     name: 'GADU Vending Machine', 
     location: [36.005698, -78.916886], 
     building: 'Gilbert Addoms Residence Hall',
@@ -320,7 +373,7 @@ const vendingMachines = [
     products: ['Lays Classic', 'Cheetos', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Flamin Hot', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Lays Salt & Vinegar', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Cheez It', 'Sour Skittles Gumimes', 'Haribo Gummy Bears', 'Gushers', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Big Honey Bun', 'Classic Cookie', 'Mini Cookies', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Peanut Butter Cups", 'Kinder Bueno', "Reese's Sticks", 'Gatorade Protein Bar', 'Skittles', 'Coca Cola', 'Diet Coke', 'Sprite', 'Vitamin Water', 'Topo Chico', 'Water', 'Gatorade', 'Gatorlyte', 'Pure Leaf Sweet Tea', 'Celsius', 'Starbucks Triple Shot Bold Mocha', 'Starbucks Frappuccino', 'Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Baja Blast Mountain Dew', 'Schweppes Ginger Ale', 'Propel'] 
   },
   { 
-    id: 17, 
+    id: 19, 
     name: 'West Duke Vending Machine', 
     location: [36.004888, -78.915382], 
     building: 'West Duke Building',
@@ -329,7 +382,7 @@ const vendingMachines = [
     products: ['Pepsi', 'Diet Pepsi', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Celsius', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Sun Chips Garden Salsa', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Bugles Nacho Cheese', 'Cheez It', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Peanut M&Ms', 'Mike&Ike', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'KitKat', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar'] 
   },
   { 
-    id: 18, 
+    id: 20, 
     name: 'Allen Vending Machine', 
     location: [36.001041, -78.937515], 
     building: 'Allen Building',
@@ -338,7 +391,7 @@ const vendingMachines = [
     products: ['Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Lemonade', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Lays Barbeque', 'Miss Vickies Spicy Dill Pickle Chips', 'Bugles Nacho Cheese', 'Ruffles Cheddar & Sour Cream', 'Popchips Sea Salt', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Goldfish', 'Mini Cookies', 'Mike&Ike', 'Big Honey Bun', 'Black Forest Ftuit Snacks', 'Sour Skittles Gummies', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Rice Krispies Treats', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'M&Ms', 'KitKat', 'Clif Bar Chocolate Chip', 'Peanut M&Ms', "Reese's Sticks", 'Trail Mix', 'Gatorade Protein Bar', 'Nature Valley Granola Bar'] 
   },
   { 
-    id: 19, 
+    id: 21, 
     name: 'Social Sciences Vending Machine', 
     location: [36.001891, -78.937417], 
     building: 'Social Sciences Building',
@@ -357,7 +410,100 @@ function MainPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedCategories, setExpandedCategories] = useState({});
   const [visibleMachines, setVisibleMachines] = useState(vendingMachines);
+  const [userLocation, setUserLocation] = useState(null);
+  const [locationPermission, setLocationPermission] = useState('prompt');
+  const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const searchInputRef = useRef(null);
+  
+  // Get user location on component mount
+  useEffect(() => {
+    checkLocationPermission();
+  }, []);
+
+  // Check user's location permission status
+  const checkLocationPermission = () => {
+    if (navigator.permissions && navigator.permissions.query) {
+      navigator.permissions.query({ name: 'geolocation' })
+        .then(permissionStatus => {
+          setLocationPermission(permissionStatus.state);
+          // If permission is already granted, get location automatically
+          if (permissionStatus.state === 'granted') {
+            getUserLocation();
+          }
+        })
+        .catch(error => {
+          console.error("Error checking location permission:", error);
+        });
+    }
+  };
+  
+  // Request user location
+  const getUserLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+    
+    setIsLoadingLocation(true);
+    
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+        setLocationPermission('granted');
+        setIsLoadingLocation(false);
+        
+        // If there's already a search performed, re-sort results by distance
+        if (searchPerformed && searchResults.length > 0) {
+          sortResultsByDistance(searchResults, position.coords);
+        }
+      },
+      (error) => {
+        console.error("Error getting user location:", error);
+        setLocationPermission('denied');
+        setIsLoadingLocation(false);
+        
+        if (error.code === 1) { // Permission denied
+          alert("Location permission denied. Enable location services to see nearby vending machines.");
+        } else if (error.code === 2) { // Position unavailable
+          alert("Location information is unavailable.");
+        } else if (error.code === 3) { // Timeout
+          alert("The request to get user location timed out.");
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  };
+  
+  // Sort search results by distance from user
+  const sortResultsByDistance = (results, coords) => {
+    if (!coords) return;
+    
+    const resultsWithDistance = results.map(result => {
+      const machine = result.machine;
+      const distance = calculateDistance(
+        coords.latitude, 
+        coords.longitude, 
+        machine.location[0], 
+        machine.location[1]
+      );
+      
+      return {
+        ...result,
+        distance
+      };
+    });
+    
+    // Sort by distance (closest first)
+    resultsWithDistance.sort((a, b) => a.distance - b.distance);
+    setSearchResults(resultsWithDistance);
+  };
   
   // Handle search functionality
   const handleSearch = (term) => {
@@ -407,6 +553,23 @@ function MainPage() {
           matchingMachines.push(machine);
         }
       });
+    }
+    
+    // If user location is available, add distance to results and sort
+    if (userLocation) {
+      results.forEach(result => {
+        const machine = result.machine;
+        const distance = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          machine.location[0],
+          machine.location[1]
+        );
+        result.distance = distance;
+      });
+      
+      // Sort by distance (closest first)
+      results.sort((a, b) => a.distance - b.distance);
     }
     
     setSearchResults(results);
@@ -512,6 +675,23 @@ function MainPage() {
             </button>
           </div>
           
+          {/* Location Button */}
+          <div className="location-section">
+            <button 
+              className={`location-button ${locationPermission === 'granted' ? 'active' : ''}`}
+              onClick={getUserLocation}
+              disabled={isLoadingLocation}
+            >
+              {isLoadingLocation ? 'Getting location...' : 
+               locationPermission === 'granted' ? 'Update My Location' : 'Enable Location Services (optional)'}
+            </button>
+            {userLocation && (
+              <p className="location-status">
+                Location services enabled. Showing nearest vending machines.
+              </p>
+            )}
+          </div>
+          
           {searchPerformed && (
             <div className="search-results">
               <h3>Search Results</h3>
@@ -523,7 +703,14 @@ function MainPage() {
                   {searchResults.map((result, index) => (
                     <div key={index} className="result-item">
                       <div className="result-content">
-                        <h4>{result.machine.name}</h4>
+                        <div className="result-header">
+                          <h4>{result.machine.name}</h4>
+                          {result.distance !== undefined && (
+                            <span className="distance-badge">
+                              {formatDistance(result.distance)}
+                            </span>
+                          )}
+                        </div>
                         <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
                         <p><strong>Notes:</strong> {result.machine.notes}</p>
                         
@@ -549,45 +736,66 @@ function MainPage() {
         </div>
         
         <div className="map-section">
-          <h2>Campus Vending Machine Map</h2>
-          <div className="map-container">
-            <MapContainer 
-              center={dukeCenter} 
-              zoom={16} 
-              scrollWheelZoom={true} 
-              style={{ height: "500px", width: "100%" }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              
-              {/* Only show visible machines based on search */}
-              {visibleMachines.map(machine => (
-                <Marker 
-                  key={machine.id} 
-                  position={machine.location}
-                >
-                  <Popup>
-                    <div className="machine-popup">
-                      <h3>{machine.name}</h3>
-                      <p><strong>Building:</strong> {machine.building}</p>
-                      <p><strong>Floor:</strong> {machine.floor}</p>
-                      <p><strong>Notes:</strong> {machine.notes}</p>
-                      <div className="popup-products">
-                        <p><strong>Available Categories:</strong></p>
-                        {renderCategorySummary(machine.products)}
-                      </div>
+        <h2>Campus Vending Machine Map</h2>
+        <div className="map-container">
+          <MapContainer 
+            center={dukeCenter} 
+            zoom={16} 
+            scrollWheelZoom={true} 
+            style={{ height: "500px", width: "100%" }}
+            key={visibleMachines.map(m => m.id).join('-')} // Add a key prop to force re-render
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            
+            {/* Only render markers for visible machines */}
+            {visibleMachines.map(machine => (
+              <Marker 
+                key={machine.id} 
+                position={machine.location}
+              >
+                <Popup>
+                  <div className="machine-popup">
+                    <h3>{machine.name}</h3>
+                    <p><strong>Building:</strong> {machine.building}</p>
+                    <p><strong>Floor:</strong> {machine.floor}</p>
+                    <p><strong>Notes:</strong> {machine.notes}</p>
+                    {userLocation && (
+                      <p><strong>Distance:</strong> {
+                        formatDistance(calculateDistance(
+                          userLocation.latitude,
+                          userLocation.longitude,
+                          machine.location[0],
+                          machine.location[1]
+                        ))
+                      }</p>
+                    )}
+                    <div className="popup-products">
+                      <p><strong>Available Categories:</strong></p>
+                      {renderCategorySummary(machine.products)}
                     </div>
-                  </Popup>
-                </Marker>
-              ))}
-              
-              {/* Map updater component to handle map view changes */}
-              <MapUpdater visibleMachines={visibleMachines} />
-            </MapContainer>
-          </div>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+            
+            {/* User location marker */}
+            {userLocation && (
+              <UserLocationMarker 
+                position={[userLocation.latitude, userLocation.longitude]}
+              />
+            )}
+            
+            {/* Map updater component to handle map view changes */}
+            <MapUpdater 
+              visibleMachines={visibleMachines} 
+              userLocation={userLocation}
+            />
+          </MapContainer>
         </div>
+      </div>
       </div>
     </div>
   );
