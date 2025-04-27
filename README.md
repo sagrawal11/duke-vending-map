@@ -1,16 +1,19 @@
-Duke Vending Machine Finder
-Overview
+### Duke Vending Machine Finder
+
+## Overview
+
 People at Duke are hungry, this helps them find the munchies
 
-Features
-Location-Based Services
+## Features
+
+# Location-Based Services
 
 Interactive campus map showing all vending machine locations
 Geolocation support to find the nearest vending machines
 Distance calculations in miles/feet to each vending machine
 Map auto-focuses on search results and your current location
 
-Smart Search
+# Smart Search
 
 Search by product name (e.g., "Doritos", "Coca Cola")
 Search by building name or vending machine location
