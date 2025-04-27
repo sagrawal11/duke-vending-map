@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
 import './MainPage.css';
 
-// Fix for Leaflet marker icon issue
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -348,7 +347,7 @@ const vendingMachines = [
   { 
     id: 16, 
     name: 'Trinity Laundry Room Vending Machine', 
-    location: [36.006462, -78.918616], 
+    location: [36.006452, -78.918886], 
     building: 'Trinity Residence Hall',
     floor: 'First Floor',
     notes: 'Enter on the left side, go through the common room, and down the hallway',
@@ -687,7 +686,7 @@ function MainPage() {
             </button>
             {userLocation && (
               <p className="location-status">
-                Location services enabled. Showing nearest vending machines.
+                Location services enabled. *Location may not be 100% accurate*
               </p>
             )}
           </div>
