@@ -479,6 +479,24 @@ const vendingMachines = [
     notes: "Go to the left after entering the main door and around the corner, its in a small common room",
     products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Cheez It', 'Peanut Butter Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Cinnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Kit Kat', "Reese's Sticks", 'Rise Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Gushers', 'Big Honey Bun', 'Black Forest Fruit Snacks', 'Classic Cookie', 'Vitamin Water', 'Orange Juice', 'Topo Chico', 'Dr. Pepper', 'Diet Coke', 'Coca Cola', 'Diet Dr. Pepper', 'Sprite', 'Water'] 
   },
+  { 
+    id: 30, 
+    name: 'Blackwell Laundry Room 1 Vending Machine', 
+    location: [36.006297, -78.916301], 
+    building: 'Blackwell Residence Hall',
+    floor: 'Main Floor',
+    notes: "Enter on right side and go around the corner",
+    products: ['Pepsi', 'Diet Pepsi', 'Water', 'Starry', 'Mountain Dew', 'Zero Sugar Pepsi', 'Cheerwine', 'Rockstar Energy', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Cheetos Cheddar Jalepeno', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Mini Pretzels', 'Pop Tarts', 'Smartfood White Cheddar Popcorn', 'Gardettos Snack Mix', 'Cheez It', 'Miss Vickies Spicy Dill Pickle Chips', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', "Reese's Fast Break", "Reese's Peanut Butter Cups", 'Haribo Gummy Bears', 'M&Ms', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Kit Kat', 'Gatorade Protein Bar', 'Butterfinger', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Airheads Bites', 'Sour Skittles Gummies', 'Classic Cookie', 'Big Honey Bun', 'Gushers', 'Beef Tender Bites', 'Water', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Fanta', 'Coca Cola'] 
+  },
+  { 
+    id: 31, 
+    name: 'Blackwell Laundry Room 2 Vending Machine', 
+    location: [36.006616, -78.916310], 
+    building: 'Blackwell Residence Hall',
+    floor: 'Main Floor',
+    notes: "Enter on left side and go around the corner",
+    products: ['Lays Classic', 'Gardettos Snack Mix', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Fritos Twists', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Mini Pretzels', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Cinnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Slim Jim', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Gushers', 'Vitamin Water', 'Coca Cola', 'Diet Coke', 'Sprite', 'Zero Sugar Coca Cola', 'Dr. Pepper', 'Diet Dr. Pepper', 'Powerade', 'Water'] 
+  },
 ];
 
 function MainPage() {
