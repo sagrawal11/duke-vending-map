@@ -129,7 +129,7 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('apple juice') ||
       lowerProduct.includes('orange juice') ||
       lowerProduct.includes('fanta')) {
-    return 'Drinks';
+    return 'Sodas & Drinks';
   }
   
   // Chips and savory snacks
@@ -167,7 +167,8 @@ const categorizeProduct = (product) => {
       lowerProduct.includes('reese') || 
       lowerProduct.includes('twix') || 
       lowerProduct.includes('butterfinger') || 
-      lowerProduct.includes('uskateer') || 
+      lowerProduct.includes('rice krispies treats') || 
+      lowerProduct.includes('muska') || 
       lowerProduct.includes('kinder') || 
       lowerProduct.includes('Pop') || 
       lowerProduct.includes('haribo') || 
