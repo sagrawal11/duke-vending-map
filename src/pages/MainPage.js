@@ -498,6 +498,15 @@ const vendingMachines = [
     notes: "Enter on left side and go around the corner",
     products: ['Lays Classic', 'Gardettos Snack Mix', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Fritos Twists', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Mini Pretzels', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Cinnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Slim Jim', 'Peanut M&Ms', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Gushers', 'Vitamin Water', 'Coca Cola', 'Diet Coke', 'Sprite', 'Zero Sugar Coca Cola', 'Dr. Pepper', 'Diet Dr. Pepper', 'Powerade', 'Water'] 
   },
+  { 
+    id: 32, 
+    name: 'Reuben-Cooke Vending Machine', 
+    location: [36.002469, -78.936658], 
+    building: 'Reuben Cooke Building',
+    floor: 'Bottom floor',
+    notes: "Right in front of the door to the Allen lot",
+    products: ['Lays Classic', 'Fritos Twists', 'Dortios Nacho Cheese', 'Lays Barbeque', 'Fritos Original', 'Cheetos', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Mini Pretzels', 'Gardettos Snack Mix', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Beef Tender Bites', 'Mini Cookies', 'Black Forest Fruit Snacks', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut M&Ms', "Reese's Peanut Butter Cups", 'Kinder Bueno', '3 Muskateers', 'Ghiradelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Rice Krispies Treats', 'Crunch', 'Trail Mix', 'Haribo Gummy Bears', 'Nature Valley Granola Bar'] 
+  }
 ];
 
 function MainPage() {
