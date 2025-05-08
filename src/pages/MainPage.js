@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import L from 'leaflet';
+import Fuse from 'fuse.js';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
 import './MainPage.css';
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -518,6 +520,26 @@ const vendingMachines = [
   }
 ];
 
+// Create a dictionary for colloquial/alternative product names
+const productAliases = {
+  // Doritos
+  "purple doritos": "Doritos Spicy Sweet Chili",
+  "red doritos": "Doritos Nacho Cheese",
+  "blue doritos": "Doritos Cool Ranch",  
+};
+
+// Function to extract all unique products from all vending machines
+const extractAllProducts = (machines) => {
+  const allProducts = new Set();
+  machines.forEach(machine => {
+    machine.products.forEach(product => {
+      allProducts.add(product.toLowerCase());
+    });
+  });
+  return Array.from(allProducts);
+};
+
+
 function MainPage() {
   // Duke University campus center coordinates
   const dukeCenter = [36.0014, -78.9382];
@@ -530,7 +552,23 @@ function MainPage() {
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+  const [searchSuggestion, setSearchSuggestion] = useState(null);
+  const [confirmedSearch, setConfirmedSearch] = useState(null);
   const searchInputRef = useRef(null);
+  
+  // Initialize Fuse.js once all products are extracted
+  const allUniqueProducts = React.useMemo(() => {
+    return extractAllProducts(vendingMachines);
+  }, []);
+  
+  // Create Fuse instance for fuzzy searching
+  const fuseInstance = React.useMemo(() => {
+    return new Fuse(allUniqueProducts, {
+      includeScore: true,
+      threshold: 0.4, // Lower means more strict matching
+      distance: 100,  // How far to look for matches
+    });
+  }, [allUniqueProducts]);
   
   // Get user location on component mount
   useEffect(() => {
@@ -622,20 +660,65 @@ function MainPage() {
     setSearchResults(resultsWithDistance);
   };
   
-  // Handle search functionality
+  // Handle search functionality with fuzzy matching
   const handleSearch = (term) => {
     if (!term.trim()) {
       clearSearch();
       return;
     }
     
-    setSearchTerm(term.toLowerCase());
+    const searchTermLower = term.toLowerCase();
+    
+    // Clear previous suggestion state
+    setSearchSuggestion(null);
+    setConfirmedSearch(null);
+    
+    // Check for colloquial names first
+    let correctedTerm = searchTermLower;
+    let shouldShowSuggestion = false;
+    
+    // Check if the term exists in our alias dictionary
+    if (productAliases[searchTermLower]) {
+      correctedTerm = productAliases[searchTermLower];
+      setSearchSuggestion({
+        original: searchTermLower,
+        suggested: correctedTerm,
+        type: 'colloquial'
+      });
+      setConfirmedSearch(correctedTerm);
+      shouldShowSuggestion = true;
+    } else {
+      // Not an exact match in our aliases, try fuzzy matching
+      const fuzzyResults = fuseInstance.search(searchTermLower);
+      
+      // If we have a close match (score < 0.3) but not exact
+      if (fuzzyResults.length > 0 && fuzzyResults[0].score < 0.3 && 
+          fuzzyResults[0].item !== searchTermLower) {
+        correctedTerm = fuzzyResults[0].item;
+        setSearchSuggestion({
+          original: searchTermLower,
+          suggested: correctedTerm,
+          type: 'fuzzy'
+        });
+        setConfirmedSearch(correctedTerm);
+        shouldShowSuggestion = true;
+      }
+    }
+    
+    // Continue with the search using the corrected term
+    performSearch(shouldShowSuggestion ? correctedTerm : searchTermLower);
+    setSearchTerm(searchTermLower); // Keep the original search term for display
+  };
+  
+  // Perform the actual search with the given term
+  const performSearch = (term) => {
     const results = [];
     const matchingMachines = [];
     
+    // First check if this is a product search
     const isProductSearch = vendingMachines.some(machine => 
       machine.products.some(product => 
-        product.toLowerCase().includes(term.toLowerCase())
+        product.toLowerCase().includes(term)
       )
     );
     
@@ -643,7 +726,7 @@ function MainPage() {
       // Search for specific product
       vendingMachines.forEach(machine => {
         const matchingProducts = machine.products.filter(product => 
-          product.toLowerCase().includes(term.toLowerCase())
+          product.toLowerCase().includes(term)
         );
         
         if (matchingProducts.length > 0) {
@@ -659,8 +742,8 @@ function MainPage() {
       // Search by location or machine name
       vendingMachines.forEach(machine => {
         if (
-          machine.name.toLowerCase().includes(term.toLowerCase()) ||
-          machine.building.toLowerCase().includes(term.toLowerCase())
+          machine.name.toLowerCase().includes(term) ||
+          machine.building.toLowerCase().includes(term)
         ) {
           results.push({
             products: machine.products,
@@ -695,13 +778,41 @@ function MainPage() {
     
     // Reset expanded categories
     setExpandedCategories({});
+    
+    // If no results were found with the corrected term, try other variations
+    if (results.length === 0 && searchSuggestion) {
+      // Could implement additional fallback searches here
+      // For now, we'll just keep the "no results" message
+    }
   };
+  
+  // Handle user accepting a search suggestion
+  const handleAcceptSuggestion = () => {
+    if (confirmedSearch) {
+      // Set the search term to match the confirmed search
+      setSearchTerm(confirmedSearch);
+      
+      // Perform the search with the confirmed term
+      performSearch(confirmedSearch.toLowerCase());
+      
+      // Update the search input to show the corrected term
+      if (searchInputRef.current) {
+        searchInputRef.current.value = confirmedSearch;
+      }
+      
+      // Clear the suggestion now that it's been accepted
+      setSearchSuggestion(null);
+    }
+  };
+
   
   // Clear search function
   const clearSearch = () => {
     setSearchResults([]);
     setSearchPerformed(false);
     setSearchTerm('');
+    setSearchSuggestion(null);
+    setConfirmedSearch(null);
     setVisibleMachines(vendingMachines);
     
     // Reset search input if there's a ref to it
@@ -809,9 +920,30 @@ function MainPage() {
             )}
           </div>
           
+          {/* Search Suggestion Message */}
+          {searchSuggestion && (
+            <div className="search-suggestion">
+              <p>
+                {searchSuggestion.type === 'colloquial' ? (
+                  <>We found "{searchSuggestion.suggested}" for your search "{searchSuggestion.original}".</>
+                ) : (
+                  <>Did you mean "{searchSuggestion.suggested}" instead of "{searchSuggestion.original}"?</>
+                )}
+              </p>
+              <div className="suggestion-actions">
+                <button className="accept-suggestion" onClick={handleAcceptSuggestion}>
+                  Yes, that's what I meant
+                </button>
+                <button className="reject-suggestion" onClick={() => setSearchSuggestion(null)}>
+                  No, search as typed
+                </button>
+              </div>
+            </div>
+          )}
+          
           {searchPerformed && (
             <div className="search-results">
-              <h3>Search Results</h3>
+              <h3>Search Results {searchTerm && `for "${searchTerm}"`}</h3>
               
               {searchResults.length === 0 ? (
                 <p className="no-results">No products found. Try a different search term.</p>
@@ -853,66 +985,66 @@ function MainPage() {
         </div>
         
         <div className="map-section">
-        <h2>Campus Vending Machine Map</h2>
-        <div className="map-container">
-          <MapContainer 
-            center={dukeCenter} 
-            zoom={16} 
-            scrollWheelZoom={true} 
-            style={{ height: "500px", width: "100%" }}
-            key={visibleMachines.map(m => m.id).join('-')} // Add a key prop to force re-render
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            
-            {/* Only render markers for visible machines */}
-            {visibleMachines.map(machine => (
-              <Marker 
-                key={machine.id} 
-                position={machine.location}
-              >
-                <Popup>
-                  <div className="machine-popup">
-                    <h3>{machine.name}</h3>
-                    <p><strong>Building:</strong> {machine.building}</p>
-                    <p><strong>Floor:</strong> {machine.floor}</p>
-                    <p><strong>Notes:</strong> {machine.notes}</p>
-                    {userLocation && (
-                      <p><strong>Distance:</strong> {
-                        formatDistance(calculateDistance(
-                          userLocation.latitude,
-                          userLocation.longitude,
-                          machine.location[0],
-                          machine.location[1]
-                        ))
-                      }</p>
-                    )}
-                    <div className="popup-products">
-                      <p><strong>Available Categories:</strong></p>
-                      {renderCategorySummary(machine.products)}
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
-            
-            {/* User location marker */}
-            {userLocation && (
-              <UserLocationMarker 
-                position={[userLocation.latitude, userLocation.longitude]}
+          <h2>Campus Vending Machine Map</h2>
+          <div className="map-container">
+            <MapContainer 
+              center={dukeCenter} 
+              zoom={16} 
+              scrollWheelZoom={true} 
+              style={{ height: "500px", width: "100%" }}
+              key={visibleMachines.map(m => m.id).join('-')} // Add a key prop to force re-render
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-            )}
-            
-            {/* Map updater component to handle map view changes */}
-            <MapUpdater 
-              visibleMachines={visibleMachines} 
-              userLocation={userLocation}
-            />
-          </MapContainer>
+              
+              {/* Only render markers for visible machines */}
+              {visibleMachines.map(machine => (
+                <Marker 
+                  key={machine.id} 
+                  position={machine.location}
+                >
+                  <Popup>
+                    <div className="machine-popup">
+                      <h3>{machine.name}</h3>
+                      <p><strong>Building:</strong> {machine.building}</p>
+                      <p><strong>Floor:</strong> {machine.floor}</p>
+                      <p><strong>Notes:</strong> {machine.notes}</p>
+                      {userLocation && (
+                        <p><strong>Distance:</strong> {
+                          formatDistance(calculateDistance(
+                            userLocation.latitude,
+                            userLocation.longitude,
+                            machine.location[0],
+                            machine.location[1]
+                          ))
+                        }</p>
+                      )}
+                      <div className="popup-products">
+                        <p><strong>Available Categories:</strong></p>
+                        {renderCategorySummary(machine.products)}
+                      </div>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+              
+              {/* User location marker */}
+              {userLocation && (
+                <UserLocationMarker 
+                  position={[userLocation.latitude, userLocation.longitude]}
+                />
+              )}
+              
+              {/* Map updater component to handle map view changes */}
+              <MapUpdater 
+                visibleMachines={visibleMachines} 
+                userLocation={userLocation}
+              />
+            </MapContainer>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
