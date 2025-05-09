@@ -526,6 +526,9 @@ const productAliases = {
   "purple doritos": "Doritos Spicy Sweet Chili",
   "red doritos": "Doritos Nacho Cheese",
   "blue doritos": "Doritos Cool Ranch",  
+  "cool ranch doritos": "Doritos Cool Ranch",
+  "nacho cheese doritos": "Doritos Cool Ranch", 
+  "spicy sweet chili doritos": "Doritos Cool Ranch", 
 };
 
 // Function to extract all unique products from all vending machines
@@ -715,6 +718,9 @@ function MainPage() {
     const results = [];
     const matchingMachines = [];
     
+    // Common brand-name categories that should match partial products
+    const categoryTerms = ['doritos', 'fritos', 'lays', 'cheetos', 'sunchips', 'snickers', 'kitkat', 'coke', 'pepsi'];
+    
     // First check if this is a product search
     const isProductSearch = vendingMachines.some(machine => 
       machine.products.some(product => 
@@ -725,9 +731,22 @@ function MainPage() {
     if (isProductSearch) {
       // Search for specific product
       vendingMachines.forEach(machine => {
-        const matchingProducts = machine.products.filter(product => 
-          product.toLowerCase().includes(term)
-        );
+        // For category terms (like "doritos"), match all products containing the term
+        // Use word boundary check for category terms to avoid partial matches
+        // (e.g., "doritos" should match "Cool Ranch Doritos" but not "Dorito-like chips")
+        const matchingProducts = machine.products.filter(product => {
+          const productLower = product.toLowerCase();
+          
+          // For category terms (like "doritos"), we want to match all varieties
+          if (categoryTerms.includes(term)) {
+            // For a category term, check if the product contains the term as a whole word
+            const wordRegex = new RegExp(`\\b${term}\\b`, 'i');
+            return wordRegex.test(productLower);
+          } else {
+            // For non-category terms, use standard includes matching
+            return productLower.includes(term);
+          }
+        });
         
         if (matchingProducts.length > 0) {
           results.push({
@@ -770,6 +789,11 @@ function MainPage() {
       
       // Sort by distance (closest first)
       results.sort((a, b) => a.distance - b.distance);
+    } else {
+      // If no location, sort by number of matching products (most matches first)
+      if (isProductSearch) {
+        results.sort((a, b) => b.products.length - a.products.length);
+      }
     }
     
     setSearchResults(results);
@@ -784,7 +808,7 @@ function MainPage() {
       // Could implement additional fallback searches here
       // For now, we'll just keep the "no results" message
     }
-  };
+  };  
   
   // Handle user accepting a search suggestion
   const handleAcceptSuggestion = () => {
