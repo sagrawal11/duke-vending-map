@@ -298,7 +298,33 @@ function MainPage() {
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
+  const [campusFilter, setCampusFilter] = useState('both'); // 'east', 'west', 'both'
   const searchInputRef = useRef(null);
+  
+  // Define which buildings are on which campus
+  const campusBuildings = {
+    west: ['LSRC', 'Teer', 'Physics', 'Wilkinson', 'Perkins', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Few', 'Wu', 'Flowers', 'Bryan Center', 'Wilson Recreation Center'],
+    east: ['Eastern Union', 'Pegram', 'Brown', 'Basset', 'Alspaugh', 'Giles', 'Wilson Residence', 'Classroom', 'West House', 'West Duke', 'Randolph', 'Blackwell', 'Gilbert Addoms', 'Southgate', 'Bell Tower', 'Trinity', 'Brodie']
+  };
+  
+  // Function to determine which campus a machine is on
+  const getMachineCampus = (machine) => {
+    if (campusBuildings.west.some(building => machine.building.includes(building))) {
+      return 'west';
+    } else if (campusBuildings.east.some(building => machine.building.includes(building))) {
+      return 'east';
+    }
+    // Default to west if building not found in either list
+    return 'west';
+  };
+  
+  // Filter machines based on campus selection
+  const getFilteredMachines = (machines) => {
+    if (campusFilter === 'both') {
+      return machines;
+    }
+    return machines.filter(machine => getMachineCampus(machine) === campusFilter);
+  };
   
   // Initialize the search engine
   const searchEngine = React.useMemo(() => {
@@ -384,16 +410,48 @@ function MainPage() {
     
     const searchResult = searchEngine.search(term, userLocation);
     
-    setSearchResults(searchResult.results);
+    // Apply campus filter to search results
+    const filteredResults = {
+      ...searchResult,
+      results: searchResult.results.filter(result => {
+        if (campusFilter === 'both') return true;
+        return getMachineCampus(result.machine) === campusFilter;
+      })
+    };
+    
+    setSearchResults(filteredResults.results);
     setSearchPerformed(true);
     setSearchTerm(term);
     
-    // Update visible machines
-    const matchingMachines = searchResult.results.map(result => result.machine);
+    // Update visible machines with campus filter applied
+    const matchingMachines = filteredResults.results.map(result => result.machine);
     setVisibleMachines(matchingMachines);
     
     // Reset expanded categories
     setExpandedCategories({});
+  };
+  
+  // Handle campus filter change
+  const handleCampusFilterChange = (newFilter) => {
+    setCampusFilter(newFilter);
+    
+    // If there's an active search, re-run it with the new filter
+    if (searchPerformed && searchTerm) {
+      const searchResult = searchEngine.search(searchTerm, userLocation);
+      const filteredResults = {
+        ...searchResult,
+        results: searchResult.results.filter(result => {
+          if (newFilter === 'both') return true;
+          return getMachineCampus(result.machine) === newFilter;
+        })
+      };
+      
+      setSearchResults(filteredResults.results);
+      setVisibleMachines(filteredResults.results.map(result => result.machine));
+    } else {
+      // If no search is active, just update the visible machines on the map
+      setVisibleMachines(getFilteredMachines(vendingMachines));
+    }
   };
   
   // Clear search function
@@ -401,13 +459,18 @@ function MainPage() {
     setSearchResults([]);
     setSearchPerformed(false);
     setSearchTerm('');
-    setVisibleMachines(vendingMachines);
+    setVisibleMachines(getFilteredMachines(vendingMachines));
     
     // Reset search input if there's a ref to it
     if (searchInputRef.current) {
       searchInputRef.current.value = '';
     }
   };
+  
+  // Initialize visible machines with campus filter on component mount
+  useEffect(() => {
+    setVisibleMachines(getFilteredMachines(vendingMachines));
+  }, [campusFilter]);
   
   // Toggle category expansion
   const toggleCategory = (machineId, category) => {
@@ -530,6 +593,20 @@ function MainPage() {
           <h2>Find Snacks & Drinks</h2>
           <div className="search-container">
             <SearchBar onSearch={handleSearch} inputRef={searchInputRef} />
+            
+            {/* Campus Filter */}
+            <div className="campus-filter">
+              <select 
+                value={campusFilter} 
+                onChange={(e) => handleCampusFilterChange(e.target.value)}
+                className="campus-select"
+              >
+                <option value="both">Both Campuses</option>
+                <option value="west">West Campus</option>
+                <option value="east">East Campus</option>
+              </select>
+            </div>
+            
             <button className="clear-button" onClick={clearSearch}>
               Reset
             </button>
@@ -561,7 +638,12 @@ function MainPage() {
         </div>
         
         <div className="map-section">
-          <h2>Campus Vending Machine Map</h2>
+          <h2>
+            {searchPerformed && searchTerm ? 
+              `Vending Machines with ${searchTerm}` : 
+              'Campus Vending Machine Map'
+            }
+          </h2>
           <div className="map-container">
             <MapContainer 
               center={dukeCenter} 
