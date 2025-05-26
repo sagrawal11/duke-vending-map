@@ -43,16 +43,29 @@ function MapUpdater({ visibleMachines, userLocation }) {
   
   // Fit map bounds to visible markers and user location
   React.useEffect(() => {
-    if (visibleMachines.length > 0) {
-      const points = [...visibleMachines.map(machine => machine.location)];
-      
-      // Include user location in bounds if available
-      if (userLocation) {
-        points.push([userLocation.latitude, userLocation.longitude]);
+    if (!map) return;
+    
+    try {
+      if (visibleMachines.length > 0) {
+        const points = [...visibleMachines.map(machine => machine.location)];
+        
+        // Include user location in bounds if available
+        if (userLocation) {
+          points.push([userLocation.latitude, userLocation.longitude]);
+        }
+        
+        if (points.length > 0) {
+          const bounds = L.latLngBounds(points);
+          // Use a timeout to ensure map is ready
+          setTimeout(() => {
+            if (map && map.getContainer()) {
+              map.fitBounds(bounds, { padding: [50, 50] });
+            }
+          }, 100);
+        }
       }
-      
-      const bounds = L.latLngBounds(points);
-      map.fitBounds(bounds, { padding: [50, 50] });
+    } catch (error) {
+      console.warn('Map update error:', error);
     }
   }, [visibleMachines, userLocation, map]);
   
@@ -64,8 +77,14 @@ function UserLocationMarker({ position }) {
   const map = useMap();
   
   useEffect(() => {
-    if (position) {
-      map.flyTo(position, map.getZoom());
+    if (!map) return;
+    
+    try {
+      if (position && map.getContainer()) {
+        map.flyTo(position, map.getZoom());
+      }
+    } catch (error) {
+      console.warn('User location marker error:', error);
     }
   }, [position, map]);
   
@@ -303,8 +322,8 @@ function MainPage() {
   
   // Define which buildings are on which campus
   const campusBuildings = {
-    west: ['LSRC', 'Teer', 'Physics', 'Wilkinson', 'Perkins', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Few', 'Wu', 'Flowers', 'Bryan Center', 'Wilson Recreation Center'],
-    east: ['Eastern Union', 'Pegram', 'Brown', 'Basset', 'Alspaugh', 'Giles', 'Wilson Residence', 'Classroom', 'West House', 'West Duke', 'Randolph', 'Blackwell', 'Gilbert Addoms', 'Southgate', 'Bell Tower', 'Trinity', 'Brodie']
+    west: ['West Union', 'Perkins Library', 'Bryan Center', 'Allen Building', 'Sanford Building'],
+    east: ['Marketplace', 'Lilly Library', 'LSRC', 'Hudson Hall', 'Randolph Building', 'Bell Tower']
   };
   
   // Function to determine which campus a machine is on
@@ -469,7 +488,12 @@ function MainPage() {
   
   // Initialize visible machines with campus filter on component mount
   useEffect(() => {
-    setVisibleMachines(getFilteredMachines(vendingMachines));
+    // Add a small delay to prevent map errors during rapid updates
+    const timer = setTimeout(() => {
+      setVisibleMachines(getFilteredMachines(vendingMachines));
+    }, 50);
+    
+    return () => clearTimeout(timer);
   }, [campusFilter]);
   
   // Toggle category expansion
@@ -621,6 +645,14 @@ function MainPage() {
             >
               {isLoadingLocation ? 'Getting location...' : 
                locationPermission === 'granted' ? 'Update My Location' : 'Enable Location Services (optional)'}
+              
+              {/* Info icon with tooltip */}
+              <div className="location-info-icon">
+                i
+                <div className="location-tooltip">
+                  Used to show your distance from vending machines and sort results by proximity. Your location is never stored or shared.
+                </div>
+              </div>
             </button>
             {userLocation && (
               <p className="location-status">
@@ -640,7 +672,7 @@ function MainPage() {
         <div className="map-section">
           <h2>
             {searchPerformed && searchTerm ? 
-              `Vending Machines with ${searchTerm}` : 
+              `Vending Machines with "${searchTerm}"` : 
               'Campus Vending Machine Map'
             }
           </h2>
@@ -650,7 +682,15 @@ function MainPage() {
               zoom={16} 
               scrollWheelZoom={true} 
               style={{ height: "500px", width: "100%" }}
-              key={visibleMachines.map(m => m.id).join('-')}
+              key={`${visibleMachines.map(m => m.id).join('-')}-${campusFilter}`}
+              whenCreated={(mapInstance) => {
+                // Ensure map is properly initialized
+                setTimeout(() => {
+                  if (mapInstance && mapInstance.getContainer()) {
+                    mapInstance.invalidateSize();
+                  }
+                }, 100);
+              }}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
