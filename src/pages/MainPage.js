@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import L from 'leaflet';
-import Fuse from 'fuse.js';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
 import { categorizeProduct, groupProductsByCategory } from '../data/productCategories';
@@ -15,9 +14,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Update the distance calculation function:
+// Distance calculation function
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 3959; // Radius of the earth in miles (instead of 6371 km)
+  const R = 3959; // Radius of the earth in miles
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
   const a = 
@@ -29,7 +28,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   return distance;
 };
 
-// Update the format distance function:
+// Format distance function
 const formatDistance = (distance) => {
   if (distance < 0.1) {
     // Convert to feet if less than 0.1 miles
@@ -83,27 +82,209 @@ function UserLocationMarker({ position }) {
   );
 }
 
-// Function to extract all unique products from all vending machines
-const extractAllProducts = (machines) => {
-  const allProducts = new Set();
-  machines.forEach(machine => {
-    machine.products.forEach(product => {
-      allProducts.add(product.toLowerCase());
-    });
-  });
-  return Array.from(allProducts);
+// ============== SIMPLIFIED SEARCH SYSTEM ==============
+
+// Product aliases - mapping alternative names to the actual product names
+const createProductAliases = () => {
+  return {
+    // Doritos variations
+    "purple doritos": "doritos spicy sweet chili",
+    "red doritos": "doritos nacho cheese",
+    "blue doritos": "doritos cool ranch",
+    "orange doritos": "doritos nacho cheese",
+    "cool ranch doritos": "doritos cool ranch",
+    "nacho cheese doritos": "doritos nacho cheese",
+    "spicy sweet chili doritos": "doritos spicy sweet chili",
+    "spicy doritos": "doritos spicy sweet chili",
+    "sweet chili doritos": "doritos spicy sweet chili",
+    "ranch doritos": "doritos cool ranch",
+    "classic doritos": "doritos nacho cheese",
+    
+    // Lays variations
+    "classic lays": "lays classic",
+    "original lays": "lays classic",
+    "regular lays": "lays classic",
+    "bbq lays": "lays barbecue",
+    "lays bbq": "lays barbecue",
+    "barbecue lays": "lays barbecue",
+    "sour cream and onion lays": "lays sour cream onion",
+    "lays sour cream and onion": "lays sour cream onion",
+    
+    // Cheetos variations
+    "crunchy cheetos": "cheetos crunchy",
+    "regular cheetos": "cheetos crunchy",
+    "original cheetos": "cheetos crunchy",
+    "cheeto puffs": "cheetos puffs",
+    "puffy cheetos": "cheetos puffs",
+    "flamin hot cheetos": "cheetos flamin hot",
+    "hot cheetos": "cheetos flamin hot",
+    "flaming hot cheetos": "cheetos flamin hot",
+    
+    // Drinks
+    "coke": "coca cola",
+    "coca-cola": "coca cola",
+    "classic coke": "coca cola",
+    "diet coca cola": "diet coke",
+    "mtn dew": "mountain dew",
+    "dew": "mountain dew",
+    "dr. pepper": "dr pepper",
+    "doctor pepper": "dr pepper",
+    
+    // Candy
+    "reeses": "reese's peanut butter cups",
+    "reese's cups": "reese's peanut butter cups",
+    "peanut butter cups": "reese's peanut butter cups",
+    "kitkat": "kit kat",
+    "kit-kat": "kit kat",
+    "snickers": "snickers bar",
+  };
 };
 
-// Create a dictionary for colloquial/alternative product names
-const productAliases = {
-  // Doritos
-  "purple doritos": "doritos spicy sweet chili",
-  "red doritos": "doritos nacho cheese",
-  "blue doritos": "doritos cool ranch",  
-  "cool ranch doritos": "doritos cool ranch",
-  "nacho cheese doritos": "doritos nacho cheese", 
-  "spicy sweet chili doritos": "doritos spicy sweet chili",
+// Normalize product names for better matching
+const normalizeProductName = (product) => {
+  return product
+    .toLowerCase()
+    .replace(/['']/g, '') // Remove apostrophes
+    .replace(/[&]/g, 'and') // Replace & with 'and'
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
 };
+
+// Simple search class focused on product name matching
+class VendingMachineSearch {
+  constructor(machines) {
+    this.machines = machines;
+    this.productAliases = createProductAliases();
+    
+    // Create reverse lookup for aliases
+    this.aliasLookup = {};
+    Object.entries(this.productAliases).forEach(([alias, canonical]) => {
+      this.aliasLookup[normalizeProductName(alias)] = normalizeProductName(canonical);
+    });
+  }
+  
+  // Get the canonical product name from an alias or return the original
+  getCanonicalProductName(searchTerm) {
+    const normalized = normalizeProductName(searchTerm);
+    return this.aliasLookup[normalized] || normalized;
+  }
+  
+  // Check if a machine product matches the search term
+  productMatches(machineProduct, searchTerm) {
+    const normalizedMachineProduct = normalizeProductName(machineProduct);
+    const canonicalSearchTerm = this.getCanonicalProductName(searchTerm);
+    
+    // Direct match with canonical name
+    if (normalizedMachineProduct.includes(canonicalSearchTerm)) {
+      return true;
+    }
+    
+    // Check if the machine product when canonicalized matches the search
+    const canonicalMachineProduct = this.getCanonicalProductName(machineProduct);
+    if (canonicalMachineProduct.includes(canonicalSearchTerm)) {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  // Main search function
+  search(searchTerm, userLocation = null) {
+    if (!searchTerm.trim()) {
+      return {
+        results: [],
+        searchType: 'empty'
+      };
+    }
+    
+    const normalizedSearch = normalizeProductName(searchTerm);
+    
+    // Try product search first
+    const productResults = this.searchByProduct(normalizedSearch, userLocation);
+    if (productResults.results.length > 0) {
+      return productResults;
+    }
+    
+    // If no product results, try location search
+    return this.searchByLocation(normalizedSearch, userLocation);
+  }
+  
+  searchByProduct(searchTerm, userLocation) {
+    const results = [];
+    
+    this.machines.forEach(machine => {
+      const matchingProducts = machine.products.filter(product => 
+        this.productMatches(product, searchTerm)
+      );
+      
+      if (matchingProducts.length > 0) {
+        results.push({
+          machine,
+          products: matchingProducts,
+          searchType: 'product',
+          relevanceScore: matchingProducts.length
+        });
+      }
+    });
+    
+    // Add distance information and sort
+    if (userLocation) {
+      results.forEach(result => {
+        result.distance = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          result.machine.location[0],
+          result.machine.location[1]
+        );
+      });
+      results.sort((a, b) => a.distance - b.distance);
+    } else {
+      results.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    }
+    
+    return {
+      results,
+      searchType: 'product'
+    };
+  }
+  
+  searchByLocation(locationTerm, userLocation) {
+    const results = [];
+    
+    this.machines.forEach(machine => {
+      if (
+        normalizeProductName(machine.name).includes(locationTerm) ||
+        normalizeProductName(machine.building).includes(locationTerm)
+      ) {
+        results.push({
+          machine,
+          products: machine.products,
+          searchType: 'location',
+          relevanceScore: 1
+        });
+      }
+    });
+    
+    if (userLocation) {
+      results.forEach(result => {
+        result.distance = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          result.machine.location[0],
+          result.machine.location[1]
+        );
+      });
+      results.sort((a, b) => a.distance - b.distance);
+    }
+    
+    return {
+      results,
+      searchType: 'location'
+    };
+  }
+}
+
+// ============== MAIN COMPONENT ==============
 
 function MainPage() {
   // Duke University campus center coordinates
@@ -117,26 +298,12 @@ function MainPage() {
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
-  const [searchSuggestion, setSearchSuggestion] = useState(null);
-  const [confirmedSearch, setConfirmedSearch] = useState(null);
   const searchInputRef = useRef(null);
   
-  // Initialize Fuse.js once all products are extracted
-  const allUniqueProducts = React.useMemo(() => {
-    return extractAllProducts(vendingMachines);
+  // Initialize the search engine
+  const searchEngine = React.useMemo(() => {
+    return new VendingMachineSearch(vendingMachines);
   }, []);
-  
-  // Create Fuse instance for fuzzy searching with improved settings for typos
-  const fuseInstance = React.useMemo(() => {
-    return new Fuse(allUniqueProducts, {
-      includeScore: true,
-      threshold: 0.3, // Lower threshold for better typo handling
-      distance: 1000,
-      minMatchCharLength: 3,
-      ignoreLocation: true,
-      findAllMatches: true
-    });
-  }, [allUniqueProducts]);
   
   // Get user location on component mount
   useEffect(() => {
@@ -178,9 +345,13 @@ function MainPage() {
         setLocationPermission('granted');
         setIsLoadingLocation(false);
         
-        // If there's already a search performed, re-sort results by distance
-        if (searchPerformed && searchResults.length > 0) {
-          sortResultsByDistance(searchResults, position.coords);
+        // If there's already a search performed, re-run search to update distances
+        if (searchPerformed && searchTerm) {
+          const searchResult = searchEngine.search(searchTerm, {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+          setSearchResults(searchResult.results);
         }
       },
       (error) => {
@@ -204,233 +375,32 @@ function MainPage() {
     );
   };
   
-  // Sort search results by distance from user
-  const sortResultsByDistance = (results, coords) => {
-    if (!coords) return;
-    
-    const resultsWithDistance = results.map(result => {
-      const machine = result.machine;
-      const distance = calculateDistance(
-        coords.latitude, 
-        coords.longitude, 
-        machine.location[0], 
-        machine.location[1]
-      );
-      
-      return {
-        ...result,
-        distance
-      };
-    });
-    
-    // Sort by distance (closest first)
-    resultsWithDistance.sort((a, b) => a.distance - b.distance);
-    setSearchResults(resultsWithDistance);
-  };
-  
-  // Enhanced search function with better fuzzy matching and brand search
+  // Main search handler
   const handleSearch = (term) => {
     if (!term.trim()) {
       clearSearch();
       return;
     }
     
-    const searchTermLower = term.toLowerCase();
+    const searchResult = searchEngine.search(term, userLocation);
     
-    // Clear previous suggestion state
-    setSearchSuggestion(null);
-    setConfirmedSearch(null);
-    
-    // Define brand names that shouldn't trigger suggestions
-    const brandNames = ['doritos', 'dorito', 'lays', 'cheetos', 'fritos', 'reese', 'reese\'s', 'reeses', 'snickers', 'kit kat', 'kitkat', 'coke', 'coca cola', 'pepsi', 'mountain dew', 'crackers', 'cookies', 'cookie', 'sun chips'];
-    
-    // Check for colloquial names first
-    let correctedTerm = searchTermLower;
-    let shouldShowSuggestion = false;
-    
-    // Check if the term exists in our alias dictionary
-    if (productAliases[searchTermLower]) {
-      correctedTerm = productAliases[searchTermLower];
-      setSearchSuggestion({
-        original: searchTermLower,
-        suggested: correctedTerm,
-        type: 'colloquial'
-      });
-      setConfirmedSearch(correctedTerm);
-      shouldShowSuggestion = true;
-    } else if (!brandNames.includes(searchTermLower)) {
-      // Only show fuzzy suggestions if it's not a brand name
-      // Try fuzzy matching on the search term
-      const fuzzyResults = fuseInstance.search(searchTermLower);
-      
-      // If we have a close match but not exact
-      if (fuzzyResults.length > 0 && fuzzyResults[0].score < 0.3 && 
-          fuzzyResults[0].item !== searchTermLower) {
-        correctedTerm = fuzzyResults[0].item;
-        setSearchSuggestion({
-          original: searchTermLower,
-          suggested: correctedTerm,
-          type: 'fuzzy'
-        });
-        setConfirmedSearch(correctedTerm);
-        shouldShowSuggestion = true;
-      }
-    }
-    
-    // Continue with the search using the corrected term
-    performSearch(shouldShowSuggestion ? correctedTerm : searchTermLower);
-    setSearchTerm(searchTermLower); // Keep the original search term for display
-  };
-  
-  // Perform the actual search with the given term
-  const performSearch = (term) => {
-    const results = [];
-    const matchingMachines = [];
-    
-    // Brand name patterns for comprehensive brand search
-    const brandPatterns = [
-      { brand: 'doritos', variations: ['doritos', 'dorito'] },
-      { brand: 'lays', variations: ['lays', 'lay\'s'] },
-      { brand: 'cheetos', variations: ['cheetos', 'cheeto'] },
-      { brand: 'fritos', variations: ['fritos', 'frito', 'frito\'s'] },
-      { brand: 'snickers', variations: ['snickers', 'snicker'] },
-      { brand: 'reese', variations: ['reese\'s', 'reese', 'reeses'] },
-      { brand: 'kit kat', variations: ['kit kat', 'kitkat', 'kit-kat'] },
-      { brand: 'coke', variations: ['coca cola', 'coke', 'coca-cola'] },
-      { brand: 'pepsi', variations: ['pepsi'] },
-      { brand: 'mountain dew', variations: ['mountain dew', 'mtn dew', 'dew'] },
-      { brand: 'crackers', variations: ['crackers', 'cracker'] },
-    ];
-    
-    // Check if this is a brand search
-    const brandMatch = brandPatterns.find(pattern => 
-      pattern.variations.some(variation => 
-        term.includes(variation) || variation.includes(term)
-      )
-    );
-    
-    // First check if this is a product search
-    const isProductSearch = vendingMachines.some(machine => 
-      machine.products.some(product => 
-        product.toLowerCase().includes(term)
-      )
-    );
-    
-    if (isProductSearch || brandMatch) {
-      // Search for specific product or brand
-      vendingMachines.forEach(machine => {
-        let matchingProducts = [];
-        
-        if (brandMatch) {
-          // For brand searches, find all products containing any brand variation
-          matchingProducts = machine.products.filter(product => {
-            const productLower = product.toLowerCase();
-            return brandMatch.variations.some(variation => {
-              // Use word boundary for better brand matching
-              const regex = new RegExp(`\\b${variation.replace(/'/g, '\'?')}\\b`, 'i');
-              return regex.test(productLower) || productLower.includes(variation);
-            });
-          });
-        } else {
-          // For specific product searches, use both exact and fuzzy matching
-          matchingProducts = machine.products.filter(product => {
-            const productLower = product.toLowerCase();
-            
-            // First try exact substring matching
-            if (productLower.includes(term)) {
-              return true;
-            }
-            
-            // Then try fuzzy matching for typos
-            const fuzzyResults = fuseInstance.search(product);
-            return fuzzyResults.length > 0 && fuzzyResults[0].score < 0.3;
-          });
-        }
-        
-        if (matchingProducts.length > 0) {
-          results.push({
-            products: matchingProducts,
-            machine,
-            isProductSearch: true,
-            isBrandSearch: !!brandMatch
-          });
-          matchingMachines.push(machine);
-        }
-      });
-    } else {
-      // Search by location or machine name
-      vendingMachines.forEach(machine => {
-        if (
-          machine.name.toLowerCase().includes(term) ||
-          machine.building.toLowerCase().includes(term)
-        ) {
-          results.push({
-            products: machine.products,
-            machine,
-            isProductSearch: false
-          });
-          matchingMachines.push(machine);
-        }
-      });
-    }
-    
-    // If user location is available, add distance to results and sort
-    if (userLocation) {
-      results.forEach(result => {
-        const machine = result.machine;
-        const distance = calculateDistance(
-          userLocation.latitude,
-          userLocation.longitude,
-          machine.location[0],
-          machine.location[1]
-        );
-        result.distance = distance;
-      });
-      
-      // Sort by distance (closest first)
-      results.sort((a, b) => a.distance - b.distance);
-    } else {
-      // If no location, sort by number of matching products (most matches first)
-      if (isProductSearch) {
-        results.sort((a, b) => b.products.length - a.products.length);
-      }
-    }
-    
-    setSearchResults(results);
+    setSearchResults(searchResult.results);
     setSearchPerformed(true);
+    setSearchTerm(term);
+    
+    // Update visible machines
+    const matchingMachines = searchResult.results.map(result => result.machine);
     setVisibleMachines(matchingMachines);
     
     // Reset expanded categories
     setExpandedCategories({});
-  };  
-  
-  // Handle user accepting a search suggestion
-  const handleAcceptSuggestion = () => {
-    if (confirmedSearch) {
-      // Set the search term to match the confirmed search
-      setSearchTerm(confirmedSearch);
-      
-      // Perform the search with the confirmed term
-      performSearch(confirmedSearch.toLowerCase());
-      
-      // Update the search input to show the corrected term
-      if (searchInputRef.current) {
-        searchInputRef.current.value = confirmedSearch;
-      }
-      
-      // Clear the suggestion now that it's been accepted
-      setSearchSuggestion(null);
-    }
   };
-
   
   // Clear search function
   const clearSearch = () => {
     setSearchResults([]);
     setSearchPerformed(false);
     setSearchTerm('');
-    setSearchSuggestion(null);
-    setConfirmedSearch(null);
     setVisibleMachines(vendingMachines);
     
     // Reset search input if there's a ref to it
@@ -499,6 +469,49 @@ function MainPage() {
       </div>
     );
   };
+
+  // Render search results
+  const renderSearchResults = () => {
+    if (searchResults.length === 0) {
+      return <p className="no-results">No results found. Try a different search term.</p>;
+    }
+    
+    return (
+      <div className="results-list">
+        {searchResults.map((result, index) => (
+          <div key={index} className="result-item">
+            <div className="result-content">
+              <div className="result-header">
+                <h4>{result.machine.name}</h4>
+                {result.distance !== undefined && (
+                  <span className="distance-badge">
+                    {formatDistance(result.distance)}
+                  </span>
+                )}
+              </div>
+              <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
+              <p><strong>Notes:</strong> {result.machine.notes}</p>
+              
+              {/* Show matching products for product searches */}
+              {result.searchType === 'product' && (
+                <div className="found-products">
+                  <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
+                </div>
+              )}
+              
+              {/* Show all products for location searches */}
+              {result.searchType === 'location' && (
+                <div className="products-container">
+                  <h5>Available Products:</h5>
+                  {renderDropdownGroupedProducts(result.products, result.machine.id)}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
   
   return (
     <div className="main-page">
@@ -538,68 +551,10 @@ function MainPage() {
             )}
           </div>
           
-          {/* Search Suggestion Message */}
-          {searchSuggestion && (
-            <div className="search-suggestion">
-              <p>
-                {searchSuggestion.type === 'colloquial' ? (
-                  <>We found "{searchSuggestion.suggested}" for your search "{searchSuggestion.original}".</>
-                ) : (
-                  <>Did you mean "{searchSuggestion.suggested}" instead of "{searchSuggestion.original}"?</>
-                )}
-              </p>
-              <div className="suggestion-actions">
-                <button className="accept-suggestion" onClick={handleAcceptSuggestion}>
-                  Yes, that's what I meant
-                </button>
-                <button className="reject-suggestion" onClick={() => setSearchSuggestion(null)}>
-                  No, search as typed
-                </button>
-              </div>
-            </div>
-          )}
-          
           {searchPerformed && (
             <div className="search-results">
               <h3>Search Results {searchTerm && `for "${searchTerm}"`}</h3>
-              
-              {searchResults.length === 0 ? (
-                <p className="no-results">No products found. Try a different search term.</p>
-              ) : (
-                <div className="results-list">
-                  {searchResults.map((result, index) => (
-                    <div key={index} className="result-item">
-                      <div className="result-content">
-                        <div className="result-header">
-                          <h4>{result.machine.name}</h4>
-                          {result.distance !== undefined && (
-                            <span className="distance-badge">
-                              {formatDistance(result.distance)}
-                            </span>
-                          )}
-                        </div>
-                        <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
-                        <p><strong>Notes:</strong> {result.machine.notes}</p>
-                        
-                        {/* For product searches, show matching products */}
-                        {result.isProductSearch && (
-                          <div className="found-products">
-                            <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
-                          </div>
-                        )}
-                        
-                        {/* For location searches, show all products */}
-                        {!result.isProductSearch && (
-                          <div className="products-container">
-                            <h5>Available Products:</h5>
-                            {renderDropdownGroupedProducts(result.products, result.machine.id)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {renderSearchResults()}
             </div>
           )}
         </div>
@@ -612,7 +567,7 @@ function MainPage() {
               zoom={16} 
               scrollWheelZoom={true} 
               style={{ height: "500px", width: "100%" }}
-              key={visibleMachines.map(m => m.id).join('-')} // Add a key prop to force re-render
+              key={visibleMachines.map(m => m.id).join('-')}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
