@@ -82,49 +82,49 @@ function UserLocationMarker({ position }) {
   );
 }
 
-// ============== SIMPLIFIED SEARCH SYSTEM ==============
-
 // Product aliases - mapping alternative names to the actual product names
 const createProductAliases = () => {
   return {
-    // Doritos variations
+    // Doritos
     "purple doritos": "doritos spicy sweet chili",
-    "red doritos": "doritos nacho cheese",
-    "blue doritos": "doritos cool ranch",
-    "orange doritos": "doritos nacho cheese",
-    "cool ranch doritos": "doritos cool ranch",
-    "nacho cheese doritos": "doritos nacho cheese",
     "spicy sweet chili doritos": "doritos spicy sweet chili",
-    "spicy doritos": "doritos spicy sweet chili",
     "sweet chili doritos": "doritos spicy sweet chili",
-    "ranch doritos": "doritos cool ranch",
+    "spicy doritos": "doritos spicy sweet chili",
+
+    "red doritos": "doritos nacho cheese",
+    "orange doritos": "doritos nacho cheese",
+    "nacho cheese doritos": "doritos nacho cheese",
     "classic doritos": "doritos nacho cheese",
+
+    "blue doritos": "doritos cool ranch",
+    "cool ranch doritos": "doritos cool ranch",
+    "ranch doritos": "doritos cool ranch",
     
-    // Lays variations
+    // Lays
     "classic lays": "lays classic",
     "original lays": "lays classic",
     "regular lays": "lays classic",
+    "salty lays": 'lays classic',
+
     "bbq lays": "lays barbecue",
     "lays bbq": "lays barbecue",
     "barbecue lays": "lays barbecue",
-    "sour cream and onion lays": "lays sour cream onion",
-    "lays sour cream and onion": "lays sour cream onion",
+
+    "sour cream and onion lays": "lays sour cream & onion",
+    "lays sour cream and onion": "lays sour cream & onion",
     
-    // Cheetos variations
-    "crunchy cheetos": "cheetos crunchy",
-    "regular cheetos": "cheetos crunchy",
-    "original cheetos": "cheetos crunchy",
-    "cheeto puffs": "cheetos puffs",
-    "puffy cheetos": "cheetos puffs",
-    "flamin hot cheetos": "cheetos flamin hot",
-    "hot cheetos": "cheetos flamin hot",
-    "flaming hot cheetos": "cheetos flamin hot",
+    // Cheetos
+    "regular cheetos": "cheetos",
+    "original cheetos": "cheetos",
+    "cheddar jalepeno cheetos": "cheetos flamin hot",
+    "hot cheetos": "Cheetos Cheddar Jalepeno",
     
     // Drinks
     "coke": "coca cola",
     "coca-cola": "coca cola",
     "classic coke": "coca cola",
-    "diet coca cola": "diet coke",
+
+    "diet coca cola": "coca cola zero sugar",
     "mtn dew": "mountain dew",
     "dew": "mountain dew",
     "dr. pepper": "dr pepper",
@@ -134,9 +134,11 @@ const createProductAliases = () => {
     "reeses": "reese's peanut butter cups",
     "reese's cups": "reese's peanut butter cups",
     "peanut butter cups": "reese's peanut butter cups",
-    "kitkat": "kit kat",
-    "kit-kat": "kit kat",
-    "snickers": "snickers bar",
+    "reese's peanut butter cups": "reese's peanut butter cups",
+
+    "kit kat": "kitkat",
+    "kit-kat": "kitkat",
+    "snickers bar": "snickers",
   };
 };
 
