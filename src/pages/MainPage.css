@@ -285,7 +285,7 @@
   flex: 1;
   padding: 1rem;
   border: 2px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 12px 0 0 12px;
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -394,7 +394,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 12px 12px 0; /* Rounded right, straight left */
+  border-radius: 12px;
   border: 2px solid #f87171; /* Match background color for seamless connection */
   margin-left: -2px; /* Slight overlap to ensure seamless connection */
 }
