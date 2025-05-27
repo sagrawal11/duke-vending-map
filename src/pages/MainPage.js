@@ -427,7 +427,7 @@ function MainPage() {
         setIsLoadingLocation(false);
         
         if (error.code === 1) { // Permission denied
-          alert("Location permission denied. Enable location services in your browser to see nearby vending machines.");
+          alert("Location permission denied. Enable location services to see nearby vending machines.");
         } else if (error.code === 2) { // Position unavailable
           alert("Location information is unavailable.");
         } else if (error.code === 3) { // Timeout
