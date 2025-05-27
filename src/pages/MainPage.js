@@ -46,24 +46,27 @@ function MapUpdater({ visibleMachines, userLocation }) {
     if (!map) return;
     
     try {
-      if (visibleMachines.length > 0) {
-        const points = [...visibleMachines.map(machine => machine.location)];
-        
-        // Include user location in bounds if available
-        if (userLocation) {
-          points.push([userLocation.latitude, userLocation.longitude]);
-        }
-        
-        if (points.length > 0) {
-          const bounds = L.latLngBounds(points);
-          // Use a timeout to ensure map is ready
-          setTimeout(() => {
-            if (map && map.getContainer()) {
+      // Add longer delay for campus filter changes to ensure DOM is ready
+      const timer = setTimeout(() => {
+        if (map && map.getContainer() && visibleMachines.length > 0) {
+          const points = [...visibleMachines.map(machine => machine.location)];
+          
+          // Include user location in bounds if available
+          if (userLocation) {
+            points.push([userLocation.latitude, userLocation.longitude]);
+          }
+          
+          if (points.length > 0) {
+            const bounds = L.latLngBounds(points);
+            // Additional safety check
+            if (map._container) {
               map.fitBounds(bounds, { padding: [50, 50] });
             }
-          }, 100);
+          }
         }
-      }
+      }, 200); // Increased delay
+      
+      return () => clearTimeout(timer);
     } catch (error) {
       console.warn('Map update error:', error);
     }
@@ -108,54 +111,73 @@ const createProductAliases = () => {
   return {
     // Doritos variations
     "purple doritos": "doritos spicy sweet chili",
-    "red doritos": "doritos nacho cheese",
-    "blue doritos": "doritos cool ranch",
-    "orange doritos": "doritos nacho cheese",
-    "cool ranch doritos": "doritos cool ranch",
-    "nacho cheese doritos": "doritos nacho cheese",
     "spicy sweet chili doritos": "doritos spicy sweet chili",
     "spicy doritos": "doritos spicy sweet chili",
     "sweet chili doritos": "doritos spicy sweet chili",
-    "ranch doritos": "doritos cool ranch",
+
+    "red doritos": "doritos nacho cheese",
+    "orange doritos": "doritos nacho cheese",
+    "nacho cheese doritos": "doritos nacho cheese",
     "classic doritos": "doritos nacho cheese",
+    "cheese doritos": "doritos nacho cheese",
+    "nacho doritos": "doritos nacho cheese",
+
+    "blue doritos": "doritos cool ranch",
+    "cool ranch doritos": "doritos cool ranch",
+    "ranch doritos": "doritos cool ranch",
     
     // Lays variations
     "classic lays": "lays classic",
     "original lays": "lays classic",
     "regular lays": "lays classic",
+
     "bbq lays": "lays barbecue",
     "lays bbq": "lays barbecue",
     "barbecue lays": "lays barbecue",
-    "sour cream and onion lays": "lays sour cream onion",
-    "lays sour cream and onion": "lays sour cream onion",
+
+    "sour cream and onion lays": "lays sour cream & onion",
+    "lays sour cream and onion": "lays sour cream & onion",
+    "sour cream & onion lays": "lays sour cream & onion",
+
+    "salt and vinegar lays": "lays salt & vinegar",
+    "lays salt and vinegar": "lays salt & vinegar",
+    "salt & vinegar lays": "lays salt & vinegar",
+    "salt lays": "lays salt & vinegar",
+
     
     // Cheetos variations
-    "crunchy cheetos": "cheetos crunchy",
-    "regular cheetos": "cheetos crunchy",
-    "original cheetos": "cheetos crunchy",
-    "cheeto puffs": "cheetos puffs",
-    "puffy cheetos": "cheetos puffs",
-    "flamin hot cheetos": "cheetos flamin hot",
-    "hot cheetos": "cheetos flamin hot",
-    "flaming hot cheetos": "cheetos flamin hot",
+    "regular cheetos": "cheetos",
+    "original cheetos": "cheetos",
+
+    "spicy cheetos": "cheetos cheddar jalepeno",
+    "hot cheetos": "cheetos cheddar jalepeno",
+    "cheetos cheddar & jalepeno": "cheetos cheddar jalepeno",
+    "cheetos cheddar and jalepeno": "cheetos cheddar jalepeno",
+    "cheddar and jalepeno cheetos": "cheetos cheddar jalepeno",
+    "cheddar & jalepeno cheetos": "cheetos cheddar jalepeno",
+
     
     // Drinks
     "coke": "coca cola",
     "coca-cola": "coca cola",
     "classic coke": "coca cola",
+  
     "diet coca cola": "diet coke",
+    "coca cola zero": "coke zero",
+
     "mtn dew": "mountain dew",
     "dew": "mountain dew",
-    "dr. pepper": "dr pepper",
-    "doctor pepper": "dr pepper",
+    "dr pepper": "dr. pepper",
+    "doctor pepper": "dr. pepper",
     
     // Candy
     "reeses": "reese's peanut butter cups",
     "reese's cups": "reese's peanut butter cups",
     "peanut butter cups": "reese's peanut butter cups",
-    "kitkat": "kit kat",
-    "kit-kat": "kit kat",
-    "snickers": "snickers bar",
+
+    "kit kat": "kitkat",
+    "kit-kat": "kitkat",
+    "snickers": "snickers",
   };
 };
 
@@ -322,7 +344,7 @@ function MainPage() {
   
   // Define which buildings are on which campus
   const campusBuildings = {
-    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'Bryan Center', 'Flowers', 'Few', 'Wilson Recreation Center'],
+    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center'],
     east: ['Pegram', 'Bassett', 'Brown', 'Alspaugh', 'Giles', 'Wilson Residence', 'West House', 'Eastern Union', 'West Duke', 'Brodie', 'Blackwell', 'Randolph', 'Bell Tower', 'Trinity', 'Southgate', 'Gilbert Addoms', 'Classroom']
   };
   
@@ -405,7 +427,7 @@ function MainPage() {
         setIsLoadingLocation(false);
         
         if (error.code === 1) { // Permission denied
-          alert("Location permission denied. Enable location services to see nearby vending machines.");
+          alert("Location permission denied. Enable location services in your browser to see nearby vending machines.");
         } else if (error.code === 2) { // Position unavailable
           alert("Location information is unavailable.");
         } else if (error.code === 3) { // Timeout
@@ -488,10 +510,10 @@ function MainPage() {
   
   // Initialize visible machines with campus filter on component mount
   useEffect(() => {
-    // Add a small delay to prevent map errors during rapid updates
+    // Add longer delay to prevent map errors during rapid updates
     const timer = setTimeout(() => {
       setVisibleMachines(getFilteredMachines(vendingMachines));
-    }, 50);
+    }, 150); // Increased delay
     
     return () => clearTimeout(timer);
   }, [campusFilter]);
