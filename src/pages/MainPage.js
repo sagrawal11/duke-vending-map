@@ -172,6 +172,8 @@ const createProductAliases = () => {
     
     // Candy
     "reeses": "reese's peanut butter cups",
+    "reeses cups": "reese's peanut butter cups",
+    "reeses peanut butter cups": "reese's peanut butter cups",
     "reese's cups": "reese's peanut butter cups",
     "peanut butter cups": "reese's peanut butter cups",
 
