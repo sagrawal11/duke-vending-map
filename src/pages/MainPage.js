@@ -109,6 +109,7 @@ function UserLocationMarker({ position }) {
 // Product aliases - mapping alternative names to the actual product names
 const createProductAliases = () => {
   return {
+
     // Doritos variations
     "purple doritos": "doritos spicy sweet chili",
     "spicy sweet chili doritos": "doritos spicy sweet chili",
@@ -144,7 +145,6 @@ const createProductAliases = () => {
     "salt & vinegar lays": "lays salt & vinegar",
     "salt lays": "lays salt & vinegar",
 
-    
     // Cheetos variations
     "regular cheetos": "cheetos",
     "original cheetos": "cheetos",
@@ -156,7 +156,6 @@ const createProductAliases = () => {
     "cheddar and jalepeno cheetos": "cheetos cheddar jalepeno",
     "cheddar & jalepeno cheetos": "cheetos cheddar jalepeno",
 
-    
     // Drinks
     "coke": "coca cola",
     "coca-cola": "coca cola",
@@ -176,10 +175,11 @@ const createProductAliases = () => {
     "reeses peanut butter cups": "reese's peanut butter cups",
     "reese's cups": "reese's peanut butter cups",
     "peanut butter cups": "reese's peanut butter cups",
+    "chocolate peanut butter cups": "reese's peanut butter cups",
 
     "kit kat": "kitkat",
     "kit-kat": "kitkat",
-    "snickers": "snickers",
+    "snicker's": "snickers",
   };
 };
 
