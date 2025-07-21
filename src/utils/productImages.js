@@ -99,6 +99,7 @@ export const getProductImage = (productName) => {
     "hershey's chocolate bar": '/images/products/hersheys-chocolate-bar.jpeg',
     'jolly rancher sour gummies': '/images/products/jolly-rancher-sour-gummies.jpeg',
     'airheads bites': '/images/products/airheads-bites.jpeg',
+    "reese's fast break": '/images/products/reeses-fast-break.jpeg',
 
     
     // Other snacks
@@ -139,7 +140,7 @@ export const getProductImage = (productName) => {
     'think! portein bar': 'images/products/think-protein-bar.webp',
     'belvita': 'images/products/belvita.webp',
     'classic cookie': 'images/products/classic-cookie.jpeg',
-    'bite sized cookies': 'images/products/bite-sized-cookies.jpeg',
+    'mini cookies': 'images/products/bite-sized-cookies.jpeg',
 
   };
   
