@@ -96,6 +96,7 @@ export const getProductImage = (productName) => {
     'sour skittles gummies': '/images/products/sour-skittles-gummies.webp',
     'wild berry skittles gummies': '/images/products/skittles-wild-berry-gummies.webp',
     "hershey's chocolate bar": '/images/products/hersheys-chocolate-bar.jpeg',
+    'jolly rancher sour gummies': '/images/products/jolly-rancher-sour-gummies.jpeg',
 
     
     // Other snacks

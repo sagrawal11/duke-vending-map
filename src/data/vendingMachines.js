@@ -249,7 +249,7 @@ export const vendingMachines = [
       building: 'Giles Residence Hall',
       floor: 'Main Floor',
       notes: "In the trash and recycling room",
-      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Spicy Sweet Chili', 'Doritos Cool Ranch', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Ruffles Cheddar & Sour Cream', 'Cheetos', 'Cheez It', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', '3 Muskateers', "Reese's Peanut Butter Cups", 'KitKat', 'Haribo Gummy Bears', 'Snickers', 'Ghirardelli Milk Chocolate Caramel', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Peanut M&Ms', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Big Honey Bun', 'Jolly Ranchers Gummies Sours', 'Mike&Ike', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Water', 'Powerade'] 
+      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Spicy Sweet Chili', 'Doritos Cool Ranch', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Ruffles Cheddar & Sour Cream', 'Cheetos', 'Cheez It', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', '3 Muskateers', "Reese's Peanut Butter Cups", 'KitKat', 'Haribo Gummy Bears', 'Snickers', 'Ghirardelli Milk Chocolate Caramel', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Peanut M&Ms', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Big Honey Bun', 'Jolly Rancher Sour Gummies', 'Mike&Ike', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Water', 'Powerade'] 
     },
     { 
       id: 28, 
