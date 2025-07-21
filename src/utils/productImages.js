@@ -116,6 +116,9 @@ export const getProductImage = (productName) => {
     'beef tender bites': '/images/products/beef-tender-bites.webp',
     'slim jim': '/images/products/slim-jim.png',
     'big honey bun': '/images/products/big-honey-bun.jpeg',
+    'nature valley peanut butter granola bar': '/images/products/nature-valley-peanut-butter-granola-bar.webp',
+    'peanut butter crackers': '/images/products/peanut-butter-crackers.jpeg',
+    'toasted cheese peanut butter crackers': 'images/products/toasted-cheese-peanut-butter-crackers.jpeg',
 
 
     
