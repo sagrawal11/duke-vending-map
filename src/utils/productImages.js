@@ -68,7 +68,7 @@ export const getProductImage = (productName) => {
     'starbucks strawberry acai': '/images/products/starbucks-strawberry-acai.jpeg',
     'starbucks mocha frappuccino': '/images/products/starbucks-mocha-frappuccino.jpeg',
     'starbucks vanilla frappuccino': '/images/products/starbucks-vanilla-frappuccino.jpeg',
-    'mello yellow': '/images/products/mellow-yellow.jpeg',
+    'mellow yellow': '/images/products/mellow-yellow.jpeg',
 
 
     // Candy & Sweets
@@ -98,6 +98,7 @@ export const getProductImage = (productName) => {
     'wild berry skittles gummies': '/images/products/skittles-wild-berry-gummies.webp',
     "hershey's chocolate bar": '/images/products/hersheys-chocolate-bar.jpeg',
     'jolly rancher sour gummies': '/images/products/jolly-rancher-sour-gummies.jpeg',
+    'airheads bites': '/images/products/airheads-bites.jpeg',
 
     
     // Other snacks
@@ -137,6 +138,8 @@ export const getProductImage = (productName) => {
     'tubs bar-b-que pork rinds': 'images/products/barbeque-pork-rinds.webp',
     'think! portein bar': 'images/products/think-protein-bar.webp',
     'belvita': 'images/products/belvita.webp',
+    'classic cookie': 'images/products/classic-cookie.jpeg',
+    'bite sized cookies': 'images/products/bite-sized-cookies.jpeg',
 
   };
   
