@@ -19,6 +19,10 @@ Search by product name (e.g., "Doritos", "Coca Cola"),
 search by building name or vending machine location.
 Gives detailed results including distance, location notes, and available products
 
+**Autocomplete Suggestions:** As you type, the search bar shows product suggestions to help you find what you're looking for quickly. Type "dor" to see all Doritos options, "coke" to find Coca Cola, or "hot cheetos" to find the spicy variety.
+
+**Keyboard Navigation:** Use arrow keys to navigate suggestions, Enter to select, and Escape to close.
+
 ### Product Organization
 
 Products categorized into groups:
@@ -59,7 +63,7 @@ Leaflet (mapping library)
 
 MainPage: The main application container
 <br>
-SearchBar: Handles user input for searches
+SearchBar: Handles user input for searches with autocomplete functionality
 <br>
 MapContainer: The Leaflet map component
 <br>
@@ -76,3 +80,5 @@ formatDistance: Formats distances in appropriate units (miles or feet)
 categorizeProduct: Categorizes products into logical groups
 <br>
 groupProductsByCategory: Organizes products by their categories
+<br>
+getProductSuggestions: Provides autocomplete suggestions based on user input

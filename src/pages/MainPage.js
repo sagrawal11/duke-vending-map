@@ -342,6 +342,7 @@ function MainPage() {
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [campusFilter, setCampusFilter] = useState('both'); // 'east', 'west', 'both'
+  const [clearTrigger, setClearTrigger] = useState(0); // Counter to trigger clearing
   const searchInputRef = useRef(null);
   
   // Define which buildings are on which campus
@@ -504,10 +505,8 @@ function MainPage() {
     setSearchTerm('');
     setVisibleMachines(getFilteredMachines(vendingMachines));
     
-    // Reset search input if there's a ref to it
-    if (searchInputRef.current) {
-      searchInputRef.current.value = '';
-    }
+    // Trigger clearing the search input
+    setClearTrigger(prev => prev + 1);
   };
   
   // Initialize visible machines with campus filter on component mount
@@ -640,7 +639,7 @@ function MainPage() {
         <div className="search-section">
           <h2>Find Snacks & Drinks</h2>
           <div className="search-container">
-            <SearchBar onSearch={handleSearch} inputRef={searchInputRef} />
+            <SearchBar onSearch={handleSearch} inputRef={searchInputRef} clearTrigger={clearTrigger} />
             
             {/* Campus Filter */}
             <div className="campus-filter">
