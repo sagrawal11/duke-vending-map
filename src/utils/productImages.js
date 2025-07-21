@@ -141,6 +141,7 @@ export const getProductImage = (productName) => {
     'belvita': 'images/products/belvita.webp',
     'classic cookie': 'images/products/classic-cookie.jpeg',
     'mini cookies': 'images/products/bite-sized-cookies.jpeg',
+    'grilled cheese crackers': 'images/products/grilled-cheese-crackers.jpeg',
 
   };
   
