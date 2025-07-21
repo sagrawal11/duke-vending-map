@@ -142,6 +142,7 @@ export const getProductImage = (productName) => {
     'classic cookie': 'images/products/classic-cookie.jpeg',
     'mini cookies': 'images/products/bite-sized-cookies.jpeg',
     'grilled cheese crackers': 'images/products/grilled-cheese-crackers.jpeg',
+    'nature valley cinnamon almond butter biscuits': 'images/products/almond-butter-biscuits.webp',
 
   };
   
