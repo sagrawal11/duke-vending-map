@@ -31,8 +31,9 @@ export const getProductImage = (productName) => {
     'coke zero': '/images/products/coke-zero.webp',
     'pepsi': '/images/products/pepsi.webp',
     'pepsi zero sugar': '/images/products/pepsi-zero-sugar.webp',
-    'mountain dew': '/images/products/mountain-dew.avif',
+    'mountain dew': '/images/products/moutain-dew.avif',
     'diet mountain dew': '/images/products/diet-mountain-dew.webp',
+    'mountain dew zero sugar': '/images/products/mountain-dew-zero-sugar.webp',
     'baja blast mountain dew': '/images/products/baja-blast-mountain-dew.webp',
     'dr. pepper': '/images/products/dr-pepper.jpg',
     'diet dr. pepper': '/images/products/diet-dr-pepper.webp',
@@ -57,6 +58,9 @@ export const getProductImage = (productName) => {
     'gold peak sweet tea': '/images/products/gold-peak-sweet-tea.webp',
     'lipton citrus green tea': '/images/products/lipton-citrus-green-tea.jpeg',
     'schweppes ginger ale': '/images/products/schweppes-ginger-ale.jpeg',
+    'propel': '/images/products/propel.jpeg',
+    'mug root beer': '/images/products/mug-root-beer.webp',
+    'gatorlyte': '/images/products/gatorlyte.webp',
 
 
     // Candy & Sweets
@@ -122,6 +126,8 @@ export const getProductImage = (productName) => {
     'peanut butter crackers': '/images/products/peanut-butter-crackers.jpeg',
     'toasted cheese peanut butter crackers': 'images/products/toasted-cheese-peanut-butter-crackers.jpeg',
     'tubs bar-b-que pork rinds': 'images/products/barbeque-pork-rinds.webp',
+    'think! portein bar': 'images/products/think-protein-bar.webp',
+    'belvita': 'images/products/belvita.webp',
 
   };
   
