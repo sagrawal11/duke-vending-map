@@ -13,10 +13,11 @@ export const getProductImage = (productName) => {
     'doritos cool ranch': '/images/products/doritos-cool-ranch.webp',
     'doritos spicy sweet chili': '/images/products/doritos-spicy-sweet-chili.jpg',
     'doritos flamin hot cool ranch': '/images/products/doritos-flamin-hot-cool-ranch.webp',
-    
+    'doritos flamin hot': '/images/products/doritos-flamin-hot.jpeg',
+
     // Lays
     'lays classic': '/images/products/lays-classic.webp',
-    'lays barbecue': '/images/products/lays-barbeque.jpg',
+    'lays barbeque': '/images/products/lays-barbeque.jpg',
     'lays sour cream & onion': '/images/products/lays-sour-cream-onion.webp',
     'lays salt & vinegar': '/images/products/lays-salt-vinegar.webp',
     
@@ -83,6 +84,7 @@ export const getProductImage = (productName) => {
     'skittles gummies': '/images/products/skittles-gummies.webp',
     'sour skittles gummies': '/images/products/sour-skittles-gummies.webp',
     'wild berry skittles gummies': '/images/products/skittles-wild-berry-gummies.webp',
+    "hershey's chocolate bar": '/images/products/hersheys-chocolate-bar.jpeg',
 
     
     // Other snacks
@@ -119,10 +121,8 @@ export const getProductImage = (productName) => {
     'nature valley peanut butter granola bar': '/images/products/nature-valley-peanut-butter-granola-bar.webp',
     'peanut butter crackers': '/images/products/peanut-butter-crackers.jpeg',
     'toasted cheese peanut butter crackers': 'images/products/toasted-cheese-peanut-butter-crackers.jpeg',
+    'tubs bar-b-que pork rinds': 'images/products/barbeque-pork-rinds.webp',
 
-
-    
-    // Add more mappings as you upload images...
   };
   
   // Try to find an exact match first
