@@ -137,7 +137,7 @@ export const getProductImage = (productName) => {
     'peanut butter crackers': '/images/products/peanut-butter-crackers.jpeg',
     'toasted cheese peanut butter crackers': 'images/products/toasted-cheese-peanut-butter-crackers.jpeg',
     'tubs bar-b-que pork rinds': 'images/products/barbeque-pork-rinds.webp',
-    'think! portein bar': 'images/products/think-protein-bar.webp',
+    'think! protein bar': 'images/products/think-protein-bar.webp',
     'belvita': 'images/products/belvita.webp',
     'classic cookie': 'images/products/classic-cookie.jpeg',
     'mini cookies': 'images/products/bite-sized-cookies.jpeg',
