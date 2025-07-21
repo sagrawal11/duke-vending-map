@@ -80,6 +80,9 @@ export const getProductImage = (productName) => {
     'mini gummy worms': '/images/products/mini-gummy-worms.webp',
     'payday': '/images/products/payday.png',
     'sour patch kids': '/images/products/sour-patch-kids.jpeg',
+    'skittles gummies': '/images/products/skittles-gummies.webp',
+    'sour skittles gummies': '/images/products/sour-skittles-gummies.webp',
+    'wild berry skittles gummies': '/images/products/skittles-wild-berry-gummies.webp',
 
     
     // Other snacks

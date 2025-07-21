@@ -294,7 +294,7 @@ export const vendingMachines = [
       building: 'Reuben Cooke Building',
       floor: 'Bottom floor',
       notes: "Right in front of the door to the Allen lot",
-      products: ['Lays Classic', 'Fritos Twists', 'Dortios Nacho Cheese', 'Lays Barbeque', 'Fritos Original', 'Cheetos', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Mini Pretzels', 'Gardettos Snack Mix', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Beef Tender Bites', 'Mini Cookies', 'Black Forest Fruit Snacks', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut M&Ms', "Reese's Peanut Butter Cups", 'Kinder Bueno', '3 Muskateers', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Rice Krispies Treats', 'Crunch', 'Trail Mix', 'Haribo Gummy Bears', 'Nature Valley Granola Bar'] 
+      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Fritos Original', 'Cheetos', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Mini Pretzels', 'Gardettos Snack Mix', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Beef Tender Bites', 'Mini Cookies', 'Black Forest Fruit Snacks', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut M&Ms', "Reese's Peanut Butter Cups", 'Kinder Bueno', '3 Muskateers', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Rice Krispies Treats', 'Crunch', 'Trail Mix', 'Haribo Gummy Bears', 'Nature Valley Granola Bar'] 
     },
     { 
       id: 33, 
