@@ -12,12 +12,35 @@
 
 /* Hero section */
 .hero-section {
-  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  background: linear-gradient(120deg, #003366, #00539B, #3b82f6, #2563eb);
+  background-size: 400% 400%;
+  animation: dukeBlueGradient 12s ease-in-out infinite;
   color: white;
   padding: 2rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+@keyframes dukeBlueGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Remove geometric shapes and dot fields */
+.hero-section::before,
+.hero-section::after,
+.hero-section .hero-title::before,
+.hero-section .hero-title::after {
+  display: none !important;
+  content: none !important;
 }
 
 @media (min-width: 768px) {
