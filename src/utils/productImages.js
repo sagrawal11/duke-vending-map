@@ -61,6 +61,12 @@ export const getProductImage = (productName) => {
     'propel': '/images/products/propel.jpeg',
     'mug root beer': '/images/products/mug-root-beer.webp',
     'gatorlyte': '/images/products/gatorlyte.webp',
+    'starbucks mocha double shot': '/images/products/starbucks-double-shot.jpeg',
+    'starbucks bold mocha triple shot': '/images/products/starbucks-bold-mocha-triple-shot.jpeg',
+    'starbucks vanilla triple shot': '/images/products/starbucks-vanilla-triple-shot.webp',
+    'starbucks dark caramel triple shot': '/images/products/starbucks-dark-caramel-triple-shot.jpeg',
+    'starbucks strawberry acai': '/images/products/starbucks-strawberry-acai.jpeg',
+    'starbucks mocha frappuccino': '/images/products/starbucks-mocha-frappuccino.jpeg',
 
 
     // Candy & Sweets
