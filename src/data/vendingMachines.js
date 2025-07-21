@@ -15,7 +15,7 @@ export const vendingMachines = [
       building: 'Broadhead Center',
       floor: '2nd Floor',
       notes: 'In the back where the study rooms are',
-      products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley Granola Bar', 'Nutra Grain', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
+      products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream and Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley Granola Bar', 'Nutra Grain', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghiradelli Milk Chocolate Caramel', 'Sour Skittle Gummies', 'Wild Berry Skittle Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gumy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
     },
     { 
       id: 3, 
@@ -105,7 +105,7 @@ export const vendingMachines = [
       building: 'Randolph Residence Hall',
       floor: 'First Floor',
       notes: 'Enter on left side and go around the corner',
-      products: ['Pepsi', 'Water', 'Mountain Dew', 'Cheerwine', 'Starbucks Double Shot Coffee', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheez It', 'Fritos Original', 'Ruffles CHeddar & Sour Cream', 'Mini Pretzels', 'Cheetos', 'Gardettos Snack Mix', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Nature Valley CInnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Twix', 'Meanut M&Ms', 'Snickers', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Haribo Gummy Bears', 'Sour Skittles Gumies', 'Big Honey Bun', 'Beef Tender Bites', 'Vitamin Water', 'Powerade', 'Monster'] 
+      products: ['Pepsi', 'Water', 'Mountain Dew', 'Cheerwine', 'Starbucks Double Shot Coffee', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheez It', 'Fritos Original', 'Ruffles CHeddar & Sour Cream', 'Mini Pretzels', 'Cheetos', 'Gardettos Snack Mix', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Nature Valley CInnamon Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Airheads Bites', 'Twix', 'Peanut M&Ms', 'Snickers', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Haribo Gummy Bears', 'Sour Skittles Gumies', 'Big Honey Bun', 'Beef Tender Bites', 'Vitamin Water', 'Powerade', 'Monster'] 
     },
     { 
       id: 13, 

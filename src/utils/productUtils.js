@@ -89,9 +89,7 @@ const normalizeProductName = (product) => {
 // Get all unique products from all vending machines
 export const getAllUniqueProducts = () => {
   const allProducts = new Set();
-  const productAliases = createProductAliases();
-  
-  // Add all actual products from vending machines
+  // Only add actual products from vending machines
   vendingMachines.forEach(machine => {
     machine.products.forEach(product => {
       // Skip empty or placeholder products
@@ -100,20 +98,7 @@ export const getAllUniqueProducts = () => {
       }
     });
   });
-  
-  // Add popular aliases as suggestions
-  Object.keys(productAliases).forEach(alias => {
-    // Only add aliases that are commonly used
-    const popularAliases = [
-      'coke', 'mtn dew', 'dew', 'dr pepper', 'reeses', 'kit kat', 
-      'hot cheetos', 'spicy cheetos', 'nacho doritos', 'cool ranch doritos',
-      'bbq lays', 'sour cream and onion lays'
-    ];
-    if (popularAliases.includes(alias.toLowerCase())) {
-      allProducts.add(alias);
-    }
-  });
-  
+  // Do NOT add aliases to the autocomplete pool
   return Array.from(allProducts).sort();
 };
 
