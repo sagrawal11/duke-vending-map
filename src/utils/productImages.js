@@ -68,6 +68,7 @@ export const getProductImage = (productName) => {
     'starbucks strawberry acai': '/images/products/starbucks-strawberry-acai.jpeg',
     'starbucks mocha frappuccino': '/images/products/starbucks-mocha-frappuccino.jpeg',
     'starbucks vanilla frappuccino': '/images/products/starbucks-vanilla-frappuccino.jpeg',
+    'mello yellow': '/images/products/mellow-yellow.jpeg',
 
 
     // Candy & Sweets
@@ -83,7 +84,7 @@ export const getProductImage = (productName) => {
     'crunch': '/images/products/crunch.png',
     'kinder bueno': '/images/products/kinder-bueno.jpeg',
     'haribo gummy bears': '/images/products/haribo-gummy-bears.webp',
-    '3 Mustakeers': '/images/products/3-muskateers.webp',
+    '3 Muskateers': '/images/products/3-muskateers.webp',
     'gushers': '/images/products/gushers.webp',
     'black forest fruit snacks': '/images/products/black-forest-fruit-snacks.webp',
     'ghirardelli milk chocolate caramel': '/images/products/ghirardelli-milk-chocolate-caramel.jpeg',
