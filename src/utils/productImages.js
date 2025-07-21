@@ -52,6 +52,9 @@ export const getProductImage = (productName) => {
     'rockstar energy': '/images/products/rockstar-energy.jpeg',
     'starbucks cold brew': '/images/products/starbucks-cold-brew.jpeg',
     'starbucks caramel frappuccino': '/images/products/starbucks-caramel-frappuccino.webp',
+    'pure leaf sweet tea': '/images/products/pure-leaf-sweet-tea.jpeg',
+    'gold peak sweet tea': '/images/products/gold-peak-sweet-tea.webp',
+    'lipton citrus green tea': '/images/products/lipton-citrus-green-tea.jpeg',
 
 
     // Candy & Sweets
@@ -74,6 +77,8 @@ export const getProductImage = (productName) => {
     'nerds gummy clusters': '/images/products/nerds-gummy-clusters.webp',
     'trolli sour gummy worms': '/images/products/trolli-sour-gummy-worms.jpeg',
     'mini gummy worms': '/images/products/mini-gummy-worms.webp',
+    'payday': '/images/products/payday.png',
+    'sour patch kids': '/images/products/sour-patch-kids.jpeg',
 
     
     // Other snacks
