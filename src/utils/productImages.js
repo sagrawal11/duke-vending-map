@@ -201,7 +201,7 @@ export const getFallbackImage = (productName) => {
 
 // Add building image support
 const buildingImageMap = {
-  // Example: 'wilkinson': '/images/buildings/wilkinson.jpg',
+    'randolph residence hall': '/images/buildings/randolph.jpg',
   // Add your building images here, use lowercase keys
 };
 

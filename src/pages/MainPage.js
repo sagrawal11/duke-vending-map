@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import ProductImage from '../components/ProductImage';
 import Modal from '../components/Modal';
 import VendingMachineItemCard from '../components/VendingMachineItemCard';
+import VendingMachineCard from '../components/VendingMachineCard';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
@@ -347,8 +348,7 @@ function MainPage() {
   const [campusFilter, setCampusFilter] = useState('both'); // 'east', 'west', 'both'
   const [clearTrigger, setClearTrigger] = useState(0); // Counter to trigger clearing
   const searchInputRef = useRef(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalMachine, setModalMachine] = useState(null);
+  const [inlineMachineProducts, setInlineMachineProducts] = useState(null); // {machine: ...} or null
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -585,14 +585,55 @@ function MainPage() {
     );
   };
 
+  // Open inline product list for a vending machine (from map popup or machine card)
+  const handleOpenInlineMachineProducts = (machine) => {
+    setInlineMachineProducts({ machine });
+  };
+
   // Render search results - no more mini-maps or dropdowns
   const renderSearchResults = () => {
+    if (inlineMachineProducts) {
+      return (
+        <div className="results-list">
+          <button className="view-machine-button" style={{marginBottom: '1rem'}} onClick={() => setInlineMachineProducts(null)}>
+            ← Back
+          </button>
+          <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>{inlineMachineProducts.machine.name}</h2>
+          {inlineMachineProducts.machine.products.map((product, idx) => (
+            <VendingMachineItemCard key={product + idx} product={product} machine={inlineMachineProducts.machine} />
+          ))}
+        </div>
+      );
+    }
     if (searchResults.length === 0) {
       return <p className="no-results">No results found. Try a different search term.</p>;
     }
-    // If location search, show all items in all matching machines as cards
+    // If location search, check for multiple machines in the building
     if (searchResults[0].searchType === 'location') {
-      // Flatten all products from all machines
+      // Group by building
+      const buildingGroups = {};
+      searchResults.forEach(result => {
+        const b = result.machine.building;
+        if (!buildingGroups[b]) buildingGroups[b] = [];
+        buildingGroups[b].push(result.machine);
+      });
+      // If only one building, and multiple machines, show machine cards inline
+      const buildings = Object.keys(buildingGroups);
+      if (buildings.length === 1 && buildingGroups[buildings[0]].length > 1) {
+        return (
+          <div className="results-list">
+            <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>Which machine in {buildings[0]}?</h2>
+            {buildingGroups[buildings[0]].map((machine, idx) => (
+              <VendingMachineCard
+                key={machine.id}
+                machine={machine}
+                onClick={() => setInlineMachineProducts({ machine })}
+              />
+            ))}
+          </div>
+        );
+      }
+      // Otherwise, show all items in all matching machines as cards
       const allItems = [];
       searchResults.forEach(result => {
         result.products.forEach(product => {
@@ -636,12 +677,6 @@ function MainPage() {
     );
   };
 
-  // Open modal for a vending machine
-  const handleOpenMachineModal = (machine) => {
-    setModalMachine(machine);
-    setModalOpen(true);
-  };
-  
   return (
     <div className="main-page">
       <div className="hero-section">
@@ -742,7 +777,6 @@ function MainPage() {
               style={{ height: "500px", width: "100%" }}
               key={`${visibleMachines.map(m => m.id).join('-')}-${campusFilter}`}
               whenCreated={(mapInstance) => {
-                // Ensure map is properly initialized
                 setTimeout(() => {
                   if (mapInstance && mapInstance.getContainer()) {
                     mapInstance.invalidateSize();
@@ -781,7 +815,7 @@ function MainPage() {
                         <p><strong>Available Categories:</strong></p>
                         {renderCategorySummary(machine.products)}
                       </div>
-                      <button className="view-machine-button" onClick={() => handleOpenMachineModal(machine)}>
+                      <button className="view-machine-button" onClick={() => handleOpenInlineMachineProducts(machine)}>
                         View everything in this machine
                       </button>
                     </div>
@@ -805,17 +839,6 @@ function MainPage() {
           </div>
         </div>
       </div>
-      {/* Modal for viewing all items in a machine */}
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        {modalMachine && (
-          <div>
-            <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>{modalMachine.name}</h2>
-            {modalMachine.products.map((product, idx) => (
-              <VendingMachineItemCard key={product + idx} product={product} machine={modalMachine} />
-            ))}
-          </div>
-        )}
-      </Modal>
     </div>
   );
 }
