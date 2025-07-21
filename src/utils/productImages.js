@@ -69,6 +69,7 @@ export const getProductImage = (productName) => {
     'starbucks mocha frappuccino': '/images/products/starbucks-mocha-frappuccino.jpeg',
     'starbucks vanilla frappuccino': '/images/products/starbucks-vanilla-frappuccino.jpeg',
     'mellow yellow': '/images/products/mellow-yellow.jpeg',
+    'lemonade': '/images/products/lemonade.webp',
 
 
     // Candy & Sweets
@@ -143,6 +144,8 @@ export const getProductImage = (productName) => {
     'mini cookies': 'images/products/bite-sized-cookies.jpeg',
     'grilled cheese crackers': 'images/products/grilled-cheese-crackers.jpeg',
     'nature valley almond butter biscuits': 'images/products/almond-butter-biscuits.webp',
+    'bugles-original': '/images/products/bugles-original.jpeg',
+    'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
 
   };
   
