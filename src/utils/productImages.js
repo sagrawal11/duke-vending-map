@@ -70,6 +70,8 @@ export const getProductImage = (productName) => {
     'starbucks vanilla frappuccino': '/images/products/starbucks-vanilla-frappuccino.jpeg',
     'mellow yellow': '/images/products/mellow-yellow.jpeg',
     'lemonade': '/images/products/lemonade.webp',
+    'apple juice': '/images/products/apple-juice.webp',
+    'strawberry grape juice': '/images/products/strawberry-grape-juice.jpeg',
 
 
     // Candy & Sweets
