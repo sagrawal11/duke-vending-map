@@ -16,7 +16,7 @@ export const getProductImage = (productName) => {
     
     // Lays
     'lays classic': '/images/products/lays-classic.webp',
-    'lays barbecue': '/images/products/lays-barbecue.jpg',
+    'lays barbecue': '/images/products/lays-barbeque.jpg',
     'lays sour cream & onion': '/images/products/lays-sour-cream-onion.webp',
     'lays salt & vinegar': '/images/products/lays-salt-vinegar.webp',
     
@@ -48,7 +48,12 @@ export const getProductImage = (productName) => {
     'fanta': '/images/products/fanta.webp',
     'sprite zero sugar': '/images/products/sprite-zero-sugar.jpeg',
     'orange juice': '/images/products/orange-juice.webp',
-    
+    'cheerwine': '/images/products/cheerwine.jpeg',
+    'rockstar energy': '/images/products/rockstar-energy.jpeg',
+    'starbucks cold brew': '/images/products/starbucks-cold-brew.jpeg',
+    'starbucks caramel frappuccino': '/images/products/starbucks-caramel-frappuccino.webp',
+
+
     // Candy & Sweets
     'snickers': '/images/products/snickers.png',
     'kitkat': '/images/products/kitkat.jpeg',
@@ -66,6 +71,9 @@ export const getProductImage = (productName) => {
     'gushers': '/images/products/gushers.webp',
     'black forest fruit snacks': '/images/products/black-forest-fruit-snacks.webp',
     'ghirardelli milk chocolate caramel': '/images/products/ghirardelli-milk-chocolate-caramel.jpeg',
+    'nerds gummy clusters': '/images/products/nerds-gummy-clusters.webp',
+    'trolli sour gummy worms': '/images/products/trolli-sour-gummy-worms.jpeg',
+    'mini gummy worms': '/images/products/mini-gummy-worms.webp',
 
     
     // Other snacks
@@ -98,6 +106,7 @@ export const getProductImage = (productName) => {
     'pistachios': '/images/products/pistachios.webp',
     'beef tender bites': '/images/products/beef-tender-bites.webp',
     'slim jim': '/images/products/slim-jim.png',
+    'big honey bun': '/images/products/big-honey-bun.jpeg',
 
 
     
