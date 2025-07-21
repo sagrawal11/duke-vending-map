@@ -60,7 +60,7 @@ export const vendingMachines = [
       building: 'Wilson Recreation Center',
       floor: 'Bottom Floor',
       notes: 'All the way down the stairs in front of the locker rooms',
-      products: ['Lays Classic', 'Fritos Twists', 'Popchips Sour Cream & Onion', 'Cheez It', 'Lays Barbeque', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Gardettos Snack Mix', 'Chex Mix', 'Bugles Nacho Cheese', 'Beef Tender Bites', 'Black Forest Fruit Snacks', 'Clif Bar Chocolate Chip', 'Gatorade Protein Bar', 'Snickers', 'M&Ms', 'Kitkat', 'Ghiradelli Milk Chocolate Caramel', 'Trial Mix', "Reese's Peanut Butter Cups", 'Kinder Bueno', 'Nature Valley Granola Bar', 'Powerade', 'Water']
+      products: ['Lays Classic', 'Fritos Twists', 'Popchips Sour Cream & Onion', 'Cheez It', 'Lays Barbeque', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Gardettos Snack Mix', 'Chex Mix', 'Bugles Nacho Cheese', 'Beef Tender Bites', 'Black Forest Fruit Snacks', 'Clif Bar Chocolate Chip', 'Gatorade Protein Bar', 'Snickers', 'M&Ms', 'KitKat', 'Ghiradelli Milk Chocolate Caramel', 'Trial Mix', "Reese's Peanut Butter Cups", 'Kinder Bueno', 'Nature Valley Granola Bar', 'Powerade', 'Water']
     },
     { 
       id: 8, 
