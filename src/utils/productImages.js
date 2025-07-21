@@ -103,6 +103,7 @@ export const getProductImage = (productName) => {
     'jolly rancher sour gummies': '/images/products/jolly-rancher-sour-gummies.jpeg',
     'airheads bites': '/images/products/airheads-bites.jpeg',
     "reese's fast break": '/images/products/reeses-fast-break.jpeg',
+    'mike&ike': '/images/products/mike-ike.jpeg',
 
     
     // Other snacks
