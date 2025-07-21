@@ -4,6 +4,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
 import ProductImage from '../components/ProductImage';
+import Modal from '../components/Modal';
+import VendingMachineItemCard from '../components/VendingMachineItemCard';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
@@ -345,7 +347,9 @@ function MainPage() {
   const [campusFilter, setCampusFilter] = useState('both'); // 'east', 'west', 'both'
   const [clearTrigger, setClearTrigger] = useState(0); // Counter to trigger clearing
   const searchInputRef = useRef(null);
-  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMachine, setModalMachine] = useState(null);
+
   // Define which buildings are on which campus
   const campusBuildings = {
     west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center'],
@@ -581,12 +585,29 @@ function MainPage() {
     );
   };
 
-  // Render search results - no more mini-maps
+  // Render search results - no more mini-maps or dropdowns
   const renderSearchResults = () => {
     if (searchResults.length === 0) {
       return <p className="no-results">No results found. Try a different search term.</p>;
     }
-    
+    // If location search, show all items in all matching machines as cards
+    if (searchResults[0].searchType === 'location') {
+      // Flatten all products from all machines
+      const allItems = [];
+      searchResults.forEach(result => {
+        result.products.forEach(product => {
+          allItems.push({ product, machine: result.machine });
+        });
+      });
+      return (
+        <div className="results-list">
+          {allItems.map((item, idx) => (
+            <VendingMachineItemCard key={item.product + idx} product={item.product} machine={item.machine} />
+          ))}
+        </div>
+      );
+    }
+    // For product search, show the default result cards
     return (
       <div className="results-list">
         {searchResults.map((result, index) => (
@@ -600,22 +621,12 @@ function MainPage() {
                   </span>
                 )}
               </div>
-              
               <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
               <p><strong>Notes:</strong> {result.machine.notes}</p>
-              
               {/* Show matching products for product searches */}
               {result.searchType === 'product' && (
                 <div className="found-products">
                   <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
-                </div>
-              )}
-              
-              {/* Show all products for location searches */}
-              {result.searchType === 'location' && (
-                <div className="products-container">
-                  <h5>Available Products:</h5>
-                  {renderDropdownGroupedProducts(result.products, result.machine.id)}
                 </div>
               )}
             </div>
@@ -623,6 +634,12 @@ function MainPage() {
         ))}
       </div>
     );
+  };
+
+  // Open modal for a vending machine
+  const handleOpenMachineModal = (machine) => {
+    setModalMachine(machine);
+    setModalOpen(true);
   };
   
   return (
@@ -757,13 +774,16 @@ function MainPage() {
                             userLocation.longitude,
                             machine.location[0],
                             machine.location[1]
-          ))
+                          ))
                         }</p>
                       )}
                       <div className="popup-products">
                         <p><strong>Available Categories:</strong></p>
                         {renderCategorySummary(machine.products)}
                       </div>
+                      <button className="view-machine-button" onClick={() => handleOpenMachineModal(machine)}>
+                        View everything in this machine
+                      </button>
                     </div>
                   </Popup>
                 </Marker>
@@ -785,6 +805,17 @@ function MainPage() {
           </div>
         </div>
       </div>
+      {/* Modal for viewing all items in a machine */}
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        {modalMachine && (
+          <div>
+            <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>{modalMachine.name}</h2>
+            {modalMachine.products.map((product, idx) => (
+              <VendingMachineItemCard key={product + idx} product={product} machine={modalMachine} />
+            ))}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

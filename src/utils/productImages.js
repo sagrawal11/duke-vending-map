@@ -198,3 +198,24 @@ export const getFallbackImage = (productName) => {
   
   return '/images/products/default-product.jpg';
 }; 
+
+// Add building image support
+const buildingImageMap = {
+  // Example: 'wilkinson': '/images/buildings/wilkinson.jpg',
+  // Add your building images here, use lowercase keys
+};
+
+export const getBuildingImage = (buildingName) => {
+  if (!buildingName) return '/images/buildings/default-building.jpg';
+  const normalized = buildingName.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (buildingImageMap[normalized]) {
+    return buildingImageMap[normalized];
+  }
+  // Try partial match
+  for (const [key, imagePath] of Object.entries(buildingImageMap)) {
+    if (normalized.includes(key) || key.includes(normalized)) {
+      return imagePath;
+    }
+  }
+  return '/images/buildings/default-building.jpg';
+}; 

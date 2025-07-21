@@ -114,6 +114,17 @@
   text-overflow: ellipsis;
 }
 
+.suggestion-type {
+  margin-left: 10px;
+  font-size: 0.85em;
+  color: #64748b;
+  background: #e5e7eb;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
 /* Add a subtle indicator for hover only */
 .suggestion-item:hover::before {
   content: '›';

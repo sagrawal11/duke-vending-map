@@ -986,6 +986,33 @@
   margin-left: 0.2rem;
 }
 
+.view-machine-button {
+  margin-top: 1rem;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(30, 41, 59, 0.08);
+}
+
+.view-machine-button:hover {
+  background: #2563eb;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.12);
+}
+
+@media (max-width: 600px) {
+  .view-machine-button {
+    width: 100%;
+    font-size: 0.98rem;
+    padding: 0.6rem 0.5rem;
+  }
+}
+
 /* Touch improvements for mobile */
 @media (max-width: 767px) {
   .result-item {

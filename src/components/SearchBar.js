@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getProductSuggestions } from '../utils/productUtils';
+import { getSuggestions } from '../utils/productUtils';
 import ProductImage from './ProductImage';
+import { getBuildingImage } from '../utils/productImages';
 import './SearchBar.css';
 
 function SearchBar({ onSearch, inputRef, clearTrigger }) {
@@ -23,7 +24,7 @@ function SearchBar({ onSearch, inputRef, clearTrigger }) {
   // Update suggestions when search term changes
   useEffect(() => {
     if (searchTerm.trim().length >= 2) {
-      const newSuggestions = getProductSuggestions(searchTerm);
+      const newSuggestions = getSuggestions(searchTerm);
       setSuggestions(newSuggestions);
       setShowSuggestions(newSuggestions.length > 0);
       setSelectedIndex(-1);
@@ -52,7 +53,7 @@ function SearchBar({ onSearch, inputRef, clearTrigger }) {
       case 'Enter':
         e.preventDefault();
         if (selectedIndex >= 0 && suggestions[selectedIndex]) {
-          selectSuggestion(suggestions[selectedIndex]);
+          selectSuggestion(suggestions[selectedIndex].value);
         } else {
           handleSubmit(e);
         }
@@ -124,18 +125,28 @@ function SearchBar({ onSearch, inputRef, clearTrigger }) {
           <ul className="suggestions-list">
             {suggestions.map((suggestion, index) => (
               <li
-                key={suggestion}
+                key={suggestion.type + '-' + suggestion.value}
                 className={`suggestion-item ${index === selectedIndex ? 'selected' : ''}`}
-                onClick={() => selectSuggestion(suggestion)}
+                onClick={() => selectSuggestion(suggestion.value)}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
                 <div className="suggestion-content">
-                  <ProductImage 
-                    productName={suggestion} 
-                    size="small" 
-                    className="suggestion-image"
-                  />
-                  <span className="suggestion-text">{suggestion}</span>
+                  {suggestion.type === 'product' ? (
+                    <ProductImage 
+                      productName={suggestion.value} 
+                      size="small" 
+                      className="suggestion-image"
+                    />
+                  ) : (
+                    <img 
+                      src={getBuildingImage(suggestion.value)} 
+                      alt={suggestion.value}
+                      className="suggestion-image"
+                      style={{ width: 32, height: 32, borderRadius: 6, objectFit: 'cover', background: '#e5e7eb' }}
+                    />
+                  )}
+                  <span className="suggestion-text">{suggestion.value}</span>
+                  <span className="suggestion-type">{suggestion.type === 'building' ? 'Building' : 'Product'}</span>
                 </div>
               </li>
             ))}

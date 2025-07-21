@@ -102,44 +102,34 @@ export const getAllUniqueProducts = () => {
   return Array.from(allProducts).sort();
 };
 
-// Filter products based on search term
-export const getProductSuggestions = (searchTerm, maxResults = 8) => {
+// Get all unique building names from vending machines
+export const getAllUniqueBuildings = () => {
+  const allBuildings = new Set();
+  vendingMachines.forEach(machine => {
+    if (machine.building) {
+      allBuildings.add(machine.building);
+    }
+  });
+  return Array.from(allBuildings).sort();
+};
+
+// Filter products and buildings based on search term
+export const getSuggestions = (searchTerm, maxResults = 8) => {
   if (!searchTerm || searchTerm.trim().length < 2) {
     return [];
   }
-  
-  const allProducts = getAllUniqueProducts();
-  const productAliases = createProductAliases();
   const normalizedSearch = searchTerm.toLowerCase().trim();
-  
-  // First, find exact matches (case-insensitive)
-  const exactMatches = allProducts.filter(product => 
+  // Product suggestions
+  const allProducts = getAllUniqueProducts();
+  const productSuggestions = allProducts.filter(product =>
     product.toLowerCase().includes(normalizedSearch)
-  );
-  
-  // Then find partial matches
-  const partialMatches = allProducts.filter(product => {
-    const normalizedProduct = product.toLowerCase();
-    const words = normalizedProduct.split(' ');
-    return words.some(word => word.startsWith(normalizedSearch));
-  });
-  
-  // Check if search term matches any aliases
-  const aliasMatches = [];
-  Object.entries(productAliases).forEach(([alias, canonical]) => {
-    if (alias.toLowerCase().includes(normalizedSearch)) {
-      // Find the actual product name in our list
-      const actualProduct = allProducts.find(product => 
-        normalizeProductName(product) === normalizeProductName(canonical)
-      );
-      if (actualProduct && !aliasMatches.includes(actualProduct)) {
-        aliasMatches.push(actualProduct);
-      }
-    }
-  });
-  
-  // Combine and deduplicate, prioritizing exact matches, then alias matches, then partial matches
-  const combined = [...new Set([...exactMatches, ...aliasMatches, ...partialMatches])];
-  
-  return combined.slice(0, maxResults);
+  ).map(product => ({ type: 'product', value: product }));
+  // Building suggestions
+  const allBuildings = getAllUniqueBuildings();
+  const buildingSuggestions = allBuildings.filter(building =>
+    building.toLowerCase().includes(normalizedSearch)
+  ).map(building => ({ type: 'building', value: building }));
+  // Combine and limit
+  const combined = [...productSuggestions, ...buildingSuggestions].slice(0, maxResults);
+  return combined;
 }; 
