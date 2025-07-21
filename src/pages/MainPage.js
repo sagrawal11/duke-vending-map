@@ -631,7 +631,7 @@ function MainPage() {
         <div className="container">
           <h1 className="hero-title">Duke Vending Machine Finder</h1>
           <p className="hero-description">
-            Your guide to the munchies
+            Your guide to the munch
           </p>
         </div>
       </div>
