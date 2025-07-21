@@ -67,6 +67,7 @@ export const getProductImage = (productName) => {
     'starbucks dark caramel triple shot': '/images/products/starbucks-dark-caramel-triple-shot.jpeg',
     'starbucks strawberry acai': '/images/products/starbucks-strawberry-acai.jpeg',
     'starbucks mocha frappuccino': '/images/products/starbucks-mocha-frappuccino.jpeg',
+    'starbucks vanilla frappuccino': '/images/products/starbucks-vanilla-frappuccino.jpeg',
 
 
     // Candy & Sweets
