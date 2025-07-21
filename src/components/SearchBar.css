@@ -96,6 +96,24 @@
   transform: scale(0.98);
 }
 
+/* Suggestion content layout */
+.suggestion-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.suggestion-image {
+  flex-shrink: 0;
+}
+
+.suggestion-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Add a subtle indicator for hover only */
 .suggestion-item:hover::before {
   content: '›';

@@ -21,6 +21,8 @@ Gives detailed results including distance, location notes, and available product
 
 **Autocomplete Suggestions:** As you type, the search bar shows product suggestions to help you find what you're looking for quickly. Type "dor" to see all Doritos options, "coke" to find Coca Cola, or "hot cheetos" to find the spicy variety.
 
+**Product Images:** Visual product identification in autocomplete suggestions and search results for better user experience.
+
 **Keyboard Navigation:** Use arrow keys to navigate suggestions, Enter to select, and Escape to close.
 
 ### Product Organization
@@ -49,6 +51,26 @@ building and floor information for each machine,
 detailed location notes to help find machines in buildings,
 map popups with machine details and product category summaries
 
+## Setting Up Product Images
+
+To add product images to the autocomplete and search results:
+
+1. **Upload Images:** Place product images in `public/images/products/`
+2. **Naming Convention:** Use kebab-case (e.g., `doritos-nacho-cheese.jpg`)
+3. **Image Mapping:** Update `src/utils/productImages.js` with your image mappings
+4. **Supported Formats:** JPG, PNG, WebP
+5. **Recommended Size:** 200x200px for optimal performance
+
+### Example Image Setup:
+```
+public/images/products/
+├── doritos-nacho-cheese.jpg
+├── coca-cola.jpg
+├── snickers.jpg
+├── lays-classic.jpg
+└── default-product.jpg
+```
+
 ## Technical Details
 
 ### Dependencies
@@ -64,6 +86,8 @@ Leaflet (mapping library)
 MainPage: The main application container
 <br>
 SearchBar: Handles user input for searches with autocomplete functionality
+<br>
+ProductImage: Displays product images with loading states and fallbacks
 <br>
 MapContainer: The Leaflet map component
 <br>
@@ -82,3 +106,5 @@ categorizeProduct: Categorizes products into logical groups
 groupProductsByCategory: Organizes products by their categories
 <br>
 getProductSuggestions: Provides autocomplete suggestions based on user input
+<br>
+getProductImage: Maps product names to their corresponding image files

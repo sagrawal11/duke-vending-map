@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-le
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchBar from '../components/SearchBar';
+import ProductImage from '../components/ProductImage';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
@@ -686,7 +687,24 @@ function MainPage() {
           
           {searchPerformed && (
             <div className="search-results">
-              <h3>Search Results {searchTerm && `for "${searchTerm}"`}</h3>
+              <div className="search-results-header">
+                {searchResults.length > 0 && searchResults[0].searchType === 'product' && (
+                  <div className="product-header">
+                    <ProductImage 
+                      productName={searchTerm} 
+                      size="large" 
+                      className="search-product-image"
+                    />
+                    <div className="product-header-text">
+                      <h3>Search Results for "{searchTerm}"</h3>
+                      <p className="product-subtitle">Found in {searchResults.length} vending machine{searchResults.length !== 1 ? 's' : ''}</p>
+                    </div>
+                  </div>
+                )}
+                {(!searchResults.length || searchResults[0].searchType === 'location') && (
+                  <h3>Search Results {searchTerm && `for "${searchTerm}"`}</h3>
+                )}
+              </div>
               {renderSearchResults()}
             </div>
           )}

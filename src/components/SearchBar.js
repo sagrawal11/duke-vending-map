@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getProductSuggestions } from '../utils/productUtils';
+import ProductImage from './ProductImage';
 import './SearchBar.css';
 
 function SearchBar({ onSearch, inputRef, clearTrigger }) {
@@ -128,7 +129,14 @@ function SearchBar({ onSearch, inputRef, clearTrigger }) {
                 onClick={() => selectSuggestion(suggestion)}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
-                {suggestion}
+                <div className="suggestion-content">
+                  <ProductImage 
+                    productName={suggestion} 
+                    size="small" 
+                    className="suggestion-image"
+                  />
+                  <span className="suggestion-text">{suggestion}</span>
+                </div>
               </li>
             ))}
           </ul>
