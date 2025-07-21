@@ -55,6 +55,7 @@ export const getProductImage = (productName) => {
     'pure leaf sweet tea': '/images/products/pure-leaf-sweet-tea.jpeg',
     'gold peak sweet tea': '/images/products/gold-peak-sweet-tea.webp',
     'lipton citrus green tea': '/images/products/lipton-citrus-green-tea.jpeg',
+    'schweppes ginger ale': '/images/products/schweppes-ginger-ale.jpeg',
 
 
     // Candy & Sweets
