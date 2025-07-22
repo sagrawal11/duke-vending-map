@@ -42,7 +42,7 @@ export const vendingMachines = [
       building: 'Nello L. Teer Building',
       floor: 'FLoor 1',
       notes: 'Down the stairs, go through the left set of doors, then down the right hallway',
-      products: ['Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Mug Root Beer', 'Water', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Smartfood White Cheddar Popcorn', 'Doritos Cool Ranch', 'Funyuns', 'Tubs Bar-B-Que Pork Rinds', 'Ruffles Cheddar & Sour Cream', 'Lays Salt & Vinegar', 'Lays Barbeque', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Chex Mix', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", "Reese's Stick", "Hershey's Chocolate Bar", 'Peanut M&Ms', 'Slim Jim', 'Snickers', 'Sour Patch Kids', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Haribo Gummy Bears', 'Kinder Bueno', 'Nutra Grain', 'Nature Valley Granola Bar', 'Beef Tender Bites', 'Sour Skittles Gummies', 'Big Honey Bun', 'Mini Cookies', 'Nerds Gummy Clusters', 'Gatorade', 'Gatorlyte', 'Propel', 'Celsius', 'Starbucks Bold Mocha Triple Shot', 'Starbucks Dark Caramel Triple Shot', 'Starbucks Vanilla Triple Shot', 'Starbucks Cold Brew']
+      products: ['Pepsi', 'Pepsi Zero Sugar', 'Cherry Pepsi', 'Starry', 'Mountain Dew', 'Diet Mountain Dew', 'Baja Blast Mountain Dew', 'Mug Root Beer', 'Water', 'Lays Classic', 'Cheetos', 'Doritos Nacho Cheese', 'Fritos Twists', 'Smartfood White Cheddar Popcorn', 'Doritos Cool Ranch', 'Funyuns', 'Tubs Bar-B-Que Pork Rinds', 'Ruffles Cheddar & Sour Cream', 'Lays Salt & Vinegar', 'Lays Barbeque', 'Lays Sour Cream & Onion', 'Gardettos Snack Mix', 'Cheez It', 'Chex Mix', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", "Reese's Sticks", "Hershey's Chocolate Bar", 'Peanut M&Ms', 'Slim Jim', 'Snickers', 'Sour Patch Kids', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Haribo Gummy Bears', 'Kinder Bueno', 'Nutra Grain', 'Nature Valley Granola Bar', 'Beef Tender Bites', 'Sour Skittles Gummies', 'Big Honey Bun', 'Mini Cookies', 'Nerds Gummy Clusters', 'Gatorade', 'Gatorlyte', 'Propel', 'Celsius', 'Starbucks Bold Mocha Triple Shot', 'Starbucks Dark Caramel Triple Shot', 'Starbucks Vanilla Triple Shot', 'Starbucks Cold Brew']
     },
     { 
       id: 6, 
@@ -289,7 +289,7 @@ export const vendingMachines = [
     },
     { 
       id: 32, 
-      name: 'Reuben-Cooke Vending Machine', 
+      name: 'Reuben Cooke Vending Machine', 
       location: [36.002469, -78.936658], 
       building: 'Reuben Cooke Building',
       floor: 'Bottom floor',

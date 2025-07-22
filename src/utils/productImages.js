@@ -74,6 +74,7 @@ export const getProductImage = (productName) => {
     'strawberry grape juice': '/images/products/strawberry-grape-juice.jpeg',
     'starry': '/images/products/starry.jpeg',
     'fruit punch': '/images/products/fruit-punch.jpeg',
+    'sunkist strawberry': '/images/products/sunkist-strawberry.jpeg',
 
 
     // Candy & Sweets
@@ -106,6 +107,7 @@ export const getProductImage = (productName) => {
     'airheads bites': '/images/products/airheads-bites.jpeg',
     "reese's fast break": '/images/products/reeses-fast-break.jpeg',
     'mike&ike': '/images/products/mike-ike.jpeg',
+    "reese's sticks": '/images/products/reeses-stick.jpeg',
 
     
     // Other snacks
@@ -221,8 +223,19 @@ const buildingImageMap = {
     'bryancenter': '/images/buildings/bc.jpeg',
     'westhouseresidencehall': '/images/buildings/westhouse.jpg',
     'classroombuilding': '/images/buildings/classroom.jpg',
-
-
+    'brownresidencehall': '/images/buildings/brown.jpeg',
+    'perkinslibrary': '/images/buildings/perkins.jpeg',
+    'socialsciencesbuilding': '/images/buildings/socialsciences.png',
+    'allenbuilding': '/images/buildings/allen.jpeg',
+    'reubencookebuilding': '/images/buildings/reubencooke.jpeg',
+    'belltowerresidencehall': '/images/buildings/belltower.jpeg',
+    'flowersbuilding': '/images/buildings/flowers.jpg',
+    'teerbuilding': '/images/buildings/teer.jpg',
+    'physicsbuilding': '/images/buildings/physics.jpeg',
+    'wilsonrecreationcenter': '/images/buildings/wilsongym.jpeg',
+    'levinescienceresearchcenter': '/images/buildings/lsrc.jpg',
+    'wilkinson': '/images/buildings/wilk.jpeg',
+    'fewresidencehall': '/images/buildings/few.jpg',
 };
 
 export const getBuildingImage = (buildingName) => {
