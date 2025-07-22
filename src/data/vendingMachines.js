@@ -78,7 +78,7 @@ export const vendingMachines = [
       building: 'Levine Science Research Center',
       floor: '3rd Floor',
       notes: 'Between C and D wings',
-      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Fritos Original', 'Cheetos', 'Mini Pretzels', 'Cheez It', "Miss Vickie's Spicy Dill Pickle Chips", 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", "Reese's Fast Break", 'Nutra Grain', 'Snickers', 'M&Ms', 'Roatsed & Salted Almonds', 'Nature Valley Granola Bar', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper']
+      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Gardettos Snack Mix', 'Doritos Cool Ranch', 'Fritos Original', 'Cheetos', 'Mini Pretzels', 'Cheez It', "Miss Vickie's Spicy Dill Pickle Chips", 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", "Reese's Fast Break", 'Nutra Grain', 'Snickers', 'M&Ms', 'Roasted & Salted Almonds', 'Nature Valley Granola Bar', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper']
     },
     { 
       id: 10, 
