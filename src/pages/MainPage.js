@@ -861,9 +861,6 @@ function MainPage() {
                         <p><strong>Available Categories:</strong></p>
                         {renderCategorySummary(machine.products)}
                       </div>
-                      <button className="view-machine-button" onClick={() => handleOpenInlineMachineProducts(machine)}>
-                        View everything in this machine
-                      </button>
                     </div>
                   </Popup>
                 </Marker>
