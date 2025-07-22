@@ -1,4 +1,5 @@
 import { vendingMachines } from '../data/vendingMachines';
+import { calculateDistance } from './distance';
 
 // Product aliases - mapping alternative names to the actual product names
 const createProductAliases = () => {
@@ -132,4 +133,51 @@ export const getSuggestions = (searchTerm, maxResults = 8) => {
   // Combine and limit
   const combined = [...productSuggestions, ...buildingSuggestions].slice(0, maxResults);
   return combined;
+};
+
+// Enhanced searchByLocation: prefer exact match if available
+export const searchByLocation = (locationTerm, userLocation) => {
+  const normalizedTerm = locationTerm.toLowerCase().trim();
+  const allBuildings = getAllUniqueBuildings();
+  // Check for exact match
+  const exactBuilding = allBuildings.find(
+    b => b.toLowerCase().trim() === normalizedTerm
+  );
+  let results = [];
+  if (exactBuilding) {
+    // Only return machines for the exact building
+    results = vendingMachines.filter(machine =>
+      machine.building.toLowerCase().trim() === normalizedTerm
+    ).map(machine => ({
+      machine,
+      products: machine.products,
+      searchType: 'location',
+      relevanceScore: 1
+    }));
+  } else {
+    // Fallback to partial match
+    results = vendingMachines.filter(machine =>
+      machine.building.toLowerCase().includes(normalizedTerm)
+    ).map(machine => ({
+      machine,
+      products: machine.products,
+      searchType: 'location',
+      relevanceScore: 1
+    }));
+  }
+  if (userLocation) {
+    results.forEach(result => {
+      result.distance = calculateDistance(
+        userLocation.latitude,
+        userLocation.longitude,
+        result.machine.location[0],
+        result.machine.location[1]
+      );
+    });
+    results.sort((a, b) => a.distance - b.distance);
+  }
+  return {
+    results,
+    searchType: 'location'
+  };
 }; 

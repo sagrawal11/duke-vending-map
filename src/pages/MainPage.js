@@ -11,6 +11,7 @@ import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
 import { getBuildingImage } from '../utils/productImages';
+import { calculateDistance } from '../utils/distance';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -20,20 +21,6 @@ L.Icon.Default.mergeOptions({
 });
 
 // Distance calculation function
-const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 3959; // Radius of the earth in miles
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  const distance = R * c; // Distance in miles
-  return distance;
-};
-
-// Format distance function
 const formatDistance = (distance) => {
   if (distance < 0.1) {
     // Convert to feet if less than 0.1 miles
@@ -350,6 +337,8 @@ function MainPage() {
   const [clearTrigger, setClearTrigger] = useState(0); // Counter to trigger clearing
   const searchInputRef = useRef(null);
   const [inlineMachineProducts, setInlineMachineProducts] = useState(null); // {machine: ...} or null
+  // State for expanded/collapsed product categories in the inline product list
+  const [inlineExpandedCategories, setInlineExpandedCategories] = useState({});
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -588,8 +577,39 @@ function MainPage() {
 
   // Open inline product list for a vending machine (from map popup or machine card)
   const handleOpenInlineMachineProducts = (machine) => {
-    setSearchTerm(machine.name);
-    handleSearch(machine.name);
+    setInlineMachineProducts({ machine });
+  };
+
+  // Render grouped, collapsible product list for a machine
+  const renderGroupedProductList = (machine) => {
+    const grouped = groupProductsByCategory(machine.products || []);
+    return (
+      <div className="grouped-products">
+        {Object.entries(grouped).map(([category, products]) => {
+          const key = `${machine.id}-${category}`;
+          const isExpanded = inlineExpandedCategories[key] !== false; // default to expanded
+          return (
+            <div key={category} className="product-category">
+              <div
+                className="category-header"
+                onClick={() => setInlineExpandedCategories(prev => ({ ...prev, [key]: !isExpanded }))}
+                style={{ cursor: 'pointer' }}
+              >
+                <h5>{category} ({products.length})</h5>
+                <span className="dropdown-icon">{isExpanded ? '▼' : '►'}</span>
+              </div>
+              {isExpanded && (
+                <div className="category-products">
+                  {products.map((product, idx) => (
+                    <VendingMachineItemCard key={product + idx} product={product} machine={machine} />
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   // Render search results - always show products for inlineMachineProducts if set
@@ -609,9 +629,7 @@ function MainPage() {
               No products found for this machine.
             </div>
           ) : (
-            products.map((product, idx) => (
-              <VendingMachineItemCard key={product + idx} product={product} machine={inlineMachineProducts.machine} />
-            ))
+            renderGroupedProductList(inlineMachineProducts.machine)
           )}
         </div>
       );
@@ -628,8 +646,8 @@ function MainPage() {
         if (!buildingGroups[b]) buildingGroups[b] = [];
         buildingGroups[b].push(result.machine);
       });
-      // If only one building, and multiple machines, show machine cards inline
       const buildings = Object.keys(buildingGroups);
+      // If only one building and multiple machines, show machine cards inline
       if (buildings.length === 1 && buildingGroups[buildings[0]].length > 1) {
         return (
           <div className="results-list">
@@ -641,6 +659,21 @@ function MainPage() {
                 onClick={() => setInlineMachineProducts({ machine })}
               />
             ))}
+          </div>
+        );
+      }
+      // If only one building and one machine, show grouped dropdowns for that machine
+      if (buildings.length === 1 && buildingGroups[buildings[0]].length === 1) {
+        const machine = buildingGroups[buildings[0]][0];
+        return (
+          <div className="results-list">
+            <div className="inline-header-row">
+              <button className="inline-back-btn" onClick={clearSearch} aria-label="Back">
+                <span className="inline-back-chevron">&#8249;</span>
+              </button>
+              <span className="inline-machine-name">{machine.name}</span>
+            </div>
+            {renderGroupedProductList(machine)}
           </div>
         );
       }

@@ -760,14 +760,15 @@
 }
 
 .grouped-products {
-  background: #f8fafc;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
+  margin-top: 0.5rem;
 }
 
 .product-category {
-  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.2rem;
+  background: #f3f6fa;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(30,41,59,0.04);
+  overflow: hidden;
 }
 
 .product-category:last-child {
@@ -775,24 +776,19 @@
 }
 
 .category-header {
-  padding: 1rem;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  -webkit-tap-highlight-color: transparent;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
+  background: #e5eaf2;
+  border-radius: 10px 10px 0 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  user-select: none;
+  transition: background 0.15s;
 }
-
-@media (min-width: 768px) {
-  .category-header {
-    padding: 1rem 1.5rem;
-  }
-}
-
 .category-header:hover {
-  background: #f8fafc;
+  background: #dbe7f6;
 }
 
 .category-header:active {
@@ -813,9 +809,11 @@
 }
 
 .dropdown-icon {
-  font-size: 0.8rem;
-  color: #6b7280;
-  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+  color: #2563eb;
+  font-weight: bold;
+  transition: transform 0.18s;
 }
 
 .category-header:hover .dropdown-icon {
@@ -823,11 +821,20 @@
 }
 
 .category-products {
-  background: #f8fafc;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  animation: slideDown 0.3s ease-out;
+  padding: 0.5rem 1rem 0.7rem 1rem;
+}
+
+@media (max-width: 600px) {
+  .category-header {
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+  }
+  .category-products {
+    padding: 0.4rem 0.5rem 0.6rem 0.5rem;
+  }
+  .product-category {
+    margin-bottom: 0.7rem;
+  }
 }
 
 @keyframes slideDown {

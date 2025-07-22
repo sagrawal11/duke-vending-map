@@ -15,7 +15,7 @@ export const vendingMachines = [
       building: 'Broadhead Center',
       floor: '2nd Floor',
       notes: 'In the back where the study rooms are',
-      products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Sweet Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream & Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley Granola Bar', 'Nutra Grain', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghirardelli Milk Chocolate Caramel', 'Sour Skittles Gummies', 'Wild Berry Skittles Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gummy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
+      products: ['Vitamin Water', 'Storm', 'Topo Chico', 'Body Armor', 'Pure Leaf Sweet Tea', 'Lays Classic', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Popchips Sea Salt', 'Goldfish', 'Bugles Nacho Cheese', 'Popchips Sour Cream & Onion', 'Veggie Straws', 'Mini Pretzels', 'Cheetos', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Grilled Cheese Crackers', 'Crunch', 'Nature Valley Granola Bar', 'Nutra Grain', 'Trail Mix', 'Pistachios', 'Gatorade Protein Bar', 'Clif Bar Chocolate Chip', 'Ghirardelli Milk Chocolate Caramel', 'Sour Skittles Gummies', 'Wild Berry Skittles Gummies', 'Trolli Sour Gummy Worms', 'Mike&Ike', 'Nerds Gummy Clusters', 'Pepsi', 'Gatorade', 'Water', 'Propel', 'Celsius']
     },
     { 
       id: 3, 

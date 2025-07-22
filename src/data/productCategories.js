@@ -36,6 +36,7 @@ export const categorizeProduct = (product) => {
         lowerProduct.includes('coca') ||
         lowerProduct.includes('mellow') ||
         lowerProduct.includes('dr. pepper') ||
+        lowerProduct.includes('fruit punch') ||
         lowerProduct.includes('coke') ||
         lowerProduct.includes('sprite') ||
         lowerProduct.includes('topo chico') ||
