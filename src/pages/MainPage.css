@@ -1105,3 +1105,113 @@ button:focus-visible, input:focus-visible {
     font-size: 0.9rem;
   }
 }
+
+.inline-back-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  justify-content: flex-start;
+}
+
+.inline-building-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inline-building-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  object-fit: cover;
+  background: #e5e7eb;
+  box-shadow: 0 2px 8px rgba(30,41,59,0.10);
+  margin-bottom: 0.5rem;
+}
+
+.inline-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  justify-content: flex-start;
+}
+
+.inline-machine-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.inline-back-btn {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+.inline-back-btn:hover, .inline-back-btn:focus {
+  background: #e0e7ef;
+}
+
+.inline-back-chevron {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vm-item-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.06);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  min-height: 104px;
+}
+
+.vm-item-image {
+  flex-shrink: 0;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(30, 41, 59, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88px;
+  width: 88px;
+  object-fit: cover;
+  background: #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  .inline-header-row {
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+  .inline-machine-name {
+    font-size: 1.4rem;
+  }
+  .vm-item-image {
+    height: 72px;
+    width: 72px;
+  }
+  .vm-item-card {
+    min-height: 84px;
+  }
+}

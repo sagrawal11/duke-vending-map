@@ -72,6 +72,7 @@ export const getProductImage = (productName) => {
     'lemonade': '/images/products/lemonade.webp',
     'apple juice': '/images/products/apple-juice.webp',
     'strawberry grape juice': '/images/products/strawberry-grape-juice.jpeg',
+    'starry': '/images/products/starry.jpeg',
 
 
     // Candy & Sweets
@@ -201,7 +202,7 @@ export const getFallbackImage = (productName) => {
 
 // Add building image support
 const buildingImageMap = {
-    'randolph residence hall': '/images/buildings/randolph.jpg',
+    'randolphresidencehall': '/images/buildings/randolph.jpg',
   // Add your building images here, use lowercase keys
 };
 

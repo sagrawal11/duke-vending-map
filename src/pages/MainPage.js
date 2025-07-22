@@ -10,6 +10,7 @@ import VendingMachineCard from '../components/VendingMachineCard';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
+import { getBuildingImage } from '../utils/productImages';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -509,7 +510,7 @@ function MainPage() {
     setSearchPerformed(false);
     setSearchTerm('');
     setVisibleMachines(getFilteredMachines(vendingMachines));
-    
+    setInlineMachineProducts(null); // Clear inline product view
     // Trigger clearing the search input
     setClearTrigger(prev => prev + 1);
   };
@@ -587,21 +588,31 @@ function MainPage() {
 
   // Open inline product list for a vending machine (from map popup or machine card)
   const handleOpenInlineMachineProducts = (machine) => {
-    setInlineMachineProducts({ machine });
+    setSearchTerm(machine.name);
+    handleSearch(machine.name);
   };
 
-  // Render search results - no more mini-maps or dropdowns
+  // Render search results - always show products for inlineMachineProducts if set
   const renderSearchResults = () => {
-    if (inlineMachineProducts) {
+    if (inlineMachineProducts && inlineMachineProducts.machine) {
+      const products = inlineMachineProducts.machine.products || [];
       return (
         <div className="results-list">
-          <button className="view-machine-button" style={{marginBottom: '1rem'}} onClick={() => setInlineMachineProducts(null)}>
-            ← Back
-          </button>
-          <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>{inlineMachineProducts.machine.name}</h2>
-          {inlineMachineProducts.machine.products.map((product, idx) => (
-            <VendingMachineItemCard key={product + idx} product={product} machine={inlineMachineProducts.machine} />
-          ))}
+          <div className="inline-header-row">
+            <button className="inline-back-btn" onClick={() => setInlineMachineProducts(null)} aria-label="Back">
+              <span className="inline-back-chevron">&#8249;</span>
+            </button>
+            <span className="inline-machine-name">{inlineMachineProducts.machine.name}</span>
+          </div>
+          {products.length === 0 ? (
+            <div style={{ color: '#64748b', textAlign: 'center', margin: '2rem 0' }}>
+              No products found for this machine.
+            </div>
+          ) : (
+            products.map((product, idx) => (
+              <VendingMachineItemCard key={product + idx} product={product} machine={inlineMachineProducts.machine} />
+            ))
+          )}
         </div>
       );
     }
@@ -775,7 +786,7 @@ function MainPage() {
               zoom={16} 
               scrollWheelZoom={true} 
               style={{ height: "500px", width: "100%" }}
-              key={`${visibleMachines.map(m => m.id).join('-')}-${campusFilter}`}
+              key={`${inlineMachineProducts ? inlineMachineProducts.machine.id : visibleMachines.map(m => m.id).join('-')}-${campusFilter}`}
               whenCreated={(mapInstance) => {
                 setTimeout(() => {
                   if (mapInstance && mapInstance.getContainer()) {
@@ -789,8 +800,10 @@ function MainPage() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               
-              {/* Only render markers for visible machines */}
-              {visibleMachines.map(machine => (
+              {(inlineMachineProducts
+                ? [inlineMachineProducts.machine]
+                : visibleMachines
+              ).map(machine => (
                 <Marker 
                   key={machine.id} 
                   position={machine.location}
