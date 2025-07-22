@@ -151,6 +151,7 @@ export const getProductImage = (productName) => {
     'nature valley almond butter biscuits': 'images/products/almond-butter-biscuits.webp',
     'bugles-original': '/images/products/bugles-original.jpeg',
     'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
+    'nutra grain': 'images/products/nutra-grain.jpeg',
 
   };
   
@@ -204,6 +205,23 @@ export const getFallbackImage = (productName) => {
 // Add building image support
 const buildingImageMap = {
     'randolphresidencehall': '/images/buildings/randolph.jpg',
+    'alspaughresidencehall': '/images/buildings/alspaughresidencehall.jpg',
+    'bassetresidencehall': '/images/buildings/bassetresidencehall.jpeg',
+    'blackwellresidencehall': '/images/buildings/blackwellresidencehall.jpeg',
+    'brodierecreationcenter': '/images/buildings/brodierecreationcenter.jpeg',
+    'gilbertaddomsresidencehall': '/images/buildings/gilbertaddomsresidencehall.jpg',
+    'gilesresidencehall': '/images/buildings/gilesresidencehall.jpg',
+    'marketplace': '/images/buildings/marketplace.jpg',
+    'pegramresidencehall': '/images/buildings/pegramresidencehall.jpeg',
+    'southgateresidencehall': '/images/buildings/southgateresidencehall.jpg',
+    'trinityresidencehall': '/images/buildings/trinityresidencehall.jpg',
+    'wilsonresidencehall': '/images/buildings/wilsonresidencehall.jpg',
+    'broadheadcenter': '/images/buildings/wu.jpg',
+    'westdukebuilding': '/images/buildings/westduke.jpg',
+    'bryancenter': '/images/buildings/bc.jpeg',
+    'westhouseresidencehall': '/images/buildings/westhouse.jpg',
+    'classroombuilding': '/images/buildings/classroom.jpg',
+
 
 };
 
