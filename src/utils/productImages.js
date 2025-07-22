@@ -236,6 +236,8 @@ const buildingImageMap = {
     'levinescienceresearchcenter': '/images/buildings/lsrc.jpg',
     'wilkinson': '/images/buildings/wilk.jpeg',
     'fewresidencehall': '/images/buildings/few.jpg',
+    'cravenresidencehall': '/images/buildings/craven.jpg',
+
 };
 
 export const getBuildingImage = (buildingName) => {
