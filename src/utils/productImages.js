@@ -151,7 +151,7 @@ export const getProductImage = (productName) => {
     'mini cookies': 'images/products/bite-sized-cookies.jpeg',
     'grilled cheese crackers': 'images/products/grilled-cheese-crackers.jpeg',
     'nature valley almond butter biscuits': 'images/products/almond-butter-biscuits.webp',
-    'bugles-original': '/images/products/bugles-original.jpeg',
+    'bugles original': '/images/products/bugles-original.jpeg',
     'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
     'nutra grain': 'images/products/nutra-grain.jpeg',
     'tuna salad': 'images/products/tuna-salad.jpeg',
