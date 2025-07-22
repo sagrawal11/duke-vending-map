@@ -154,7 +154,7 @@ export const getProductImage = (productName) => {
     'bugles-original': '/images/products/bugles-original.jpeg',
     'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
     'nutra grain': 'images/products/nutra-grain.jpeg',
-
+    'tuna salad': 'images/products/tuna-salad.jpeg',
   };
   
   // Try to find an exact match first

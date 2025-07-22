@@ -127,17 +127,49 @@ export const getSuggestions = (searchTerm, maxResults = 8) => {
   ).map(product => ({ type: 'product', value: product }));
   // Building suggestions
   const allBuildings = getAllUniqueBuildings();
-  const buildingSuggestions = allBuildings.filter(building =>
+  let buildingSuggestions = allBuildings.filter(building =>
     building.toLowerCase().includes(normalizedSearch)
   ).map(building => ({ type: 'building', value: building }));
+  // Alias support: if the search term matches an alias, add the canonical building as a suggestion
+  if (buildingAliases[normalizedSearch]) {
+    const canonical = buildingAliases[normalizedSearch];
+    // Only add if not already present
+    if (!buildingSuggestions.some(s => s.value === canonical)) {
+      buildingSuggestions.unshift({
+        type: 'building',
+        value: canonical,
+        alias: normalizedSearch
+      });
+    }
+  }
   // Combine and limit
   const combined = [...productSuggestions, ...buildingSuggestions].slice(0, maxResults);
   return combined;
 };
 
-// Enhanced searchByLocation: prefer exact match if available
+// Building aliases for Duke
+const buildingAliases = {
+  'wu': 'Broadhead Center',
+  'broadhead': 'Broadhead Center',
+  'broadhead center': 'Broadhead Center',
+  'lsrc': 'Levine Science Research Center',
+  'levine': 'Levine Science Research Center',
+  'levine science research center': 'Levine Science Research Center',
+  'bc': 'Bryan Center',
+  'bryan': 'Bryan Center',
+  'bryan center': 'Bryan Center',
+  // Add more as needed
+};
+
+function normalizeBuildingSearchTerm(term) {
+  const normalized = term.toLowerCase().trim();
+  return buildingAliases[normalized] || term;
+}
+
+// Enhanced searchByLocation: prefer exact match if available, with alias support
 export const searchByLocation = (locationTerm, userLocation) => {
-  const normalizedTerm = locationTerm.toLowerCase().trim();
+  const canonicalTerm = normalizeBuildingSearchTerm(locationTerm);
+  const normalizedTerm = canonicalTerm.toLowerCase().trim();
   const allBuildings = getAllUniqueBuildings();
   // Check for exact match
   const exactBuilding = allBuildings.find(

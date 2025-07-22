@@ -145,7 +145,12 @@ function SearchBar({ onSearch, inputRef, clearTrigger }) {
                       style={{ width: 32, height: 32, borderRadius: 6, objectFit: 'cover', background: '#e5e7eb' }}
                     />
                   )}
-                  <span className="suggestion-text">{suggestion.value}</span>
+                  <span className="suggestion-text">
+                    {suggestion.value}
+                    {suggestion.type === 'building' && suggestion.alias ? (
+                      <span className="suggestion-alias"> ({suggestion.alias})</span>
+                    ) : null}
+                  </span>
                   <span className="suggestion-type">{suggestion.type === 'building' ? 'Building' : 'Product'}</span>
                 </div>
               </li>
