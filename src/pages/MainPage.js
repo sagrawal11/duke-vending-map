@@ -357,6 +357,8 @@ function MainPage() {
   const [inlineMachineProducts, setInlineMachineProducts] = useState(null); // {machine: ...} or null
   // State for expanded/collapsed product categories in the inline product list
   const [inlineExpandedCategories, setInlineExpandedCategories] = useState({});
+  const [mainContentKey, setMainContentKey] = useState(0);
+  const [contentAnimKey, setContentAnimKey] = useState(0);
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -489,6 +491,10 @@ function MainPage() {
 
     // Reset expanded categories
     setExpandedCategories({});
+    // Animate content in
+    setContentAnimKey(prev => prev + 1);
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   // Handle campus filter change
@@ -523,6 +529,10 @@ function MainPage() {
     setInlineMachineProducts(null); // Clear inline product view
     // Trigger clearing the search input
     setClearTrigger(prev => prev + 1);
+    // Re-trigger main content animation
+    setContentAnimKey(prev => prev + 1);
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   // Initialize visible machines with campus filter on component mount
@@ -659,11 +669,12 @@ function MainPage() {
         </div>
       );
     }
-    if (searchResults.length === 0) {
+    // Only show 'no results' if a search has been performed
+    if (searchPerformed && searchResults.length === 0) {
       return <p className="no-results">No results found. Try a different search term.</p>;
     }
-    // If location search, check for multiple machines in the building
-    if (searchResults[0].searchType === 'location') {
+    // Only check searchType if searchResults is not empty
+    if (searchResults.length > 0 && searchResults[0].searchType === 'location') {
       // Group by building
       const buildingGroups = {};
       searchResults.forEach(result => {
@@ -722,33 +733,36 @@ function MainPage() {
       );
     }
     // For product search, show the default result cards
-    return (
-      <div className="results-list">
-        {interleaveAds(
-          searchResults.map((result, index) => (
-            <div key={index} className="result-item">
-              <div className="result-content">
-                <div className="result-header">
-                  <h4>{result.machine.name}</h4>
-                  {result.distance !== undefined && (
-                    <span className="distance-badge">
-                      {formatDistance(result.distance)}
-                    </span>
+    if (searchResults.length > 0) {
+      return (
+        <div className="results-list">
+          {interleaveAds(
+            searchResults.map((result, index) => (
+              <div key={index} className="result-item">
+                <div className="result-content">
+                  <div className="result-header">
+                    <h4>{result.machine.name}</h4>
+                    {result.distance !== undefined && (
+                      <span className="distance-badge">
+                        {formatDistance(result.distance)}
+                      </span>
+                    )}
+                  </div>
+                  <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
+                  <p><strong>Notes:</strong> {result.machine.notes}</p>
+                  {result.searchType === 'product' && (
+                    <div className="found-products">
+                      <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
+                    </div>
                   )}
                 </div>
-                <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
-                <p><strong>Notes:</strong> {result.machine.notes}</p>
-                {result.searchType === 'product' && (
-                  <div className="found-products">
-                    <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
-                  </div>
-                )}
               </div>
-            </div>
-          ))
-        )}
-      </div>
-    );
+            ))
+          )}
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -763,77 +777,83 @@ function MainPage() {
       </div>
       
       <div className="container main-content">
-        <div className="search-section">
-          <h2>Find Snacks & Drinks</h2>
-          <div className="search-container">
-            <SearchBar onSearch={handleSearch} inputRef={searchInputRef} clearTrigger={clearTrigger} />
-            
-            {/* Campus Filter */}
-            <div className="campus-filter">
-              <select 
-                value={campusFilter} 
-                onChange={(e) => handleCampusFilterChange(e.target.value)}
-                className="campus-select"
-              >
-                <option value="both">Both Campuses</option>
-                <option value="west">West Campus</option>
-                <option value="east">East Campus</option>
-              </select>
+        <div key={contentAnimKey} className="main-content-inner" style={{animation: 'slideUp 0.6s ease-out'}}>
+          <div className="search-section">
+            <h2>Find Snacks & Drinks</h2>
+            <div className="search-container">
+              <SearchBar onSearch={handleSearch} inputRef={searchInputRef} clearTrigger={clearTrigger} />
+              
+              {/* Campus Filter */}
+              <div className="campus-filter">
+                <select 
+                  value={campusFilter} 
+                  onChange={(e) => handleCampusFilterChange(e.target.value)}
+                  className="campus-select"
+                >
+                  <option value="both">Both Campuses</option>
+                  <option value="west">West Campus</option>
+                  <option value="east">East Campus</option>
+                </select>
+              </div>
+              
+              <button className="clear-button" onClick={clearSearch}>
+                Reset
+              </button>
             </div>
             
-            <button className="clear-button" onClick={clearSearch}>
-              Reset
-            </button>
-          </div>
-          
-          {/* Location Button */}
-          <div className="location-section">
-            <button 
-              className={`location-button ${locationPermission === 'granted' ? 'active' : ''}`}
-              onClick={getUserLocation}
-              disabled={isLoadingLocation}
-            >
-              {isLoadingLocation ? 'Getting location...' : 
-               locationPermission === 'granted' ? 'Update My Location' : 'Enable Location Services (optional)'}
-              
-              {/* Info icon with tooltip */}
-              <div className="location-info-icon">
-                i
-                <div className="location-tooltip">
-                  Used to show your distance from vending machines and sort results by proximity. Your location is never stored or shared.
+            {/* Location Button */}
+            <div className="location-section">
+              <button 
+                className={`location-button ${locationPermission === 'granted' ? 'active' : ''}`}
+                onClick={getUserLocation}
+                disabled={isLoadingLocation}
+              >
+                {isLoadingLocation ? 'Getting location...' : 
+                 locationPermission === 'granted' ? 'Update My Location' : 'Enable Location Services (optional)'}
+                
+                {/* Info icon with tooltip */}
+                <div className="location-info-icon">
+                  i
+                  <div className="location-tooltip">
+                    Used to show your distance from vending machines and sort results by proximity. Your location is never stored or shared.
+                  </div>
                 </div>
+              </button>
+              {userLocation && (
+                <p className="location-status">
+                  Location services enabled. *Location may not be 100% accurate*
+                </p>
+              )}
+            </div>
+            
+            {searchPerformed && (
+              <div className="search-results">
+                <div className="search-results-header">
+                  {searchResults.length > 0 && searchResults[0].searchType === 'product' && (
+                    <div className="product-header">
+                      <ProductImage 
+                        productName={searchTerm} 
+                        size="large" 
+                        className="search-product-image" 
+                      />
+                      <div className="product-header-text">
+                        <h3>{searchTerm}</h3>
+                        <p className="product-subtitle">
+                          Found in {searchResults.length} vending machine{searchResults.length !== 1 ? 's' : ''}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {renderSearchResults()}
               </div>
-            </button>
-            {userLocation && (
-              <p className="location-status">
-                Location services enabled. *Location may not be 100% accurate*
-              </p>
+            )}
+            {!searchPerformed && (
+              <div className="search-results">
+                {renderSearchResults()}
+              </div>
             )}
           </div>
-          
-          {searchPerformed && (
-            <div className="search-results">
-              <div className="search-results-header">
-                {searchResults.length > 0 && searchResults[0].searchType === 'product' && (
-                  <div className="product-header">
-                    <ProductImage 
-                      productName={searchTerm} 
-                      size="large" 
-                      className="search-product-image"
-                    />
-                    <div className="product-header-text">
-                      <h3>Search Results for "{searchTerm}"</h3>
-                      <p className="product-subtitle">Found in {searchResults.length} vending machine{searchResults.length !== 1 ? 's' : ''}</p>
-                    </div>
-                  </div>
-                )}
-                {(!searchResults.length || searchResults[0].searchType === 'location') && (
-                  <h3>Search Results {searchTerm && `for "${searchTerm}"`}</h3>
-                )}
-              </div>
-              {renderSearchResults()}
-            </div>
-          )}
         </div>
         
         <div className="map-section">
