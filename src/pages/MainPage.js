@@ -464,9 +464,12 @@ function MainPage() {
       clearSearch();
       return;
     }
-    
+
+    // Always clear inline machine view when a new search is performed
+    setInlineMachineProducts(null);
+
     const searchResult = searchEngine.search(term, userLocation);
-    
+
     // Apply campus filter to search results
     const filteredResults = {
       ...searchResult,
@@ -475,15 +478,15 @@ function MainPage() {
         return getMachineCampus(result.machine) === campusFilter;
       })
     };
-    
+
     setSearchResults(filteredResults.results);
     setSearchPerformed(true);
     setSearchTerm(term);
-    
+
     // Update visible machines with campus filter applied
     const matchingMachines = filteredResults.results.map(result => result.machine);
     setVisibleMachines(matchingMachines);
-    
+
     // Reset expanded categories
     setExpandedCategories({});
   };
