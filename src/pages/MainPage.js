@@ -601,33 +601,37 @@ function MainPage() {
   // Render grouped, collapsible product list for a machine
   const renderGroupedProductList = (machine) => {
     const grouped = groupProductsByCategory(machine.products || []);
-    return (
-      <div className="grouped-products">
-        {Object.entries(grouped).map(([category, products]) => {
-          const key = `${machine.id}-${category}`;
-          const isExpanded = inlineExpandedCategories[key] !== false; // default to expanded
-          return (
-            <div key={category} className="product-category">
-              <div
-                className="category-header"
-                onClick={() => setInlineExpandedCategories(prev => ({ ...prev, [key]: !isExpanded }))}
-                style={{ cursor: 'pointer' }}
-              >
-                <h5>{category} ({products.length})</h5>
-                <span className="dropdown-icon">{isExpanded ? '▼' : '►'}</span>
-              </div>
-              {isExpanded && (
-                <div className="category-products">
-                  {products.map((product, idx) => interleaveAds([
-                    <VendingMachineItemCard key={product + idx} product={product} machine={machine} />
-                  ], 4))}
-                </div>
-              )}
+    const categories = Object.entries(grouped);
+    const elements = [];
+    for (let i = 0; i < categories.length; i++) {
+      const [category, products] = categories[i];
+      const key = `${machine.id}-${category}`;
+      const isExpanded = inlineExpandedCategories[key] !== false; // default to expanded
+      elements.push(
+        <div key={category} className="product-category">
+          <div
+            className="category-header"
+            onClick={() => setInlineExpandedCategories(prev => ({ ...prev, [key]: !isExpanded }))}
+            style={{ cursor: 'pointer' }}
+          >
+            <h5>{category} ({products.length})</h5>
+            <span className="dropdown-icon">{isExpanded ? '▼' : '►'}</span>
+          </div>
+          {isExpanded && (
+            <div className="category-products">
+              {products.map((product, idx) => interleaveAds([
+                <VendingMachineItemCard key={product + idx} product={product} machine={machine} />
+              ], 4))}
             </div>
-          );
-        })}
-      </div>
-    );
+          )}
+        </div>
+      );
+      // Insert AdBanner after every other dropdown, but not after the last category
+      if ((i + 1) % 2 === 0 && i < categories.length - 1) {
+        elements.push(<AdBanner key={`ad-category-${i}`} />);
+      }
+    }
+    return <div className="grouped-products">{elements}</div>;
   };
 
   // Render search results - always show products for inlineMachineProducts if set
