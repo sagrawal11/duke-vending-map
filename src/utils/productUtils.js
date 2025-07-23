@@ -152,13 +152,15 @@ const buildingAliases = {
   'wu': 'Broadhead Center',
   'broadhead': 'Broadhead Center',
   'broadhead center': 'Broadhead Center',
+  'west dining hall': 'Broadhead Center',
   'lsrc': 'Levine Science Research Center',
   'levine': 'Levine Science Research Center',
   'levine science research center': 'Levine Science Research Center',
   'bc': 'Bryan Center',
   'bryan': 'Bryan Center',
   'bryan center': 'Bryan Center',
-  // Add more as needed
+  'marketplace': 'Eastern Union',
+  'east dining hall': 'Eastern Union',
 };
 
 function normalizeBuildingSearchTerm(term) {

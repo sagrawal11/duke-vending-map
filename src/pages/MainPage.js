@@ -359,6 +359,7 @@ function MainPage() {
   const [inlineExpandedCategories, setInlineExpandedCategories] = useState({});
   const [mainContentKey, setMainContentKey] = useState(0);
   const [contentAnimKey, setContentAnimKey] = useState(0);
+  const [campusMismatchModal, setCampusMismatchModal] = useState({ open: false, campus: '', building: '', machines: [] });
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -471,6 +472,22 @@ function MainPage() {
     setInlineMachineProducts(null);
 
     const searchResult = searchEngine.search(term, userLocation);
+
+    // If the search is a location search and the campus filter is not 'both', check for campus mismatch
+    if (searchResult.results.length > 0 && searchResult.results[0].searchType === 'location' && campusFilter !== 'both') {
+      // All results are for the same building, so check the campus of the first result
+      const buildingCampus = getMachineCampus(searchResult.results[0].machine);
+      if (buildingCampus !== campusFilter) {
+        setCampusMismatchModal({
+          open: true,
+          campus: buildingCampus,
+          building: searchResult.results[0].machine.building,
+          machines: searchResult.results.map(r => r.machine)
+        });
+        // Don't update results yet
+        return;
+      }
+    }
 
     // Apply campus filter to search results
     const filteredResults = {
@@ -932,6 +949,41 @@ function MainPage() {
           </div>
         </div>
       </div>
+      <Modal isOpen={campusMismatchModal.open} onClose={() => setCampusMismatchModal({ open: false, campus: '', building: '', machines: [] })}>
+        <div style={{ textAlign: 'center', padding: '1.5rem 1rem' }}>
+          <h2 style={{ marginBottom: '1rem' }}>Building on Different Campus</h2>
+          <p style={{ marginBottom: '1.5rem' }}>
+            The building <strong>{campusMismatchModal.building}</strong> is on <strong>{campusMismatchModal.campus.charAt(0).toUpperCase() + campusMismatchModal.campus.slice(1)} Campus</strong>.<br />
+            Would you like to view its items?
+          </p>
+          <div className="modal-btn-row" style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 24 }}>
+            <button
+              className="modal-btn-blue"
+              onClick={() => {
+                setCampusFilter(campusMismatchModal.campus);
+                setCampusMismatchModal({ open: false, campus: '', building: '', machines: [] });
+                setSearchResults(campusMismatchModal.machines.map(machine => ({ machine, products: machine.products, searchType: 'location', relevanceScore: 1 })));
+                setSearchPerformed(true);
+                setSearchTerm(campusMismatchModal.building);
+                setVisibleMachines(campusMismatchModal.machines);
+                setExpandedCategories({});
+                setContentAnimKey(prev => prev + 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ minWidth: 120, height: 48, fontSize: 16, fontWeight: 600, borderRadius: 12, border: 'none', color: 'white', background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)', boxShadow: '0 4px 15px rgba(59,130,246,0.18)', cursor: 'pointer', transition: 'all 0.2s', outline: 'none' }}
+            >
+              Yes, show items
+            </button>
+            <button
+              className="clear-button"
+              onClick={() => setCampusMismatchModal({ open: false, campus: '', building: '', machines: [] })}
+              style={{ minWidth: 120, height: 48, fontSize: 16, fontWeight: 600, borderRadius: 12, border: '2px solid #f87171', background: '#f87171', color: 'white', boxShadow: '0 4px 15px rgba(248,113,113,0.18)', cursor: 'pointer', transition: 'all 0.2s', outline: 'none' }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

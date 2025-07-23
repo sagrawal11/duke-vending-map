@@ -215,7 +215,7 @@ const buildingImageMap = {
     'brodierecreationcenter': '/images/buildings/brodierecreationcenter.jpeg',
     'gilbertaddomsresidencehall': '/images/buildings/gilbertaddomsresidencehall.jpg',
     'gilesresidencehall': '/images/buildings/gilesresidencehall.jpg',
-    'marketplace': '/images/buildings/marketplace.jpg',
+    'easternunion': '/images/buildings/marketplace.jpg',
     'pegramresidencehall': '/images/buildings/pegramresidencehall.jpeg',
     'southgateresidencehall': '/images/buildings/southgateresidencehall.jpg',
     'trinityresidencehall': '/images/buildings/trinityresidencehall.jpg',
