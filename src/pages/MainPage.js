@@ -12,7 +12,6 @@ import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
 import { getBuildingImage } from '../utils/productImages';
 import { calculateDistance } from '../utils/distance';
-import AdBanner from '../components/AdBanner';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -318,23 +317,6 @@ class VendingMachineSearch {
       searchType: 'location'
     };
   }
-}
-
-// Helper to interleave AdBanner in a list
-function interleaveAds(items, adEvery = 4) {
-  const result = [];
-  for (let i = 0; i < items.length; i++) {
-    result.push(items[i]);
-    // Insert ad after every 4th item, but not near the top 3 or bottom 3
-    if (
-      i >= 3 &&
-      i < items.length - 3 - 1 &&
-      (i + 1) % adEvery === 0
-    ) {
-      result.push(<AdBanner key={`ad-${i}`} />);
-    }
-  }
-  return result;
 }
 
 // ============== MAIN COMPONENT ==============
@@ -649,17 +631,13 @@ function MainPage() {
           </div>
           {isExpanded && (
             <div className="category-products">
-              {products.map((product, idx) => interleaveAds([
+              {products.map((product, idx) => (
                 <VendingMachineItemCard key={product + idx} product={product} machine={machine} />
-              ], 4))}
+              ))}
             </div>
           )}
         </div>
       );
-      // Insert AdBanner after every other dropdown, but not after the last category
-      if ((i + 1) % 2 === 0 && i < categories.length - 1) {
-        elements.push(<AdBanner key={`ad-category-${i}`} />);
-      }
     }
     return <div className="grouped-products">{elements}</div>;
   };
@@ -705,15 +683,13 @@ function MainPage() {
         return (
           <div className="results-list">
             <h2 style={{textAlign: 'center', marginBottom: '1rem'}}>Which machine in {buildings[0]}?</h2>
-            {interleaveAds(
-              buildingGroups[buildings[0]].map((machine, idx) => (
-                <VendingMachineCard
-                  key={machine.id}
-                  machine={machine}
-                  onClick={() => setInlineMachineProducts({ machine })}
-                />
-              ))
-            )}
+            {buildingGroups[buildings[0]].map((machine, idx) => (
+              <VendingMachineCard
+                key={machine.id}
+                machine={machine}
+                onClick={() => setInlineMachineProducts({ machine })}
+              />
+            ))}
           </div>
         );
       }
@@ -741,11 +717,9 @@ function MainPage() {
       });
       return (
         <div className="results-list">
-          {interleaveAds(
-            allItems.map((item, idx) => (
-              <VendingMachineItemCard key={item.product + idx} product={item.product} machine={item.machine} />
-            ))
-          )}
+          {allItems.map((item, idx) => (
+            <VendingMachineItemCard key={item.product + idx} product={item.product} machine={item.machine} />
+          ))}
         </div>
       );
     }
@@ -753,29 +727,27 @@ function MainPage() {
     if (searchResults.length > 0) {
       return (
         <div className="results-list">
-          {interleaveAds(
-            searchResults.map((result, index) => (
-              <div key={index} className="result-item">
-                <div className="result-content">
-                  <div className="result-header">
-                    <h4>{result.machine.name}</h4>
-                    {result.distance !== undefined && (
-                      <span className="distance-badge">
-                        {formatDistance(result.distance)}
-                      </span>
-                    )}
-                  </div>
-                  <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
-                  <p><strong>Notes:</strong> {result.machine.notes}</p>
-                  {result.searchType === 'product' && (
-                    <div className="found-products">
-                      <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
-                    </div>
+          {searchResults.map((result, index) => (
+            <div key={index} className="result-item">
+              <div className="result-content">
+                <div className="result-header">
+                  <h4>{result.machine.name}</h4>
+                  {result.distance !== undefined && (
+                    <span className="distance-badge">
+                      {formatDistance(result.distance)}
+                    </span>
                   )}
                 </div>
+                <p><strong>Location:</strong> {result.machine.building}, {result.machine.floor}</p>
+                <p><strong>Notes:</strong> {result.machine.notes}</p>
+                {result.searchType === 'product' && (
+                  <div className="found-products">
+                    <p><strong>Found Products:</strong> {result.products.join(', ')}</p>
+                  </div>
+                )}
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
       );
     }
