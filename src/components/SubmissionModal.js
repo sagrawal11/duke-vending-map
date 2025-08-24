@@ -25,6 +25,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
         <form 
           name="vending-machine-submission" 
           method="POST" 
+          action="/"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           className="submission-form"
