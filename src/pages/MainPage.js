@@ -331,7 +331,6 @@ function MainPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedCategories, setExpandedCategories] = useState({});
   const [visibleMachines, setVisibleMachines] = useState(vendingMachines);
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
@@ -354,7 +353,7 @@ function MainPage() {
   };
   
   // Function to determine which campus a machine is on
-  const getMachineCampus = (machine) => {
+  const getMachineCampus = React.useCallback((machine) => {
     if (campusBuildings.west.some(building => machine.building.includes(building))) {
       return 'west';
     } else if (campusBuildings.east.some(building => machine.building.includes(building))) {
@@ -362,26 +361,21 @@ function MainPage() {
     }
     // Default to west if building not found in either list
     return 'west';
-  };
+  }, [campusBuildings.east, campusBuildings.west]);
   
   // Filter machines based on campus selection
-  const getFilteredMachines = (machines) => {
+  const getFilteredMachines = React.useCallback((machines) => {
     if (campusFilter === 'both') {
       return machines;
     }
     return machines.filter(machine => getMachineCampus(machine) === campusFilter);
-  };
+  }, [campusFilter, getMachineCampus]);
   
   // Initialize the search engine
   const searchEngine = React.useMemo(() => {
     return new VendingMachineSearch(vendingMachines);
   }, []);
   
-  // Get user location on component mount
-  useEffect(() => {
-    checkLocationPermission();
-  }, []);
-
   // Handle scroll detection for floating action button
   useEffect(() => {
     const handleScroll = () => {
@@ -391,28 +385,9 @@ function MainPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-
-
-  // Check user's location permission status
-  const checkLocationPermission = () => {
-    if (navigator.permissions && navigator.permissions.query) {
-      navigator.permissions.query({ name: 'geolocation' })
-        .then(permissionStatus => {
-          setLocationPermission(permissionStatus.state);
-          // If permission is already granted, get location automatically
-          if (permissionStatus.state === 'granted') {
-            getUserLocation();
-          }
-        })
-        .catch(error => {
-          console.error("Error checking location permission:", error);
-        });
-    }
-  };
   
   // Request user location
-  const getUserLocation = () => {
+  const getUserLocation = React.useCallback(() => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
       return;
@@ -457,7 +432,28 @@ function MainPage() {
         maximumAge: 0
       }
     );
-  };
+  }, [searchPerformed, searchTerm, searchEngine]);
+
+  // Get user location on component mount
+  useEffect(() => {
+    const checkLocationPermission = () => {
+      if (navigator.permissions && navigator.permissions.query) {
+        navigator.permissions.query({ name: 'geolocation' })
+          .then(permissionStatus => {
+            setLocationPermission(permissionStatus.state);
+            // If permission is already granted, get location automatically
+            if (permissionStatus.state === 'granted') {
+              getUserLocation();
+            }
+          })
+          .catch(error => {
+            console.error("Error checking location permission:", error);
+          });
+      }
+    };
+    
+    checkLocationPermission();
+  }, [getUserLocation]);
   
   // Main search handler
   const handleSearch = (term) => {
@@ -504,8 +500,6 @@ function MainPage() {
     const matchingMachines = filteredResults.results.map(result => result.machine);
     setVisibleMachines(matchingMachines);
 
-    // Reset expanded categories
-    setExpandedCategories({});
     // Animate content in
     setContentAnimKey(prev => prev + 1);
     // Scroll to top
@@ -558,52 +552,9 @@ function MainPage() {
     }, 150); // Increased delay
     
     return () => clearTimeout(timer);
-  }, [campusFilter]);
+  }, [campusFilter, getFilteredMachines]);
   
-  // Toggle category expansion
-  const toggleCategory = (machineId, category) => {
-    setExpandedCategories(prev => {
-      const key = `${machineId}-${category}`;
-      return {
-        ...prev,
-        [key]: !prev[key]
-      };
-    });
-  };
-  
-  // Render dropdown grouped products
-  const renderDropdownGroupedProducts = (products, machineId) => {
-    const groupedProducts = groupProductsByCategory(products);
-    
-    return (
-      <div className="grouped-products">
-        {Object.entries(groupedProducts).map(([category, products]) => {
-          const key = `${machineId}-${category}`;
-          const isExpanded = expandedCategories[key];
-          
-          return (
-            <div key={category} className="product-category">
-              <div 
-                className="category-header"
-                onClick={() => toggleCategory(machineId, category)}
-              >
-                <h5>{category} ({products.length})</h5>
-                <span className="dropdown-icon">{isExpanded ? '▼' : '►'}</span>
-              </div>
-              
-              {isExpanded && (
-                <ul className="category-products">
-                  {products.map((product, i) => (
-                    <li key={i}>{product}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
+
   
   // Render just category summaries for map popups (no individual items)
   const renderCategorySummary = (products) => {
@@ -621,10 +572,7 @@ function MainPage() {
     );
   };
 
-  // Open inline product list for a vending machine (from map popup or machine card)
-  const handleOpenInlineMachineProducts = (machine) => {
-    setInlineMachineProducts({ machine });
-  };
+
 
   // Render grouped, collapsible product list for a machine
   const renderGroupedProductList = (machine) => {
@@ -954,7 +902,6 @@ function MainPage() {
                 setSearchPerformed(true);
                 setSearchTerm(campusMismatchModal.building);
                 setVisibleMachines(campusMismatchModal.machines);
-                setExpandedCategories({});
                 setContentAnimKey(prev => prev + 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}

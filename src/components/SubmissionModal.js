@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SubmissionModal.css';
 
 const SubmissionModal = ({ isOpen, onClose }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleClose = () => {
-    if (!isSubmitting) {
-      onClose();
-    }
+    onClose();
   };
 
   if (!isOpen) return null;
