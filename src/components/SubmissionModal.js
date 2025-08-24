@@ -1,13 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SubmissionModal.css';
 
 const SubmissionModal = ({ isOpen, onClose }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleClose = () => {
+    if (submitSuccess) {
+      // Reset form state when closing after success
+      setSubmitSuccess(false);
+    }
     onClose();
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Get form data
+    const formData = new FormData(e.target);
+    
+    // Submit form
+    fetch('/', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => {
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setIsSubmitting(false);
+      } else {
+        throw new Error('Submission failed');
+      }
+    })
+    .catch(error => {
+      console.error('Submission error:', error);
+      setIsSubmitting(false);
+      alert('There was an error submitting your report. Please try again.');
+    });
+  };
+
   if (!isOpen) return null;
+
+  // Show success message
+  if (submitSuccess) {
+    return (
+      <div className="submission-modal-overlay" onClick={handleClose}>
+        <div className="submission-modal" onClick={e => e.stopPropagation()}>
+          <div className="submission-modal-header">
+            <h2>Thank You! 🎉</h2>
+            <button 
+              className="submission-modal-close" 
+              onClick={handleClose}
+            >
+              ×
+            </button>
+          </div>
+          
+          <div className="success-content">
+            <div className="success-icon">✅</div>
+            <h3>Report Submitted Successfully!</h3>
+            <p>Thank you for helping us keep the vending machine map up to date. We'll review your submission and add it to the website soon.</p>
+            <p><strong>What happens next:</strong></p>
+            <ul>
+              <li>We'll review your submission within 24-48 hours</li>
+              <li>If approved, the vending machine will be added to the map</li>
+              <li>You'll help other Duke students find snacks!</li>
+            </ul>
+            <button 
+              className="submit-button"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="submission-modal-overlay" onClick={handleClose}>
@@ -19,13 +89,13 @@ const SubmissionModal = ({ isOpen, onClose }) => {
             onClick={handleClose}
           >
             ×
-          </button>
+            </button>
         </div>
         
         <form 
           name="vending-machine-submission" 
           method="POST" 
-          action="/"
+          onSubmit={handleSubmit}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           className="submission-form"
@@ -99,8 +169,9 @@ const SubmissionModal = ({ isOpen, onClose }) => {
             <button
               type="submit"
               className="submit-button"
+              disabled={isSubmitting}
             >
-              Submit Report
+              {isSubmitting ? 'Submitting...' : 'Submit Report'}
             </button>
           </div>
         </form>

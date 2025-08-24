@@ -218,6 +218,46 @@
   transform: none;
 }
 
+/* Success state styles */
+.success-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.success-content h3 {
+  color: #059669;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.success-content p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.success-content ul {
+  text-align: left;
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.success-content li {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.success-content .submit-button {
+  margin-top: 1.5rem;
+  min-width: 120px;
+}
+
 /* Responsive design */
 @media (max-width: 640px) {
   .submission-modal {
