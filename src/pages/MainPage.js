@@ -7,11 +7,14 @@ import ProductImage from '../components/ProductImage';
 import Modal from '../components/Modal';
 import VendingMachineItemCard from '../components/VendingMachineItemCard';
 import VendingMachineCard from '../components/VendingMachineCard';
+import FloatingActionButton from '../components/FloatingActionButton';
+import SubmissionModal from '../components/SubmissionModal';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
-import { getBuildingImage } from '../utils/productImages';
+
 import { calculateDistance } from '../utils/distance';
+
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -339,9 +342,10 @@ function MainPage() {
   const [inlineMachineProducts, setInlineMachineProducts] = useState(null); // {machine: ...} or null
   // State for expanded/collapsed product categories in the inline product list
   const [inlineExpandedCategories, setInlineExpandedCategories] = useState({});
-  const [mainContentKey, setMainContentKey] = useState(0);
   const [contentAnimKey, setContentAnimKey] = useState(0);
   const [campusMismatchModal, setCampusMismatchModal] = useState({ open: false, campus: '', building: '', machines: [] });
+  const [submissionModalOpen, setSubmissionModalOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -377,6 +381,18 @@ function MainPage() {
   useEffect(() => {
     checkLocationPermission();
   }, []);
+
+  // Handle scroll detection for floating action button
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
 
   // Check user's location permission status
   const checkLocationPermission = () => {
@@ -956,6 +972,18 @@ function MainPage() {
           </div>
         </div>
       </Modal>
+      
+      {/* Floating Action Button */}
+      <FloatingActionButton 
+        onClick={() => setSubmissionModalOpen(true)}
+        isMinimized={isScrolled}
+      />
+      
+      {/* Submission Modal */}
+      <SubmissionModal
+        isOpen={submissionModalOpen}
+        onClose={() => setSubmissionModalOpen(false)}
+      />
     </div>
   );
 }
