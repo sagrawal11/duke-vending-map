@@ -538,6 +538,7 @@ function MainPage() {
   };
   
   // Initialize visible machines with campus filter on component mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Add longer delay to prevent map errors during rapid updates
     const timer = setTimeout(() => {
@@ -549,13 +550,14 @@ function MainPage() {
   }, []); // Only run on mount, not when campusFilter or getFilteredMachines change
   
   // Handle campus filter changes separately
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!searchPerformed) {
       // Only update visible machines if no search is active
       const filtered = getFilteredMachines(vendingMachines);
       setVisibleMachines(filtered);
     }
-  }, [campusFilter, getFilteredMachines, searchPerformed]);
+  }, [campusFilter, searchPerformed]); // getFilteredMachines is stable, no need to include in deps
   
 
   
