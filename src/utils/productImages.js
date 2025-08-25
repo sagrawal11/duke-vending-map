@@ -239,7 +239,7 @@ const buildingImageMap = {
     'wilsonrecreationcenter': '/images/buildings/wilsongym.jpeg',
     'levinescienceresearchcenter': '/images/buildings/lsrc.jpg',
     'wilkinson': '/images/buildings/wilk.jpeg',
-    'fewresidencehall': '/images/buildings/few.jpg',
+    'fewquad': '/images/buildings/few.jpg',
     'cravenresidencehall': '/images/buildings/craven.jpg',
 
 };

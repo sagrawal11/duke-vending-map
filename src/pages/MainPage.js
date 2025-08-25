@@ -331,7 +331,7 @@ function MainPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [visibleMachines, setVisibleMachines] = useState(vendingMachines);
+  const [visibleMachines, setVisibleMachines] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
