@@ -24,6 +24,7 @@ export const getProductImage = (productName) => {
     // Cheetos
     'cheetos': '/images/products/cheetos.png',
     'cheetos cheddar jalepeno': '/images/products/cheetos-cheddar-jalapeno.jpeg',
+    "chester's flamin hot fries": '/images/products/chesters.jpg',
     
     // Drinks
     'coca cola': '/images/products/coca-cola.webp',
@@ -157,6 +158,7 @@ export const getProductImage = (productName) => {
     'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
     'nutra grain': 'images/products/nutra-grain.jpeg',
     'tuna salad': 'images/products/tuna-salad.jpeg',
+    'kettle corn popcorners': '/images/products/popcorners_kettle.avif'
   };
   
   // Try to find an exact match first

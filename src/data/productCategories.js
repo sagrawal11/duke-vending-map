@@ -73,6 +73,7 @@ export const categorizeProduct = (product) => {
         lowerProduct.includes('veggie') ||
         lowerProduct.includes('cheddar')|| 
         lowerProduct.includes('cheese') ||
+        lowerProduct.includes('chester') ||
         lowerProduct.includes('pretzel')) {
       return 'Chips & Savory Snacks';
     }

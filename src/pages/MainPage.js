@@ -344,7 +344,6 @@ function MainPage() {
   const [contentAnimKey, setContentAnimKey] = useState(0);
   const [campusMismatchModal, setCampusMismatchModal] = useState({ open: false, campus: '', building: '', machines: [] });
   const [submissionModalOpen, setSubmissionModalOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   // Define which buildings are on which campus
   const campusBuildings = {
@@ -376,15 +375,7 @@ function MainPage() {
     return new VendingMachineSearch(vendingMachines);
   }, []);
   
-  // Handle scroll detection for floating action button
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   // Request user location
   const getUserLocation = React.useCallback(() => {
@@ -923,7 +914,7 @@ function MainPage() {
       {/* Floating Action Button */}
       <FloatingActionButton 
         onClick={() => setSubmissionModalOpen(true)}
-        isMinimized={isScrolled}
+        isMinimized={false}
       />
       
       {/* Submission Modal */}

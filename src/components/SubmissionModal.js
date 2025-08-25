@@ -60,13 +60,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           <div className="success-content">
             <div className="success-icon">✅</div>
             <h3>Report Submitted Successfully!</h3>
-            <p>Thank you for helping us keep the vending machine map up to date. We'll review your submission and add it to the website soon.</p>
-            <p><strong>What happens next:</strong></p>
-            <ul>
-              <li>We'll review your submission within 24-48 hours</li>
-              <li>If approved, the vending machine will be added to the map</li>
-              <li>You'll help other Duke students find snacks!</li>
-            </ul>
+            <p>Thank you for submitting a report and helping make this guide more accurate for Duke students!</p>
             <button 
               className="submit-button"
               onClick={handleClose}

@@ -1,10 +1,6 @@
 import { vendingMachines } from '../data/vendingMachines';
 import { calculateDistance } from './distance';
 
-
-
-
-
 // Get all unique products from all vending machines
 export const getAllUniqueProducts = () => {
   const allProducts = new Set();
