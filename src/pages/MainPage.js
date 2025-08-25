@@ -332,6 +332,8 @@ function MainPage() {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [visibleMachines, setVisibleMachines] = useState([]);
+  
+
   const [userLocation, setUserLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState('prompt');
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
@@ -539,11 +541,21 @@ function MainPage() {
   useEffect(() => {
     // Add longer delay to prevent map errors during rapid updates
     const timer = setTimeout(() => {
-      setVisibleMachines(getFilteredMachines(vendingMachines));
+      const filtered = getFilteredMachines(vendingMachines);
+      setVisibleMachines(filtered);
     }, 150); // Increased delay
     
     return () => clearTimeout(timer);
-  }, [campusFilter, getFilteredMachines]);
+  }, []); // Only run on mount, not when campusFilter or getFilteredMachines change
+  
+  // Handle campus filter changes separately
+  useEffect(() => {
+    if (!searchPerformed) {
+      // Only update visible machines if no search is active
+      const filtered = getFilteredMachines(vendingMachines);
+      setVisibleMachines(filtered);
+    }
+  }, [campusFilter, getFilteredMachines, searchPerformed]);
   
 
   
@@ -813,7 +825,7 @@ function MainPage() {
               zoom={16} 
               scrollWheelZoom={true} 
               style={{ height: "500px", width: "100%" }}
-              key={`${inlineMachineProducts ? inlineMachineProducts.machine.id : visibleMachines.map(m => m.id).join('-')}-${campusFilter}`}
+              key={`${inlineMachineProducts ? inlineMachineProducts.machine.id : visibleMachines.length}-${campusFilter}-${searchPerformed}`}
               whenCreated={(mapInstance) => {
                 setTimeout(() => {
                   if (mapInstance && mapInstance.getContainer()) {
