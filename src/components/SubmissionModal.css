@@ -71,6 +71,20 @@
   color: #374151;
 }
 
+.submission-modal-description {
+  padding: 0 24px 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.submission-modal-description p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .submission-form {
   padding: 0 24px 24px 24px;
 }

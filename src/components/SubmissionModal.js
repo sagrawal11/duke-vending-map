@@ -108,6 +108,10 @@ const SubmissionModal = ({ isOpen, onClose }) => {
             </button>
         </div>
         
+        <div className="submission-modal-description">
+          <p>This app uses crowdsourced data to keep vending machine inventory and locations up to date for all Duke students. By reporting a new machine/inventory change, you're helping make this app more accurate for everyone. Thank you! 🙌</p>
+        </div>
+        
         <form 
           name="vending-machine-submission" 
           method="POST" 
@@ -154,7 +158,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="images">Photos *</label>
+            <label htmlFor="images">Photos (pls take individual photos of each vending machine 🙏) *</label>
             <div className="image-upload-section">
               <input
                 type="file"
