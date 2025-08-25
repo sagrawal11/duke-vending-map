@@ -4,13 +4,35 @@ import './SubmissionModal.css';
 const SubmissionModal = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const handleClose = () => {
     if (submitSuccess) {
       // Reset form state when closing after success
       setSubmitSuccess(false);
     }
+    setSelectedImages([]);
     onClose();
+  };
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const imageObjects = files.map(file => ({
+      file,
+      id: Date.now() + Math.random(),
+      preview: URL.createObjectURL(file)
+    }));
+    setSelectedImages(imageObjects);
+  };
+
+  const removeImage = (imageId) => {
+    setSelectedImages(prev => {
+      const imageToRemove = prev.find(img => img.id === imageId);
+      if (imageToRemove) {
+        URL.revokeObjectURL(imageToRemove.preview);
+      }
+      return prev.filter(img => img.id !== imageId);
+    });
   };
 
   const handleSubmit = (e) => {
@@ -142,13 +164,35 @@ const SubmissionModal = ({ isOpen, onClose }) => {
                 accept="image/*"
                 required
                 className="file-input"
+                onChange={handleImageChange}
               />
               <p className="upload-hint">Upload 1-5 images (JPEG, PNG, WebP, max 5MB each)</p>
             </div>
+            
+            {selectedImages.length > 0 && (
+              <div className="image-previews">
+                {selectedImages.map((image) => (
+                  <div key={image.id} className="image-preview-container">
+                    <img
+                      src={image.preview}
+                      alt="Preview"
+                      className="image-preview"
+                    />
+                    <button
+                      type="button"
+                      className="remove-image-button"
+                      onClick={() => removeImage(image.id)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           
           {/* Honeypot field to prevent spam */}
-          <div className="hidden">
+          <div style={{ display: 'none' }}>
             <input name="bot-field" />
           </div>
           
