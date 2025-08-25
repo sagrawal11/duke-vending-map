@@ -109,7 +109,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
         </div>
         
         <div className="submission-modal-description">
-          <p>This app uses crowdsourced data to keep vending machine inventory and locations up to date for all Duke students. By reporting a new machine/inventory change, you're helping make this app more accurate for everyone. Thank you! 🙌</p>
+          <p>This app uses crowdsourced data to keep vending machine inventory and locations up to date for all Duke students and staff. By reporting a new machine or inventory change that's not in the app already, you're helping make it more accurate for everyone. Thank you! 🙌</p>
         </div>
         
         <form 
