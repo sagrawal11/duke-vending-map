@@ -158,6 +158,27 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           </div>
           
           <div className="form-group">
+            <label htmlFor="venmo">Venmo Username *</label>
+            <input
+              type="text"
+              id="venmo"
+              name="venmo"
+              required
+              placeholder="e.g., @username"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="dukeEmail">Duke Email (Optional)</label>
+            <input
+              type="email"
+              id="dukeEmail"
+              name="dukeEmail"
+              placeholder="e.g., netid@duke.edu"
+            />
+          </div>
+          
+          <div className="form-group">
             <label htmlFor="images">Photos (pls take individual photos of each vending machine 🙏) *</label>
             <div className="image-upload-section">
               <input
