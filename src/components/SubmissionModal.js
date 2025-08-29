@@ -83,6 +83,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
             <div className="success-icon">✅</div>
             <h3>Report Submitted Successfully!</h3>
             <p>Thank you for submitting a report and helping make this guide more accurate for Duke students!</p>
+            <p>If you were the first one to discover a new machine, we will send you your prize shortly. Thank you for improving the vending machine experience for all Duke students!</p>
             <button 
               className="submit-button"
               onClick={handleClose}
@@ -158,14 +159,15 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="venmo">Venmo Username *</label>
+            <label htmlFor="paymentInfo">Payment Information *</label>
             <input
               type="text"
-              id="venmo"
-              name="venmo"
+              id="paymentInfo"
+              name="paymentInfo"
               required
-              placeholder="e.g., @username"
+              placeholder="Venmo (@username), Zelle phone number, or just your phone number"
             />
+            <small className="form-hint">We'll use this to send you a prize if you're the first to discover a new machine!</small>
           </div>
           
           <div className="form-group">
