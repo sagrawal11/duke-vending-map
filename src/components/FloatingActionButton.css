@@ -1,3 +1,6 @@
+/* Import Quicksand font for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 .floating-action-button {
   position: fixed;
   bottom: 24px;
@@ -9,6 +12,7 @@
   padding: 16px 24px;
   font-size: 1rem;
   font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

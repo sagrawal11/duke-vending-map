@@ -132,18 +132,18 @@ const SubmissionModal = ({ isOpen, onClose }) => {
               id="buildingName"
               name="buildingName"
               required
-              placeholder="e.g., Perkins Library, LSRC, etc."
+              placeholder="e.g., Perkins Library, LSRC, Craven, Wilson Gym, etc."
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="floorLevel">Floor/Level *</label>
+            <label htmlFor="floorLevel">Floor/Level/Room *</label>
             <input
               type="text"
               id="floorLevel"
               name="floorLevel"
               required
-              placeholder="e.g., 2nd Floor, Basement, Ground Floor"
+              placeholder="e.g., Basement HH Craven Laundry Room, etc."
             />
           </div>
           

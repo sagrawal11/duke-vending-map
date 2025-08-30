@@ -727,9 +727,11 @@ function MainPage() {
     <div className="main-page">
       <div className="hero-section">
         <div className="container">
-          <h1 className="hero-title">Duke Vending Machine Finder</h1>
+          <div className="hero-logo">
+            <img src="/munchrlogo.png" alt="Munchr Logo" className="hero-logo-image" />
+          </div>
           <p className="hero-description">
-            Your guide to the munch
+            Duke's Vending Machine Finder
           </p>
         </div>
       </div>
