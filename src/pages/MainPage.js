@@ -728,7 +728,7 @@ function MainPage() {
       <div className="hero-section">
         <div className="container">
           <div className="hero-logo">
-            <img src="/munchrlogo.png" alt="Munchr Logo" className="hero-logo-image" />
+            <img src={`${process.env.PUBLIC_URL}/munchrlogo.png`} alt="Munchr Logo" className="hero-logo-image" />
           </div>
           <p className="hero-description">
             Duke's Vending Machine Finder
