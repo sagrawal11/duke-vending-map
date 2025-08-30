@@ -12,6 +12,7 @@ import SubmissionModal from '../components/SubmissionModal';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
+import logoImage from '../munchrlogo.png';
 
 import { calculateDistance } from '../utils/distance';
 
@@ -728,7 +729,7 @@ function MainPage() {
       <div className="hero-section">
         <div className="container">
           <div className="hero-logo">
-            <img src={`${process.env.PUBLIC_URL}/munchrlogo.png`} alt="Munchr Logo" className="hero-logo-image" />
+            <img src={logoImage} alt="Munchr Logo" className="hero-logo-image" />
           </div>
           <p className="hero-description">
             Duke's Vending Machine Finder
