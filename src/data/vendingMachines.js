@@ -307,11 +307,20 @@ export const vendingMachines = [
     },
     { 
       id: 34, 
-      name: 'Few HH Laundry RoomVending Machine', 
+      name: 'Few HH Laundry Room Vending Machine', 
       location: [35.999641, -78.937724], 
       building: 'Few Quad',
       floor: 'Basement',
       notes: "In the very corner of Few HH basement",
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', "Lays Barbeque", "Chester's Flamin Hot Fries", "Kettle Corn Popcorners", 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Gushers', 'Big Honey Bun', 'Smartfood White Cheddar Popcorn', 'Cheez It', "Sour Skittles Gummies", 'Mike&Ike', 'Black Forest Fruit Snacks', 'Classic Cookie', "Nerds Gummy Clusters", 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', "Kinder Bueno", "Reese's Peanut Butter Cups", "Reese's Fast Break", 'KitKat', 'Peanut M&Ms', 'Haribo Gummy Bears', 'Snickers', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Crunch', 'Nature Valley Almond Butter Biscuits', "Reese's Sticks", 'Nature Valley Granola Bar'] 
+    },
+    { 
+      id: 35, 
+      name: 'BioSci Vending Machine', 
+      location: [36.002275, -78.94291], 
+      building: 'Biological Sciences Building',
+      floor: '2nd Floor',
+      notes: "Doesn't take food points or apple pay, only takes cash or physical card swipe.",
+      products: ['Coke Zero', 'Coca Cola', 'Sprite', 'Lemonade', 'Water', 'Dr. Pepper', 'Diet Dr. Pepper', 'Schweppes Ginger Ale', 'Water'] 
     }
   ];
