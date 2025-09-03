@@ -180,7 +180,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="images">Photos (pls take individual photos of each vending machine 🙏) *</label>
+            <label htmlFor="images">Photos (pls take individual photos of each vending machine so I can update the inventory 🙏) *</label>
             <div className="image-upload-section">
               <input
                 type="file"
