@@ -234,7 +234,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Smartfood White Cheddar Popcorn', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Nerds Gummy Clusters', 'Pringles', 'Gardettos Snack Mix', 'Cheez It', 'Bugles Nacho Cheese', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Slim Jim', 'Ghirardelli Milk Chocolate Caramel', 'Haribo Gummy Bears', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Airheads Bites', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Trolli Sour Gummy Worms', 'Big Honey Bun', 'Classic Cookie', 'Mini Gummy Worms', 'Sour Skittles Gummies', 'Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Lemonade', 'Fanta', 'Monster', 'Water'] 
     },
     { 
-      id: 26, 
+      id: 27, 
       name: 'Alspaugh Vending Machine', 
       location: [36.008118, -78.915083], 
       building: 'Alspaugh Residence Hall',
@@ -243,7 +243,7 @@ export const vendingMachines = [
       products: ['Water', 'Powerade', 'Vitamin Water', 'Coca Cola', 'Sprite', 'Coke Zero', 'Dr. Pepper', 'Diet Coke', 'Seagrams Ginger Ale', 'Snack vending machine was empty when I checked :('] 
     },
     { 
-      id: 27, 
+      id: 28, 
       name: 'Giles Vending Machine', 
       location: [36.007095, -78.915135], 
       building: 'Giles Residence Hall',
@@ -252,7 +252,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Doritos Spicy Sweet Chili', 'Doritos Cool Ranch', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Ruffles Cheddar & Sour Cream', 'Cheetos', 'Cheez It', 'Peanut Butter Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', '3 Muskateers', "Reese's Peanut Butter Cups", 'KitKat', 'Haribo Gummy Bears', 'Snickers', 'Ghirardelli Milk Chocolate Caramel', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Peanut M&Ms', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Big Honey Bun', 'Jolly Rancher Sour Gummies', 'Mike&Ike', 'Coca Cola', 'Diet Coke', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Water', 'Powerade'] 
     },
     { 
-      id: 28, 
+      id: 29, 
       name: 'Wilson Vending Machine', 
       location: [36.007084, -78.914196], 
       building: 'Wilson Residence Hall',
@@ -261,7 +261,7 @@ export const vendingMachines = [
       products: ['Coca Cola', 'Sprite', 'Seagrams Ginger Ale', 'Dr. Pepper', 'Diet Coke', 'Water', 'Pepsi', 'Diet Pepsi', 'Mountain Dew', 'Diet Mountain Dew', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Bugles Nacho Cheese', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Cheez It', "Miss Vickie's Spicy Dill Pickle Chips", 'Sour Skittles Gummies', 'Big Honey Bun', 'Gatorade Protein Bar', 'Mini Cookies', 'Beef Tender Bites', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Snickers', 'Peanut M&Ms', 'Ghirardelli Milk Chocolate Caramel', 'Slim Jim', 'Crunch', 'Nature Valley Granola Bar'] 
     },
     { 
-      id: 29, 
+      id: 30, 
       name: 'Classroom Building Vending Machine', 
       location: [36.006224, -78.915233], 
       building: 'Classroom Building',
@@ -270,7 +270,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Lays Barbeque', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Cheez It', 'Peanut Butter Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Peanut M&Ms', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Gushers', 'Big Honey Bun', 'Black Forest Fruit Snacks', 'Classic Cookie', 'Vitamin Water', 'Orange Juice', 'Topo Chico', 'Dr. Pepper', 'Diet Coke', 'Coca Cola', 'Diet Dr. Pepper', 'Sprite', 'Water'] 
     },
     { 
-      id: 30, 
+      id: 31, 
       name: 'Blackwell Laundry Room 1 Vending Machine', 
       location: [36.006297, -78.916301], 
       building: 'Blackwell Residence Hall',
@@ -279,7 +279,7 @@ export const vendingMachines = [
       products: ['Pepsi', 'Diet Pepsi', 'Water', 'Starry', 'Mountain Dew', 'Pepsi Zero Sugar', 'Cheerwine', 'Rockstar Energy', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Cheetos Cheddar Jalapeno', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Mini Pretzels', 'Pop Tarts', 'Smartfood White Cheddar Popcorn', 'Gardettos Snack Mix', 'Cheez It', "Miss Vickie's Spicy Dill Pickle Chips", 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', "Reese's Fast Break", "Reese's Peanut Butter Cups", 'Haribo Gummy Bears', 'M&Ms', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Gatorade Protein Bar', 'Butterfinger', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Airheads Bites', 'Sour Skittles Gummies', 'Classic Cookie', 'Big Honey Bun', 'Gushers', 'Beef Tender Bites', 'Water', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Fanta', 'Coca Cola'] 
     },
     { 
-      id: 31, 
+      id: 32, 
       name: 'Blackwell Laundry Room 2 Vending Machine', 
       location: [36.006616, -78.916310], 
       building: 'Blackwell Residence Hall',
@@ -288,7 +288,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Gardettos Snack Mix', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Fritos Twists', 'Doritos Cool Ranch', 'Cheetos', 'Fritos Original', 'Mini Pretzels', 'Smartfood White Cheddar Popcorn', 'Cheez It', 'Peanut Butter Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Nature Valley Almond Butter Biscuits', "Reese's Peanut Butter Cups", 'Slim Jim', 'Peanut M&Ms', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Gatorade Protein Bar', 'Haribo Gummy Bears', 'Rice Krispies Treats', 'Crunch', '3 Muskateers', 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Black Forest Fruit Snacks', 'Beef Tender Bites', 'Gushers', 'Vitamin Water', 'Coca Cola', 'Diet Coke', 'Sprite', 'Coke Zero', 'Dr. Pepper', 'Diet Dr. Pepper', 'Powerade', 'Water'] 
     },
     { 
-      id: 32, 
+      id: 33, 
       name: 'Reuben Cooke Vending Machine', 
       location: [36.002469, -78.936658], 
       building: 'Reuben Cooke Building',
@@ -297,7 +297,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Lays Barbeque', 'Fritos Original', 'Cheetos', 'Ruffles Cheddar & Sour Cream', 'Smartfood White Cheddar Popcorn', 'Mini Pretzels', 'Gardettos Snack Mix', 'Cheez It', 'Doritos Spicy Sweet Chili', 'Beef Tender Bites', 'Mini Cookies', 'Black Forest Fruit Snacks', 'Gushers', 'Grilled Cheese Crackers', 'Skittles', 'Toasted Cheese Peanut Butter Crackers', 'Peanut M&Ms', "Reese's Peanut Butter Cups", 'Kinder Bueno', '3 Muskateers', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'Rice Krispies Treats', 'Crunch', 'Trail Mix', 'Haribo Gummy Bears', 'Nature Valley Granola Bar'] 
     },
     { 
-      id: 33, 
+      id: 34, 
       name: 'Brodie Vending Machine', 
       location: [36.007379, -78.917120], 
       building: 'Brodie Recreation Center',
@@ -306,7 +306,7 @@ export const vendingMachines = [
       products: ['Water', 'Powerade', 'Gatorade'] 
     },
     { 
-      id: 34, 
+      id: 35, 
       name: 'Few HH Laundry Room Vending Machine', 
       location: [35.999641, -78.937724], 
       building: 'Few Quad',
@@ -315,7 +315,7 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', "Lays Barbeque", "Chester's Flamin Hot Fries", "Kettle Corn Popcorners", 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Gushers', 'Big Honey Bun', 'Smartfood White Cheddar Popcorn', 'Cheez It', "Sour Skittles Gummies", 'Mike&Ike', 'Black Forest Fruit Snacks', 'Classic Cookie', "Nerds Gummy Clusters", 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', "Kinder Bueno", "Reese's Peanut Butter Cups", "Reese's Fast Break", 'KitKat', 'Peanut M&Ms', 'Haribo Gummy Bears', 'Snickers', 'Gatorade Protein Bar', 'Rice Krispies Treats', 'Crunch', 'Nature Valley Almond Butter Biscuits', "Reese's Sticks", 'Nature Valley Granola Bar'] 
     },
     { 
-      id: 35, 
+      id: 36, 
       name: 'BioSci Vending Machine', 
       location: [36.002275, -78.94291], 
       building: 'Biological Sciences Building',
