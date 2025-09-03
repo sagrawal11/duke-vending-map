@@ -729,7 +729,13 @@ function MainPage() {
       <div className="hero-section">
         <div className="container">
           <div className="hero-logo">
-            <img src={logoImage} alt="Munchr Logo" className="hero-logo-image" />
+            <img 
+              src={logoImage} 
+              alt="Munchr Logo" 
+              className="hero-logo-image clickable-logo"
+              onClick={clearSearch}
+              style={{ cursor: 'pointer' }}
+            />
           </div>
           <p className="hero-description">
             Duke's Vending Machine Finder
