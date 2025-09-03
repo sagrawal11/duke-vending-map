@@ -853,7 +853,14 @@ function MainPage() {
                   position={machine.location}
                 >
                   <Popup>
-                    <div className="machine-popup">
+                    <div 
+                      className="machine-popup clickable-popup"
+                      onClick={() => {
+                        setInlineMachineProducts({ machine });
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <h3>{machine.name}</h3>
                       <p><strong>Building:</strong> {machine.building}</p>
                       <p><strong>Floor:</strong> {machine.floor}</p>
@@ -871,6 +878,9 @@ function MainPage() {
                       <div className="popup-products">
                         <p><strong>Available Categories:</strong></p>
                         {renderCategorySummary(machine.products)}
+                      </div>
+                      <div className="popup-click-hint">
+                        <p><em>Click to view all products →</em></p>
                       </div>
                     </div>
                   </Popup>

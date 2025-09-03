@@ -241,6 +241,7 @@ const buildingImageMap = {
     'wilkinson': '/images/buildings/wilk.jpeg',
     'fewquad': '/images/buildings/few.jpg',
     'cravenresidencehall': '/images/buildings/craven.jpg',
+    'biologicalsciencesbuilding': '/images/buildings/biosci.jpg'
 
 };
 
