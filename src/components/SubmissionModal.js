@@ -153,7 +153,7 @@ const SubmissionModal = ({ isOpen, onClose }) => {
               id="description"
               name="description"
               required
-              placeholder="Describe what you found - missing vending machine not on this map, new or changed products, etc."
+              placeholder="Describe what you found and how you got to the machine inside the building- missing vending machine not on this map, new or changed products, etc."
               rows="3"
             />
           </div>
