@@ -170,12 +170,13 @@ const SubmissionModal = ({ isOpen, onClose }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="dukeEmail">Duke Email (Optional)</label>
+            <label htmlFor="dukeEmail">Duke Email *</label>
             <input
               type="email"
               id="dukeEmail"
               name="dukeEmail"
               placeholder="e.g., netid@duke.edu"
+              required
             />
           </div>
           
