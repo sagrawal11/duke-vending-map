@@ -322,5 +322,23 @@ export const vendingMachines = [
       floor: '2nd Floor',
       notes: "Doesn't take food points or apple pay, only takes cash or physical card swipe.",
       products: ['Coke Zero', 'Coca Cola', 'Sprite', 'Lemonade', 'Water', 'Dr. Pepper', 'Diet Dr. Pepper', 'Schweppes Ginger Ale', 'Water'] 
+    },
+    { 
+      id: 37, 
+      name: 'Friedl Vending Machine', 
+      location: [36.006321, -78.914288], 
+      building: 'Friedl Building',
+      floor: '1st Floor',
+      notes: "Has its own room",
+      products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Kettle Corn Popcorners', "Lays Barbeque", 'Cheez It', 'Doritos Cool Ranch', 'Bugles Nacho Cheese', 'Mini Pretzels', 'Sun Chips Harvest Cheddar', 'Lays Sour Cream & Onion', 'Chex Mix', "Chester's Flamin Hot Fries", 'Grilled Cheese Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Slim Jim', 'Kinder Bueno', "Reese's Sticks", 'Peanut M&Ms', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', "KitKat", 'Butterfinger', 'Rice Krispies Treats', 'Gatorade Protein Bar', "Reese's Fast Break", 'Nature Valley Granola Bar', 'Sour Skittles Gummies', 'Mini Cookies', 'Beef Tender Bites', 'Pop Tarts', 'Classic Cookie', 'Coca Cola', "Coke Zero", 'Dr. Pepper', 'Sprite', 'Lemonade']
+    },
+    { 
+      id: 38, 
+      name: 'Gross Hall Vending Machine', 
+      location: [36.001465, -78.944876], 
+      building: 'Paul M. Gross Hall',
+      floor: '1st Floor',
+      notes: "Very back of Gross Hall across from the elevators",
+      products: ['Apple Juice', "Grape Juice", 'Orange Juice', 'Celsius', 'Gatorade', 'Water', 'Starbucks Vanilla Double Shot', 'Starbucks Dark Caramel Triple Shot', 'Starbucks Bold Mocha Triple Shot']
     }
   ];

@@ -78,6 +78,7 @@ export const getProductImage = (productName) => {
     'starry': '/images/products/starry.jpeg',
     'fruit punch': '/images/products/fruit-punch.jpeg',
     'sunkist strawberry': '/images/products/sunkist-strawberry.jpeg',
+    'starbucks vanilla double shot': '/images/products/vanilladoubleshot.webp',
 
 
     // Candy & Sweets
@@ -241,7 +242,9 @@ const buildingImageMap = {
     'wilkinson': '/images/buildings/wilk.jpeg',
     'fewquad': '/images/buildings/few.jpg',
     'cravenresidencehall': '/images/buildings/craven.jpg',
-    'biologicalsciencesbuilding': '/images/buildings/biosci.jpg'
+    'biologicalsciencesbuilding': '/images/buildings/biosci.jpg',
+    'grosshall': '/images/buildings/grosshall.jpg',
+    'friedlbuilding': '/images/buildings/friedl.png'
 
 };
 

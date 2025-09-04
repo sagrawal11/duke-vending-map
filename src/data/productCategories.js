@@ -47,7 +47,9 @@ export const categorizeProduct = (product) => {
         lowerProduct.includes('starry') ||
         lowerProduct.includes('apple juice') ||
         lowerProduct.includes('orange juice') ||
+        lowerProduct.includes('grape juice') ||
         lowerProduct.includes('fanta')) {
+          
       return 'Sodas & Drinks';
     }
     
