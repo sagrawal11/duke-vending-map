@@ -1,13 +1,38 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
-import Footer from './components/Footer';
+import FreeFoodPage from './pages/FreeFoodPage';
+import logoImage from './munchrlogo.png';
+import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <MainPage />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        {/* Global Header */}
+        <div className="hero-section">
+          <div className="container">
+            <div className="hero-logo">
+              <img 
+                src={logoImage} 
+                alt="Munchr Logo" 
+                className="hero-logo-image clickable-logo"
+                onClick={() => window.location.href = '/'}
+                style={{ cursor: 'pointer' }}
+              />
+            </div>
+            <p className="hero-description">
+              Duke's Vending Machine Finder
+            </p>
+          </div>
+        </div>
+        
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/free-food" element={<FreeFoodPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

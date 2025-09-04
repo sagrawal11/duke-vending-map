@@ -1,0 +1,68 @@
+/* Import Quicksand font for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.tab-navigation {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+  color: #6b7280;
+  padding: 12px 24px;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  margin-right: 2px;
+}
+
+.tab:hover {
+  background: #f1f5f9;
+  color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: white;
+  color: #1f2937;
+  border-color: #e5e7eb;
+  border-bottom: 1px solid white;
+  z-index: 5;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tab.active:hover {
+  background: white;
+  color: #1f2937;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}

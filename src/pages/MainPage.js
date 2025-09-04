@@ -9,10 +9,10 @@ import VendingMachineItemCard from '../components/VendingMachineItemCard';
 import VendingMachineCard from '../components/VendingMachineCard';
 import FloatingActionButton from '../components/FloatingActionButton';
 import SubmissionModal from '../components/SubmissionModal';
+import Navigation from '../components/Navigation';
 import { groupProductsByCategory } from '../data/productCategories';
 import { vendingMachines } from '../data/vendingMachines';
 import './MainPage.css';
-import logoImage from '../munchrlogo.png';
 
 import { calculateDistance } from '../utils/distance';
 
@@ -726,24 +726,10 @@ function MainPage() {
 
   return (
     <div className="main-page">
-      <div className="hero-section">
-        <div className="container">
-          <div className="hero-logo">
-            <img 
-              src={logoImage} 
-              alt="Munchr Logo" 
-              className="hero-logo-image clickable-logo"
-              onClick={clearSearch}
-              style={{ cursor: 'pointer' }}
-            />
-          </div>
-          <p className="hero-description">
-            Duke's Vending Machine Finder
-          </p>
-        </div>
-      </div>
-      
-      <div className="container main-content">
+      <div className="page-container">
+        <Navigation />
+        <div className="content-container">
+          <div className="container main-content">
         <div key={contentAnimKey} className="main-content-inner" style={{animation: 'slideUp 0.6s ease-out'}}>
           <div className="search-section">
             <h2>Find Snacks & Drinks</h2>
@@ -943,6 +929,8 @@ function MainPage() {
           </div>
         </div>
       </Modal>
+        </div>
+      </div>
       
       {/* Floating Action Button */}
       <FloatingActionButton 
