@@ -350,8 +350,8 @@ function MainPage() {
 
   // Define which buildings are on which campus
   const campusBuildings = {
-    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center'],
-    east: ['Pegram', 'Bassett', 'Brown', 'Alspaugh', 'Giles', 'Wilson Residence', 'West House', 'Eastern Union', 'West Duke', 'Brodie', 'Blackwell', 'Randolph', 'Bell Tower', 'Trinity', 'Southgate', 'Gilbert Addoms', 'Classroom']
+    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center', 'Craven', 'Wannamaker', 'Crowell', 'Kilgo', 'Fitzpatrick'],
+    east: ['Pegram', 'Bassett', 'Brown', 'Alspaugh', 'Giles', 'Wilson Residence', 'West House', 'Eastern Union', 'West Duke', 'Brodie', 'Blackwell', 'Randolph', 'Bell Tower', 'Trinity', 'Southgate', 'Gilbert Addoms', 'Classroom', 'Biddle', 'Friedl']
   };
   
   // Function to determine which campus a machine is on
