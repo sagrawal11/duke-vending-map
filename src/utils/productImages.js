@@ -162,7 +162,9 @@ export const getProductImage = (productName) => {
     'nutra grain': 'images/products/nutra-grain.jpeg',
     'tuna salad': 'images/products/tuna-salad.jpeg',
     'kettle corn popcorners': '/images/products/popcorners_kettle.avif',
-    'popchips bbq': '/images/products/popchipsbbq.jpg'
+    'popchips bbq': '/images/products/popchipsbbq.jpg',
+    'salted peanuts': '/images/products/peanuts.webp',
+    'seagrams ginger ale': '/images/products/seagrams.webp'
 
   };
   
