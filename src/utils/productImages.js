@@ -79,6 +79,8 @@ export const getProductImage = (productName) => {
     'fruit punch': '/images/products/fruit-punch.jpeg',
     'sunkist strawberry': '/images/products/sunkist-strawberry.jpeg',
     'starbucks vanilla double shot': '/images/products/vanilladoubleshot.webp',
+    'storm': '/images/products/storm.avif',
+    'kickstart': '/images/products/kickstart.avif',
 
 
     // Candy & Sweets
@@ -159,7 +161,9 @@ export const getProductImage = (productName) => {
     'chicken salad and crackers': 'images/products/chicken-salad-and-crackers.webp',
     'nutra grain': 'images/products/nutra-grain.jpeg',
     'tuna salad': 'images/products/tuna-salad.jpeg',
-    'kettle corn popcorners': '/images/products/popcorners_kettle.avif'
+    'kettle corn popcorners': '/images/products/popcorners_kettle.avif',
+    'popchips bbq': '/images/products/popchipsbbq.jpg'
+
   };
   
   // Try to find an exact match first
@@ -213,7 +217,7 @@ export const getFallbackImage = (productName) => {
 const buildingImageMap = {
     'randolphresidencehall': '/images/buildings/randolph.jpg',
     'alspaughresidencehall': '/images/buildings/alspaughresidencehall.jpg',
-    'bassetresidencehall': '/images/buildings/bassetresidencehall.jpeg',
+    'bassettresidencehall': '/images/buildings/bassetresidencehall.jpeg',
     'blackwellresidencehall': '/images/buildings/blackwellresidencehall.jpeg',
     'brodierecreationcenter': '/images/buildings/brodierecreationcenter.jpeg',
     'gilbertaddomsresidencehall': '/images/buildings/gilbertaddomsresidencehall.jpg',
@@ -241,10 +245,23 @@ const buildingImageMap = {
     'levinescienceresearchcenter': '/images/buildings/lsrc.jpg',
     'wilkinson': '/images/buildings/wilk.jpeg',
     'fewquad': '/images/buildings/few.jpg',
-    'cravenresidencehall': '/images/buildings/craven.jpg',
+    'cravenquad': '/images/buildings/craven.jpg',
     'biologicalsciencesbuilding': '/images/buildings/biosci.jpg',
     'grosshall': '/images/buildings/grosshall.jpg',
-    'friedlbuilding': '/images/buildings/friedl.png'
+    'friedlbuilding': '/images/buildings/friedl.png',
+    'frenchfamilysciencecenter': '/images/buildings/french.jpg',
+    'marydukebiddlemusicbuilding': '/images/buildings/biddle.jpg',
+    'fuquaschoolofbusiness': '/images/buildings/fuqua.avif',
+    'lawschool': '/images/buildings/law.jpg',
+    'sanfordschoolofpublicpolicy': '/images/buildings/sanford.jpg',
+    'edensquad': '/images/buildings/edens.jpg',
+    'crowellquad': '/images/buildings/crowell.webp',
+    'kilgoquad': '/images/buildings/kilgo.jpg',
+    'rubensteinhall': '/images/buildings/rubenstein.jpg',
+    'officeofundergraduateadmissions': '/images/buildings/undergrad.png',
+    'wannamakerquad': '/images/buildings/wanny.jpg',
+    'hollowsquad': '/images/buildings/hollows.jpg',
+    'keohanequad': '/images/buildings/keohane.jpg'
 
 };
 

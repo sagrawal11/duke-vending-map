@@ -75,6 +75,7 @@ const buildingAliases = {
   'bryan center': 'Bryan Center',
   'marketplace': 'Eastern Union',
   'east dining hall': 'Eastern Union',
+  'biosci': 'Biological Sciences Building'
 };
 
 function normalizeBuildingSearchTerm(term) {
