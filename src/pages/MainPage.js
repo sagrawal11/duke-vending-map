@@ -350,7 +350,7 @@ function MainPage() {
 
   // Define which buildings are on which campus
   const campusBuildings = {
-    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center', 'Craven', 'Wannamaker', 'Crowell', 'Kilgo', 'Fitzpatrick'],
+    west: ['LSRC', 'Physics', 'Teer', 'Wilkinson', 'Rueben Cooke', 'Social Sciences', 'Allen', 'Perkins', 'Wu', 'BC', 'Flowers', 'Few', 'Wilson Recreation Center', 'Craven', 'Wannamaker', 'Crowell', 'Kilgo', 'Fitzpatrick', 'Keohane'],
     east: ['Pegram', 'Bassett', 'Brown', 'Alspaugh', 'Giles', 'Wilson Residence', 'West House', 'Eastern Union', 'West Duke', 'Brodie', 'Blackwell', 'Randolph', 'Bell Tower', 'Trinity', 'Southgate', 'Gilbert Addoms', 'Classroom', 'Biddle', 'Friedl']
   };
   

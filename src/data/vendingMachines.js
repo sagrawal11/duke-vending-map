@@ -425,7 +425,7 @@ export const vendingMachines = [
     { 
       id: 48, 
       name: 'Keohane 4B Laundry Room Vending Machine', 
-      location: [35.998903, -78.938783],
+      location: [35.998987, -78.937983],
       building: 'Keohane Quad',
       floor: 'Basement',
       notes: "In the basement laundry room of Keohane 4B",
@@ -447,7 +447,7 @@ export const vendingMachines = [
       building: 'Hollows Quad',
       floor: '1st Floor',
       notes: "First floor of hollows A, enter from the side under the overpass near keohane and go to the left",
-      products: ['Diet Dr. Pepper', 'Dr. Pepper', 'Topo Chico', 'Diet Coke', 'Coca Cola', 'Mellow Yellow', 'Sprite', 'Storm', 'Water', 'Monster', 'Vitamin Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Sun Chips Spicy Sweet Chili', 'Funyuns', 'Mini Pretzels', 'Doritos Cool Ranch', 'Ruffles Cheddar & Sour Cream', 'Gardettos Snack Mix', 'Sun Chips Harvest Cheddar', "Chester's Flamin Hot Fries", "Reese's Peanut Butter Cups", 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', 'Haribo Gummy Bears', 'Kinder Bueno', 'Peanut M&Ms', 'Snickers', 'KitKat', 'Sour Patch Kids', "Reese's Sticks", 'Slim Jim', 'Clif Bar Chocolate Chip', 'Ghirardelli Milk Chocolate Caramel', "Reese's Fast Break", 'Airheads Bites', 'Nerds Gummy Clusters', 'Mini Cookies', 'Big Honey Bun', 'Trolli Sour Gummy Worms', 'Gatorade', 'Celsius', 'Propel', 'Starbucks Cold Brew']
+      products: ['Diet Dr. Pepper', 'Dr. Pepper', 'Topo Chico', 'Diet Coke', 'Coca Cola', 'Mellow Yellow', 'Sprite', 'Storm', 'Water', 'Monster', 'Vitamin Water', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Doritos Spicy Sweet Chili', 'Funyuns', 'Mini Pretzels', 'Doritos Cool Ranch', 'Ruffles Cheddar & Sour Cream', 'Gardettos Snack Mix', 'Sun Chips Harvest Cheddar', "Chester's Flamin Hot Fries", "Reese's Peanut Butter Cups", 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', 'Haribo Gummy Bears', 'Kinder Bueno', 'Peanut M&Ms', 'Snickers', 'KitKat', 'Sour Patch Kids', "Reese's Sticks", 'Slim Jim', 'Clif Bar Chocolate Chip', 'Ghirardelli Milk Chocolate Caramel', "Reese's Fast Break", 'Airheads Bites', 'Nerds Gummy Clusters', 'Mini Cookies', 'Big Honey Bun', 'Trolli Sour Gummy Worms', 'Gatorade', 'Celsius', 'Propel', 'Starbucks Cold Brew']
     },
     { 
       id: 51, 
@@ -547,5 +547,14 @@ export const vendingMachines = [
       floor: '',
       notes: "",
       products: ['Coca Cola', 'Diet Coke', 'Coke Zero', 'Sprite', 'Diet Dr. Pepper', 'Dr. Pepper', 'Seagrams Ginger Ale', 'Pepsi Zero Sugar', 'Pepsi', 'Starry', 'Baja Blast Mountain Dew', 'Propel', 'Water', 'Celsius', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Kettle Corn Popcorners', 'Fritos Original', 'Pop Tarts', 'Gardettos Snack Mix', 'Grilled Cheese Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut M&Ms', "Reese's Fast Break", "Reese's Peanut Butter Cups", 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'KitKat', 'Rice Krispies Treats', 'Haribo Gummy Bears', 'Trail Mix', 'Crunch', 'Nature Valley Granola Bar', 'Black Forest Fruit Snacks', 'Sour Skittles Gummies']
+    },
+    { 
+      id: 62, 
+      name: 'Keohane 2nd Floor 4B Laundry Room Vending Machine', 
+      location: [35.999385, -78.937686], 
+      building: 'Keohane Quad',
+      floor: '2nd Floor',
+      notes: "On the corner of 4B and 4D",
+      products: ['Pepsi', 'Pepsi Zero Sugar', 'Schweppes Ginger Ale', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Gatorade', 'Rockstar', 'Lipton Citrus Green Tea', 'Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Diet Dr. Pepper', 'Mellow Yellow', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Lays Sour Cream & Onion', 'Pop Tarts', 'Sour Skittles Gummies', 'Cheez It', 'Nerds Gummy Clusters', 'Peanut Butter Crackers', 'Rice Krispies Treats', "Reese's Peanut Butter Cups", 'Slim Jim', 'Big Honey Bun', 'Classic Cookie']
     }
   ];
