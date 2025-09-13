@@ -22,7 +22,9 @@ const SubmissionModal = ({ isOpen, onClose }) => {
       id: Date.now() + Math.random(),
       preview: URL.createObjectURL(file)
     }));
-    setSelectedImages(imageObjects);
+    setSelectedImages(prev => [...prev, ...imageObjects]);
+    // Reset the file input so the same file can be selected again if needed
+    e.target.value = '';
   };
 
   const removeImage = (imageId) => {
@@ -33,6 +35,10 @@ const SubmissionModal = ({ isOpen, onClose }) => {
       }
       return prev.filter(img => img.id !== imageId);
     });
+  };
+
+  const triggerFileInput = () => {
+    document.getElementById('images').click();
   };
 
   const handleSubmit = (e) => {
@@ -214,6 +220,18 @@ const SubmissionModal = ({ isOpen, onClose }) => {
                     </button>
                   </div>
                 ))}
+                
+                {selectedImages.length < 5 && (
+                  <div className="add-more-photos-container">
+                    <button
+                      type="button"
+                      className="add-more-photos-button"
+                      onClick={triggerFileInput}
+                    >
+                      + Add More Photos
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
