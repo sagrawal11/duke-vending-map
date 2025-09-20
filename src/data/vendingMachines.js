@@ -556,5 +556,14 @@ export const vendingMachines = [
       floor: '2nd Floor',
       notes: "On the corner of 4B and 4D",
       products: ['Pepsi', 'Pepsi Zero Sugar', 'Schweppes Ginger Ale', 'Water', 'Mountain Dew', 'Diet Mountain Dew', 'Gatorade', 'Rockstar', 'Lipton Citrus Green Tea', 'Coca Cola', 'Diet Coke', 'Sprite', 'Dr. Pepper', 'Diet Dr. Pepper', 'Mellow Yellow', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Garden Salsa', 'Lays Sour Cream & Onion', 'Pop Tarts', 'Sour Skittles Gummies', 'Cheez It', 'Nerds Gummy Clusters', 'Peanut Butter Crackers', 'Rice Krispies Treats', "Reese's Peanut Butter Cups", 'Slim Jim', 'Big Honey Bun', 'Classic Cookie']
+    },
+    { 
+      id: 63, 
+      name: 'Ruby Vending Machine', 
+      location: [36.000246, -78.929479], 
+      building: 'Rubenstein Arts Center',
+      floor: '1st Floor',
+      notes: "Take a right when you first enter and walk down the hall, it'll be on your right across from the bathrooms",
+      products: ['Popchips Sea Salt', 'Popchips Sea Salt & Vinegar', 'Cheez It', 'Lays Sour Cream & Onion', 'Smartfood White Cheddar Popcorn', 'Sun Chips Harvest Cheddar', 'Cheetos', 'Gardettos Snack Mix', "Chester's Flamin Hot Fries", 'Doritos Nacho Cheese', 'Mini Pretzels', 'Doritos Spicy Sweet Chili', 'Lemon Creme Crackers', 'Peanut Butter Crackers', 'Grilled Cheese Crackers', 'Gatorade Protein Bar', 'Nutra Grain', 'Ghirardelli Milk Chocolate Caramel', 'Snickers', 'Peanut M&Ms', 'KitKat', "Reese's Sticks", 'Gushers', 'Pop Tarts', "Reese's Peanut Butter Cups", 'Beef Tender Bites', 'Sour Skittles Gummies', 'Goldfish', 'Diet Coke', 'Storm', 'Dr. Pepper', 'Diet Dr. Pepper', 'Coca Cola', 'Sprite', 'Mellow Yellow', 'Vitamin Water', 'Orange Juice', 'Monster', 'Water', 'Starry', 'Pepsi Zero Sugar', 'Starbucks Strawberry Acai', 'Apple Juice', 'Rockstar', 'Celsius', 'Starbucks Vanilla Frappuccino', 'Starbucks Mocha Frappuccino', 'Starbucks Coffee Frappuccino']
     }
   ];
