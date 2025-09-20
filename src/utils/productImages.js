@@ -164,8 +164,9 @@ export const getProductImage = (productName) => {
     'kettle corn popcorners': '/images/products/popcorners_kettle.avif',
     'popchips bbq': '/images/products/popchipsbbq.jpg',
     'salted peanuts': '/images/products/peanuts.webp',
-    'seagrams ginger ale': '/images/products/seagrams.webp'
-
+    'seagrams ginger ale': '/images/products/seagrams.webp',
+    'lemon creme crackers': '/images/products/lemon-creme.webp',
+    'popchips sea salt & vinegar': '/images/products/popchips-sea-salt-&-vinegar.webp'
   };
   
   // Try to find an exact match first
@@ -263,7 +264,8 @@ const buildingImageMap = {
     'officeofundergraduateadmissions': '/images/buildings/undergrad.png',
     'wannamakerquad': '/images/buildings/wanny.jpg',
     'hollowsquad': '/images/buildings/hollows.jpg',
-    'keohanequad': '/images/buildings/keohane.jpg'
+    'keohanequad': '/images/buildings/keohane.jpg', 
+    'rubensteinartscenter': '/images/buildings/ruby.jpg', 
 
 };
 
