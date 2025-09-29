@@ -22,7 +22,7 @@ function App() {
               />
             </div>
             <p className="hero-description">
-              Duke's Guide to Vending Machines and Free Food
+              Your Guide to Vending Machines on Campus
             </p>
           </div>
         </div>
