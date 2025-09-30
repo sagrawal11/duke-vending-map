@@ -198,15 +198,6 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Bugles Nacho Cheese', "Miss Vickie's Spicy Dill Pickle Chips", 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Lays Sour Cream & Onion', 'Cheez It', 'Lays Salt & Vinegar', 'Nerds Gummy Clusters', 'Sour Skittles Gummies', 'Gushers', 'Beef Tender Bites', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Skittles', 'Butterfinger', "Reese's Peanut Butter Cups", 'KitKat', 'Twix', 'Peanut M&Ms', 'Snickers', 'Big Honey Bun', 'Classic Cookie', 'Mini Cookies', 'Belvita', 'Coca Cola', 'Sprite', 'Water', 'Dr. Pepper', 'Orange Fanta', 'Mellow Yellow', 'Diet Dr. Pepper', 'Cherry Coca Cola'] 
     },
     { 
-      id: 23, 
-      name: 'Marketplace Vending Machine', 
-      location: [36.007479, -78.914067], 
-      building: 'Eastern Union',
-      floor: 'Bottom Floor',
-      notes: "On the right side of Trinity cafe when you go down the stairs",
-      products: ['Empty when I last checked :('] 
-    },
-    { 
       id: 24, 
       name: 'Pegram Vending Machine', 
       location: [36.008657, -78.915185], 
