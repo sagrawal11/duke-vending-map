@@ -198,6 +198,15 @@ export const vendingMachines = [
       products: ['Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Sun Chips Harvest Cheddar', 'Bugles Nacho Cheese', "Miss Vickie's Spicy Dill Pickle Chips", 'Cheetos', 'Fritos Original', 'Ruffles Cheddar & Sour Cream', 'Mini Pretzels', 'Pop Tarts', 'Gardettos Snack Mix', 'Lays Sour Cream & Onion', 'Cheez It', 'Lays Salt & Vinegar', 'Nerds Gummy Clusters', 'Sour Skittles Gummies', 'Gushers', 'Beef Tender Bites', 'Grilled Cheese Crackers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Skittles', 'Butterfinger', "Reese's Peanut Butter Cups", 'KitKat', 'Twix', 'Peanut M&Ms', 'Snickers', 'Big Honey Bun', 'Classic Cookie', 'Mini Cookies', 'Belvita', 'Coca Cola', 'Sprite', 'Water', 'Dr. Pepper', 'Orange Fanta', 'Mellow Yellow', 'Diet Dr. Pepper', 'Cherry Coca Cola'] 
     },
     { 
+      id: 23, 
+      name: 'Colab Vending Machine', 
+      location: [36.003589, -78.938715], 
+      building: 'Tel-Com Building',
+      floor: '',
+      notes: "",
+      products: ['Coca Cola', 'Coke Zero', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Harvest Cheddar', 'Doritos Cool Ranch', 'Cheetos', "Chester's Flamin Hot Fries", 'Cheez It', 'Grilled Cheese Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Nature Valley Almond Butter Biscuits', 'Crunch', 'Mini Gummy Worms', 'Mini Cookies', 'Beef Tender Bites'] 
+    },
+    { 
       id: 24, 
       name: 'Pegram Vending Machine', 
       location: [36.008657, -78.915185], 
