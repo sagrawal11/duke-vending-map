@@ -266,6 +266,7 @@ const buildingImageMap = {
     'hollowsquad': '/images/buildings/hollows.jpg',
     'keohanequad': '/images/buildings/keohane.jpg', 
     'rubensteinartscenter': '/images/buildings/ruby.jpg', 
+    'tel-combuilding':'colab.jpg'
 
 };
 

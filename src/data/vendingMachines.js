@@ -202,8 +202,8 @@ export const vendingMachines = [
       name: 'Colab Vending Machine', 
       location: [36.003589, -78.938715], 
       building: 'Tel-Com Building',
-      floor: '',
-      notes: "",
+      floor: '1st Floor',
+      notes: "Enter from the door across from Wilkinson and take a right",
       products: ['Coca Cola', 'Coke Zero', 'Sprite', 'Mellow Yellow', 'Dr. Pepper', 'Diet Dr. Pepper', 'Lays Classic', 'Fritos Twists', 'Doritos Nacho Cheese', 'Ruffles Cheddar & Sour Cream', 'Sun Chips Harvest Cheddar', 'Doritos Cool Ranch', 'Cheetos', "Chester's Flamin Hot Fries", 'Cheez It', 'Grilled Cheese Crackers', 'Gushers', 'Toasted Cheese Peanut Butter Crackers', 'Peanut Butter Crackers', 'Trail Mix', "Reese's Peanut Butter Cups", 'Nutra Grain', 'Snickers', 'Peanut M&Ms', 'KitKat', 'Butterfinger', 'Rice Krispies Treats', 'Nature Valley Almond Butter Biscuits', 'Crunch', 'Mini Gummy Worms', 'Mini Cookies', 'Beef Tender Bites'] 
     },
     { 
